@@ -14,9 +14,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FormatterExpansion extends PlaceholderExpansion implements Configurable{
-    private final Pattern formatPattern = Pattern.compile("(_)?format:\\((?<format>.+)\\)(_)?");
-    private final Pattern numberPattern = Pattern.compile("(_)?value:\\((?<number>\\d+)\\)(_)?");
-    private final Pattern localePattern = Pattern.compile("(_)?locale:\\((?<locale>.+)\\)(_)?");
+    private final Pattern formatPattern = Pattern.compile("(_)?format:\\((?<format>.+)\\)(_)?", Pattern.CASE_INSENSITIVE);
+    private final Pattern numberPattern = Pattern.compile("(_)?value:\\((?<number>\\d+)\\)(_)?", Pattern.CASE_INSENSITIVE);
+    private final Pattern localePattern = Pattern.compile("(_)?locale:\\((?<locale>.+)\\)(_)?", Pattern.CASE_INSENSITIVE);
     
     @Override
     public String getIdentifier(){
