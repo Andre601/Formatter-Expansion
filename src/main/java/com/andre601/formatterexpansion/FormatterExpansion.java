@@ -10,6 +10,7 @@ import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -80,14 +81,10 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         
         final StringBuilder builder = new StringBuilder();
         
-        long minutes = seconds / 60;
-        long hours = minutes / 60;
-        long days = hours / 24;
-        
-        seconds %= 60;
-        minutes %= 60;
-        hours %= 60;
-        days %= 24;
+        long days = TimeUnit.SECONDS.toDays(seconds);
+        long hours = TimeUnit.SECONDS.toHours(seconds) - days * 24;
+        long minutes = TimeUnit.SECONDS.toMinutes(seconds) - hours * 60 - days * 1440;
+        seconds = seconds - minutes * 60 - hours * 3600 - days * 86400;
         
         if(days > 0){
             builder.append(days)
