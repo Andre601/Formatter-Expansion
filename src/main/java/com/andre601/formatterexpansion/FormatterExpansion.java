@@ -14,9 +14,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FormatterExpansion extends PlaceholderExpansion implements Configurable{
-    private final Pattern formatPattern = Pattern.compile("(_)?format:\\((?<format>.+)\\)(_)?", Pattern.CASE_INSENSITIVE);
-    private final Pattern numberPattern = Pattern.compile("(_)?value:\\((?<number>\\d+)\\)(_)?", Pattern.CASE_INSENSITIVE);
-    private final Pattern localePattern = Pattern.compile("(_)?locale:\\((?<locale>.+)\\)(_)?", Pattern.CASE_INSENSITIVE);
+    private final Pattern time;
+    private final Pattern formatPattern;
+    private final Pattern numberPattern;
+    private final Pattern localePattern;
+    
+    public FormatterExpansion(){
+        time          = Pattern.compile("(?:_)?time(?:_)?", Pattern.CASE_INSENSITIVE);
+        formatPattern = Pattern.compile("(?:_)?format:\\((?<format>.+)\\)(?:_)?", Pattern.CASE_INSENSITIVE);
+        numberPattern = Pattern.compile("(?:_)?value:\\((?<number>\\d+)\\)(?:_)?", Pattern.CASE_INSENSITIVE);
+        localePattern = Pattern.compile("(?:_)?locale:\\((?<locale>.+)\\)(?:_)?", Pattern.CASE_INSENSITIVE);
+    }
     
     @Override
     public String getIdentifier(){
@@ -40,6 +48,12 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         defaults.put("format", "#,###,###.##");
         defaults.put("locale", "en_US");
         
+        defaults.put("time.seconds", "s");
+        defaults.put("time.minutes", "m");
+        defaults.put("time.hours", "h");
+        defaults.put("time.days", "d");
+        defaults.put("time.condensed", "no");
+        
         return defaults;
     }
     
@@ -56,6 +70,57 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         }
     }
     
+    /* 
+     * From the Statistic expansion
+     * https://github.com/PlaceholderAPI/Statistics-Expansion
+     */
+    private String formatTime(long seconds){
+        if(seconds <= 0)
+            return String.valueOf(seconds) + this.getString("time.seconds", "s");
+        
+        final StringBuilder builder = new StringBuilder();
+        
+        long minutes = seconds / 60;
+        long hours = minutes / 60;
+        long days = hours / 24;
+        
+        seconds %= 60;
+        minutes %= 60;
+        hours %= 60;
+        days %= 24;
+        
+        if(days > 0){
+            builder.append(days)
+                   .append(this.getString("time.days", "d"));
+        }
+        
+        if(hours > 0){
+            if((builder.length() > 0) && (this.getString("time.condensed", "no").equalsIgnoreCase("no")))
+                builder.append(" ");
+            
+            builder.append(hours)
+                   .append(this.getString("time.hours", "h"));
+        }
+        
+        if(minutes > 0){
+            if((builder.length() > 0) && (this.getString("time.condensed", "no").equalsIgnoreCase("no")))
+                builder.append(" ");
+    
+            builder.append(minutes)
+                   .append(this.getString("time.minutes", "m"));
+        }
+        
+        if(seconds > 0){
+            if((builder.length() > 0) && (this.getString("time.condensed", "no").equalsIgnoreCase("no")))
+                builder.append(" ");
+    
+            builder.append(seconds)
+                   .append(this.getString("time.seconds", "s"));
+        }
+        
+        return builder.toString();
+    }
+    
     @Override
     public String onRequest(OfflinePlayer player, String identifier){
         identifier = PlaceholderAPI.setBracketPlaceholders(player, identifier);
@@ -64,6 +129,18 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         if(!numberMatcher.find())
             return "No number or placeholder provided!";
     
+        long number;
+        try{
+            number = Long.parseLong(numberMatcher.group("number"));
+        }catch(NumberFormatException ex){
+            return "Could not parse number!";
+        }
+        
+        Matcher timeMatcher = time.matcher(identifier);
+        if(timeMatcher.find()){
+            return formatTime(number);
+        }
+        
         Locale locale;
         Matcher localeMatcher = localePattern.matcher(identifier);
         if(localeMatcher.find()){
@@ -75,12 +152,6 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         NumberFormat numberFormat = NumberFormat.getNumberInstance(locale);
         DecimalFormat decimalFormat = (DecimalFormat)numberFormat;
         
-        long number;
-        try{
-            number = Long.parseLong(numberMatcher.group("number"));
-        }catch(NumberFormatException ex){
-            return "Could not parse number!";
-        }
         
         Matcher formatMatcher = formatPattern.matcher(identifier);
         if(formatMatcher.find()){
