@@ -115,4 +115,5 @@ Defaults to `s`.
 - `1.0.0` First release.
 - `1.0.1` Made placeholder options case-insensitive.
 - `1.1.0` Added `time` option for placeholder. This converts the number to a time.
+- `1.1.1` Fix time not working with large numbers
 - `1.2.0` Revorked placeholder pattern to make it more structured. Added text formatting options.
