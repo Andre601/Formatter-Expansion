@@ -5,6 +5,7 @@ import me.clip.placeholderapi.expansion.Configurable;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
 
+import javax.annotation.Nonnull;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
@@ -25,18 +26,21 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
     }
     
     @Override
+    @Nonnull
     public String getIdentifier(){
         return "formatter";
     }
     
     @Override
+    @Nonnull
     public String getAuthor(){
         return "Andre_601";
     }
     
     @Override
+    @Nonnull
     public String getVersion(){
-        return "{VERSION}";
+        return "VERSION";
     }
     
     @Override
@@ -144,7 +148,7 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
     }
     
     @Override
-    public String onRequest(OfflinePlayer player, String identifier){
+    public String onRequest(OfflinePlayer player, @Nonnull String identifier){
         identifier = PlaceholderAPI.setBracketPlaceholders(player, identifier);
         String[] values = getSplit(identifier, "_", 4);
         
