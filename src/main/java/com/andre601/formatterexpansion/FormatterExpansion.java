@@ -93,7 +93,7 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         }
         
         if(hours > 0){
-            if((builder.length() > 0) && (this.getString("time.condensed", "no").equalsIgnoreCase("no")))
+            if((builder.length() > 0) && isCondensed())
                 builder.append(" ");
             
             builder.append(hours)
@@ -101,7 +101,7 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         }
         
         if(minutes > 0){
-            if((builder.length() > 0) && (this.getString("time.condensed", "no").equalsIgnoreCase("no")))
+            if((builder.length() > 0) && isCondensed())
                 builder.append(" ");
     
             builder.append(minutes)
@@ -109,7 +109,7 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         }
         
         if(seconds > 0){
-            if((builder.length() > 0) && (this.getString("time.condensed", "no").equalsIgnoreCase("no")))
+            if((builder.length() > 0) && isCondensed())
                 builder.append(" ");
     
             builder.append(seconds)
@@ -145,6 +145,10 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
     
     private String[] getSplit(String text, String split, int length){
         return Arrays.copyOf(text.split(split, length), length);
+    }
+    
+    private boolean isCondensed(){
+        return this.getString("time.condensed", "no").equalsIgnoreCase("no");
     }
     
     @Override
@@ -216,6 +220,14 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
                         values[2] = String.join("_", values[2], values[3]);
                     
                     return values[2].toLowerCase();
+                
+                case "join":
+                    if(values[2] == null || values[3] == null)
+                        return null;
+                    
+                    String[] splits = values[3].split("\\s+");
+                    
+                    return String.join(values[2], splits);
             }
         }else
         if(values[0].equalsIgnoreCase("number")){

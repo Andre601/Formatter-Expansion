@@ -36,6 +36,9 @@ For example would `%formatter_text_uppercase_Andre_601%` return `ANDRE_601`.
 Works similar to [uppercase](#uppercase) but instead of making anything large does it lowercase stuff.  
 For example would `%formatter_text_uppercase_ANDRE_601%` return `andre_601`.
 
+#### `join`
+Combines the provided words (Separated by spaces) with the provided character(s).  
+For example will `%formatter_text_join_, _Andre_601 Funnycube extended_clip%` return `Andre_601, Funnycube, extended_clip`
 
 ### `number`
 The number option tells the expansion to treat the provided value as a number.  
