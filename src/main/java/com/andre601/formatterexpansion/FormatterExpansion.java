@@ -4,6 +4,7 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.Configurable;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.configuration.ConfigurationSection;
 
 import javax.annotation.Nonnull;
 import java.text.DecimalFormat;
@@ -48,107 +49,15 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         Map<String, Object> defaults = new HashMap<>();
         
         defaults.put("format", "#,###,###.##");
-        defaults.put("locale", "en:US");
+        defaults.put("locale", "en-US");
         
         defaults.put("time.seconds", "s");
         defaults.put("time.minutes", "m");
         defaults.put("time.hours", "h");
         defaults.put("time.days", "d");
-        defaults.put("time.condensed", "no");
+        defaults.put("time.condensed", false);
         
         return defaults;
-    }
-    
-    private Locale getLocale(String input){
-        if(input.contains(":")){
-            String[] args = Arrays.copyOf(input.split(":", 2), 2);
-            if(args[0] != null && args[1] != null){
-                return new Locale(args[0], args[1]);
-            }else{
-                return Locale.US;
-            }
-        }else{
-            return new Locale(input);
-        }
-    }
-    
-    /* 
-     * From the Statistic expansion
-     * https://github.com/PlaceholderAPI/Statistics-Expansion
-     */
-    private String formatTime(long seconds){
-        if(seconds <= 0)
-            return seconds + this.getString("time.seconds", "s");
-        
-        final StringBuilder builder = new StringBuilder();
-        
-        long days = TimeUnit.SECONDS.toDays(seconds);
-        long hours = TimeUnit.SECONDS.toHours(seconds) - days * 24;
-        long minutes = TimeUnit.SECONDS.toMinutes(seconds) - hours * 60 - days * 1440;
-        seconds = seconds - minutes * 60 - hours * 3600 - days * 86400;
-        
-        if(days > 0){
-            builder.append(days)
-                   .append(this.getString("time.days", "d"));
-        }
-        
-        if(hours > 0){
-            if((builder.length() > 0) && isCondensed())
-                builder.append(" ");
-            
-            builder.append(hours)
-                   .append(this.getString("time.hours", "h"));
-        }
-        
-        if(minutes > 0){
-            if((builder.length() > 0) && isCondensed())
-                builder.append(" ");
-    
-            builder.append(minutes)
-                   .append(this.getString("time.minutes", "m"));
-        }
-        
-        if(seconds > 0){
-            if((builder.length() > 0) && isCondensed())
-                builder.append(" ");
-    
-            builder.append(seconds)
-                   .append(this.getString("time.seconds", "s"));
-        }
-        
-        return builder.toString();
-    }
-    
-    private String formatNumber(long number){
-        return formatNumber(number, this.getString("format", "#,###,###.##"), this.getString("locale", "en:US"));
-    }
-    
-    private String formatNumber(long number, String value, Type type){
-        if(type.equals(Type.FORMAT))
-            return formatNumber(number, value, this.getString("locale", "en:US"));
-        else
-        if(type.equals(Type.LOCALE))
-            return formatNumber(number, this.getString("format", "#,###,###.##"), value);
-        else
-            return formatNumber(number);
-    }
-    
-    private String formatNumber(long number, String format, String locale){
-        Locale loc = getLocale(locale);
-        NumberFormat numberFormat = NumberFormat.getNumberInstance(loc);
-        DecimalFormat decimalFormat = (DecimalFormat)numberFormat;
-        
-        decimalFormat.applyPattern(format);
-        
-        return decimalFormat.format(number);
-    }
-    
-    private String[] getSplit(String text, String split, int length){
-        return Arrays.copyOf(text.split(split, length), length);
-    }
-    
-    private boolean isCondensed(){
-        return this.getString("time.condensed", "no").equalsIgnoreCase("no");
     }
     
     @Override
@@ -291,6 +200,114 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         }
         
         return null;
+    }
+    
+    private Locale getLocale(String input){
+        if(input.contains("-")){
+            String[] args = Arrays.copyOf(input.split("-", 2), 2);
+            if(args[0] != null && args[1] != null){
+                return new Locale(args[0], args[1]);
+            }else
+            if(args[0] != null){
+                return new Locale(args[0]);
+            }else{
+                return Locale.US;
+            }
+        }else{
+            return new Locale(input);
+        }
+    }
+    
+    /*
+     * From the Statistic expansion
+     * https://github.com/PlaceholderAPI/Statistics-Expansion
+     */
+    private String formatTime(long seconds){
+        if(seconds <= 0)
+            return seconds + this.getString("time.seconds", "s");
+        
+        final StringBuilder builder = new StringBuilder();
+        
+        long days = TimeUnit.SECONDS.toDays(seconds);
+        long hours = TimeUnit.SECONDS.toHours(seconds) - days * 24;
+        long minutes = TimeUnit.SECONDS.toMinutes(seconds) - hours * 60 - days * 1440;
+        seconds = seconds - minutes * 60 - hours * 3600 - days * 86400;
+        
+        if(days > 0){
+            builder.append(days)
+                   .append(this.getString("time.days", "d"));
+        }
+        
+        if(hours > 0){
+            if((builder.length() > 0) && isNotCondensed())
+                builder.append(" ");
+            
+            builder.append(hours)
+                   .append(this.getString("time.hours", "h"));
+        }
+        
+        if(minutes > 0){
+            if((builder.length() > 0) && isNotCondensed())
+                builder.append(" ");
+            
+            builder.append(minutes)
+                   .append(this.getString("time.minutes", "m"));
+        }
+        
+        if(seconds > 0){
+            if((builder.length() > 0) && isNotCondensed())
+                builder.append(" ");
+            
+            builder.append(seconds)
+                   .append(this.getString("time.seconds", "s"));
+        }
+        
+        return builder.toString();
+    }
+    
+    private String formatNumber(long number){
+        return formatNumber(number, this.getString("format", "#,###,###.##"), this.getString("locale", "en:US"));
+    }
+    
+    private String formatNumber(long number, String value, Type type){
+        if(type.equals(Type.FORMAT))
+            return formatNumber(number, value, this.getString("locale", "en:US"));
+        else
+        if(type.equals(Type.LOCALE))
+            return formatNumber(number, this.getString("format", "#,###,###.##"), value);
+        else
+            return formatNumber(number);
+    }
+    
+    private String formatNumber(long number, String format, String locale){
+        Locale loc = getLocale(locale);
+        NumberFormat numberFormat = NumberFormat.getNumberInstance(loc);
+        DecimalFormat decimalFormat = (DecimalFormat)numberFormat;
+        
+        decimalFormat.applyPattern(format);
+        
+        return decimalFormat.format(number);
+    }
+    
+    private String[] getSplit(String text, String split, int length){
+        return Arrays.copyOf(text.split(split, length), length);
+    }
+    
+    private boolean isNotCondensed(){
+        Object condensed = this.get("time.condensed", null);
+        
+        if(condensed instanceof String)
+            return this.getString("time.condensed", "no").equalsIgnoreCase("no");
+        
+        if(condensed instanceof Boolean){
+            ConfigurationSection section = this.getConfigSection();
+            if(section == null)
+                return true;
+            
+            return !section.getBoolean("time.condensed", false);
+        }
+        
+        return true;
     }
     
     private enum Type{

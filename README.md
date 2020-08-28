@@ -61,8 +61,8 @@ Some examples:
 ```
 %formatter_number_format_1000357% -> 1,000,357
 %formatter_number_format_1000357_format:#,##% -> 1,00,03,57
-%formatter_number_format_1000357_locale:de:CH% -> 1'000'357
-%formatter_number_format_1000357_format:#,##_locale:de:CH% -> 1'00'03'57
+%formatter_number_format_1000357_locale:de-CH% -> 1'000'357
+%formatter_number_format_1000357_format:#,##_locale:de-CH% -> 1'00'03'57
 ```
 
 #### `time`
@@ -87,16 +87,16 @@ More info on how the formatting works can be found here: https://docs.oracle.com
 This option is used for the [format](#format).  
 Some formats have a different syntax, depending on the locale used.
 
-The locale can be a simple language code (e.g. `en`), or a language code with country code (e.g. `en:US`).  
-Note that you have to use `:` instead of `_` when using country codes.
+The locale can be a simple language code (e.g. `en`), or a language code with country code (e.g. `en-US`).  
+Note that you have to use `-` instead of `_` when using country codes.
 
 A list of (known) supported locales can be found on the [wiki].
 
 ### `time.condensed`
-When this option is set to `no` (default value) will the returned duration have spaces between each number.  
-For example will `%formatter_number_time_100%` show as `1m40s` when this is set to anything other than `no`.
+When this option is set to `false` (default value) will the returned duration have spaces between each number.  
+For example will `%formatter_number_time_100%` show as `1m40s` when this is set to `true`.
 
-This option is only used when the [time option](#time) is used in the placeholder.
+This option will only be used when the [time option](#time) is used in the placeholder.
 
 ### `time.days`
 The text that is used to indicate days when the [time](#time) option is used.  
@@ -120,3 +120,6 @@ Defaults to `s`.
 - `1.1.0` Added `time` option for placeholder. This converts the number to a time.
 - `1.1.1` Fix time not working with large numbers
 - `1.2.0` Revorked placeholder pattern to make it more structured. Added text formatting options.
+- `1.3.0` Updated to support PlaceholderAPI 2.10.7 and Spigot 1.16.1
+- `1.3.1` Added join option for Text to combine several Strings (separated by spaces).
+- `1.3.2` Changed config option `condensed` from String to boolean and locale now uses `-` instead of `:`
