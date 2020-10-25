@@ -4,9 +4,12 @@
 The formatter expansion allows you to format numbers and text in various ways.
 
 ## Placeholder
-The placeholder follows a specific pattern that you have to use.  
+The placeholder follows specific patterns that you have to use.  
 
-The pattern is either `%formatter_text_<option[_option2]>_<value>%` or `%formatter_number_<option>_<number>[_<options>]%`
+For [text placeholders](#text) is the format either `%formatter_text_<option>_<values>%` or `%formatter_text_<option1>_<option2>_<values>%`.  
+For [number placeholders](#number) is the format `%formatter_number_<option>_<number>[_<options>]%`.
+
+Note that `<>` indicates required options while `[]` indicates optional ones.
 
 ### `text`
 The text option tells the expansion to treat the provided value as a Text depending on the provided option.
@@ -15,36 +18,50 @@ The text option tells the expansion to treat the provided value as a Text depend
 Substring gives back a specific range of the provided String.  
 If the provided String is smaller than the provided value will the full text be returned.
 
-You can also ommit the first or second value to use the start (`0`) or end of a text respectively.
+The number before the `:` is 0-indexed, meaning that 0 = 1, 1 = 2 and so on.  
+The number after the `:` is NOT 0-indexed, so 1 is the first character, 2 the second, etc.
 
-Here are some examples:  
+Either number can be ommited to default to the very first and very last character respectively.
+
+**Examples**:  
 ```
-# Note that the end value is "n - 1" so 5 becomes index 4 (5th character)
-
 %formatter_text_substring_0:5_Andre_601% -> Andre
-%formatter_text_substring_:5_Andre_601% -> Andre
-%formatter_text_substring_0:_Andre_601% -> Andre_601
+%formatter_text_substring_:5_Andre_601%  -> Andre
+%formatter_text_substring_0:_Andre_601%  -> Andre_601
 %formatter_text_substring_2:5_Andre_601% -> dre
-%formatter_text_substring_2:_Andre_601% -> dre_601
+%formatter_text_substring_2:_Andre_601%  -> dre_601
 ```
 
 #### `uppercase`
-Uppercase turns the entire text into uppercase.  
-For example would `%formatter_text_uppercase_Andre_601%` return `ANDRE_601`.
+Uppercase turns the entire text into uppercase.
+
+**Example**:  
+```
+%formatter_text_uppercase_Andre_601% -> ANDRE_601
+```
 
 #### `lowercase`
-Works similar to [uppercase](#uppercase) but instead of making anything large does it lowercase stuff.  
-For example would `%formatter_text_uppercase_ANDRE_601%` return `andre_601`.
+Works similar to [uppercase](#uppercase) but instead of making anything large does it lowercase stuff.
+
+**Example**:  
+```
+%formatter_text_lowercase_ANDRE_601% -> andre_601
+```
 
 #### `join`
-Combines the provided words (Separated by spaces) with the provided character(s).  
-For example will `%formatter_text_join_, _Andre_601 Funnycube extended_clip%` return `Andre_601, Funnycube, extended_clip`
+This option will combine the provided text with the specified character(s).  
+The text to combine needs to be separated by spaces.
+
+The full syntax is `%formatter_text_join_<character>_<text with spaces>%`
+
+**Example**:  
+```
+%formatter_text_join_, _Andre_601 Funnycube extended_clip% -> Andre_601, Funnycube, extended_clip
+```
 
 ### `number`
 The number option tells the expansion to treat the provided value as a number.  
 The first argument after this option determines how the number is handled.
-
-The full syntax of the placeholder would be `%formatter_number_<option>_<number>[_options]%`
 
 #### `format`
 The format option will tell the expansion to format the provided number (optionally with a provided pattern).
@@ -54,14 +71,14 @@ You can override this by providing a `format:<format>` option at the end of the 
 
 Note that the format displayed might vary depending on the location your server is hosted at.  
 You can override the location by using the `locale:<locale>` option too.  
-It is important to point out, that you have to provide the locale in a different format (i.e. `en:US` inestead of `en_US`)  
+It is important to point out, that you have to provide the locale in a different format (i.e. `en-US` inestead of `en_US`)  
 You can find an up to date list of all (known) and supported locales on the [wiki].
 
-Some examples:  
+**Examples**:  
 ```
-%formatter_number_format_1000357% -> 1,000,357
-%formatter_number_format_1000357_format:#,##% -> 1,00,03,57
-%formatter_number_format_1000357_locale:de-CH% -> 1'000'357
+%formatter_number_format_1000357%                          -> 1,000,357
+%formatter_number_format_1000357_format:#,##%              -> 1,00,03,57
+%formatter_number_format_1000357_locale:de-CH%             -> 1'000'357
 %formatter_number_format_1000357_format:#,##_locale:de-CH% -> 1'00'03'57
 ```
 
@@ -69,10 +86,10 @@ Some examples:
 The time option will transform the provided number into a delay (i.e. `100` becomes `1m 40s`).  
 The returned time will usually have spaces between each option, but you can change this using the [condensed](#timecondensed) config option.
 
-Here is a quick example:  
+**Examples**:  
 ```
-%formatter_number_time_100% -> 1m 40s
-%formatter_number_time_20454% -> 5h 40m 54s
+%formatter_number_time_100%   -> 1m 40s     (1m40s with condensed set to true)
+%formatter_number_time_20454% -> 5h 40m 54s (5h40m54s with condensed set to true)
 ```
 
 ----
