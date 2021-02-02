@@ -92,6 +92,33 @@ The returned time will usually have spaces between each option, but you can chan
 %formatter_number_time_20454% -> 5h 40m 54s (5h40m54s with condensed set to true)
 ```
 
+#### `time_seconds` / `time_secs`
+Exactly the same as the [`time`](#time) option.
+
+**Examples**:
+```
+%formatter_number_time_seconds_100%   -> 1m 40s     (1m40s with condensed set to true)
+%formatter_number_time_seconds_20454% -> 5h 40m 54s (5h40m54s with condensed set to true)
+```
+
+#### `time_minutes` / `time_mins`
+Similar to the [`time`](#time) option, but treats the provided number as minutes instead of seconds.
+
+**Examples**:
+```
+%formatter_number_time_minutes_100%   -> 1h 40m     (1h40m with condensed set to true)
+%formatter_number_time_minutes_20454% -> 14d 4h 54m (14d4h54m with condensed set to true)
+```
+
+#### `time_hours` / `time_hrs`
+Similar to the [`time`](#time) option, but treats the provided number as hours instead of seconds.
+
+**Examples**:
+```
+%formatter_number_time_hours_100%   -> 4d 4h   (4d4h with condensed set to true)
+%formatter_number_time_hours_20454% -> 852d 6h (852d6h with condensed set to true)
+```
+
 ----
 ## Config
 The expansion adds several config options to the config.yml of PlaceholderAPI, which can be altered.

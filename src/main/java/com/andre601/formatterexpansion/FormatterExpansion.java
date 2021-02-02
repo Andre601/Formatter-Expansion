@@ -244,7 +244,7 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         long days;
         long hours;
         long minutes;
-        long seconds = 0;
+        long seconds;
         
         final StringBuilder builder = new StringBuilder();
         
@@ -304,7 +304,7 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
                 days = timeUnit.toDays(number);
                 hours = timeUnit.toHours(number) - days * 24;
                 minutes = timeUnit.toMinutes(number) - hours * 60 - days * 1440;
-                seconds = seconds - minutes * 60 - hours * 3600 - days * 86400;
+                seconds = number - minutes * 60 - hours * 3600 - days * 86400;
     
                 if(days > 0){
                     builder.append(days)
