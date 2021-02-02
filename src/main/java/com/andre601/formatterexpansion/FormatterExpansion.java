@@ -18,13 +18,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FormatterExpansion extends PlaceholderExpansion implements Configurable{
-    private final Pattern formatPattern;
-    private final Pattern localePattern;
-    
-    public FormatterExpansion(){
-        formatPattern = Pattern.compile("format:(?<format>.+)", Pattern.CASE_INSENSITIVE);
-        localePattern = Pattern.compile("locale:(?<locale>.+)", Pattern.CASE_INSENSITIVE);
-    }
+    private final Pattern formatPattern = Pattern.compile("format:(?<format>.+)", Pattern.CASE_INSENSITIVE);
+    private final Pattern localePattern = Pattern.compile("locale:(?<locale>.+)", Pattern.CASE_INSENSITIVE);
     
     @Override
     @Nonnull
@@ -188,14 +183,40 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
                     break;
                 
                 case "time":
-                    long time;
+                    if(values[3] == null){
+                        long time;
+                        try{
+                            time = Long.parseLong(values[2]);
+                        }catch(NumberFormatException ex){
+                            return null;
+                        }
+    
+                        return formatTime(time, TimeUnit.SECONDS);
+                    }
+                    
+                    long num;
                     try{
-                        time = Long.parseLong(values[2]);
+                        num = Long.parseLong(values[3]);
                     }catch(NumberFormatException ex){
                         return null;
                     }
                     
-                    return formatTime(time);
+                    switch(values[2].toLowerCase()){
+                        case "secs":
+                        case "seconds":
+                            return formatTime(num, TimeUnit.SECONDS);
+                        
+                        case "mins":
+                        case "minutes":
+                            return formatTime(num, TimeUnit.MINUTES);
+                        
+                        case "hrs":
+                        case "hours":
+                            return formatTime(num, TimeUnit.HOURS);
+                        
+                        default:
+                            return null;
+                    }
             }
         }
         
@@ -218,51 +239,107 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         }
     }
     
-    /*
-     * From the Statistic expansion
-     * https://github.com/PlaceholderAPI/Statistics-Expansion
-     */
-    private String formatTime(long seconds){
-        if(seconds <= 0)
-            return seconds + this.getString("time.seconds", "s");
+    private String formatTime(long number, TimeUnit timeUnit){
+        
+        long days;
+        long hours;
+        long minutes;
+        long seconds = 0;
         
         final StringBuilder builder = new StringBuilder();
         
-        long days = TimeUnit.SECONDS.toDays(seconds);
-        long hours = TimeUnit.SECONDS.toHours(seconds) - days * 24;
-        long minutes = TimeUnit.SECONDS.toMinutes(seconds) - hours * 60 - days * 1440;
-        seconds = seconds - minutes * 60 - hours * 3600 - days * 86400;
-        
-        if(days > 0){
-            builder.append(days)
-                   .append(this.getString("time.days", "d"));
-        }
-        
-        if(hours > 0){
-            if((builder.length() > 0) && isNotCondensed())
-                builder.append(" ");
+        switch(timeUnit){
+            case HOURS:
+                days = timeUnit.toDays(number);
+                hours = timeUnit.toHours(number) - days * 24;
+                
+                if(days > 0){
+                    builder.append(days)
+                           .append(this.getString("time.days", "d"));
+                }
+                
+                if(hours > 0){
+                    if((builder.length() > 0) && !isCondensed()){
+                        builder.append(" ");
+                    }
+                    
+                    builder.append(hours)
+                           .append(this.getString("time.hours", "h"));
+                }
+                
+                return builder.toString();
             
-            builder.append(hours)
-                   .append(this.getString("time.hours", "h"));
-        }
-        
-        if(minutes > 0){
-            if((builder.length() > 0) && isNotCondensed())
-                builder.append(" ");
+            case MINUTES:
+                days = timeUnit.toDays(number);
+                hours = timeUnit.toHours(number) - days * 24;
+                minutes = timeUnit.toMinutes(number) - hours * 60 - days * 1440;
+                
+                if(days > 0){
+                    builder.append(days)
+                           .append(this.getString("time.days", "d"));
+                }
+                
+                if(hours > 0){
+                    if((builder.length() > 0) && !isCondensed()){
+                        builder.append(" ");
+                    }
+                    
+                    builder.append(hours)
+                           .append(this.getString("time.hours", "h"));
+                }
+                
+                if(minutes > 0){
+                    if((builder.length() > 0) && !isCondensed()){
+                        builder.append(" ");
+                    }
+                    
+                    builder.append(minutes)
+                           .append(this.getString("time.minutes", "m"));
+                }
+                
+                return builder.toString();
             
-            builder.append(minutes)
-                   .append(this.getString("time.minutes", "m"));
-        }
+            case SECONDS:
+            default:
+                days = timeUnit.toDays(number);
+                hours = timeUnit.toHours(number) - days * 24;
+                minutes = timeUnit.toMinutes(number) - hours * 60 - days * 1440;
+                seconds = seconds - minutes * 60 - hours * 3600 - days * 86400;
+    
+                if(days > 0){
+                    builder.append(days)
+                           .append(this.getString("time.days", "d"));
+                }
+    
+                if(hours > 0){
+                    if((builder.length() > 0) && !isCondensed()){
+                        builder.append(" ");
+                    }
         
-        if(seconds > 0){
-            if((builder.length() > 0) && isNotCondensed())
-                builder.append(" ");
-            
-            builder.append(seconds)
-                   .append(this.getString("time.seconds", "s"));
-        }
+                    builder.append(hours)
+                           .append(this.getString("time.hours", "h"));
+                }
+    
+                if(minutes > 0){
+                    if((builder.length() > 0) && !isCondensed()){
+                        builder.append(" ");
+                    }
         
-        return builder.toString();
+                    builder.append(minutes)
+                           .append(this.getString("time.minutes", "m"));
+                }
+                
+                if(seconds > 0){
+                    if((builder.length() > 0) && !isCondensed()){
+                        builder.append(" ");
+                    }
+                    
+                    builder.append(seconds)
+                           .append(this.getString("time.seconds", "s"));
+                }
+    
+                return builder.toString();
+        }
     }
     
     private String formatNumber(long number){
@@ -293,18 +370,22 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         return Arrays.copyOf(text.split(split, length), length);
     }
     
-    private boolean isNotCondensed(){
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    private boolean isCondensed(){
         Object condensed = this.get("time.condensed", null);
         
+        if(condensed == null)
+            return false;
+        
         if(condensed instanceof String)
-            return this.getString("time.condensed", "no").equalsIgnoreCase("no");
+            return this.getString("time.condensed", "no").equalsIgnoreCase("yes");
         
         if(condensed instanceof Boolean){
             ConfigurationSection section = this.getConfigSection();
             if(section == null)
                 return true;
             
-            return !section.getBoolean("time.condensed", false);
+            return section.getBoolean("time.condensed", false);
         }
         
         return true;
