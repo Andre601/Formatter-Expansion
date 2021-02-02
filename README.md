@@ -1,4 +1,5 @@
 [wiki]: https://wiki.powerplugins.net/wiki/formatter-expansion
+[changelog]: https://github.com/Andre601/Formatter-Expansion/blob/master/CHANGELOG.md
 
 # Formatter Expansion
 The formatter expansion allows you to format numbers and text in various ways.
@@ -159,11 +160,4 @@ The text that is used to indicate seconds when the [time](#time) option is used.
 Defaults to `s`.
 
 ## Changelog
-- `1.0.0` First release.
-- `1.0.1` Made placeholder options case-insensitive.
-- `1.1.0` Added `time` option for placeholder. This converts the number to a time.
-- `1.1.1` Fix time not working with large numbers
-- `1.2.0` Revorked placeholder pattern to make it more structured. Added text formatting options.
-- `1.3.0` Updated to support PlaceholderAPI 2.10.7 and Spigot 1.16.1
-- `1.3.1` Added join option for Text to combine several Strings (separated by spaces).
-- `1.3.2` Changed config option `condensed` from String to boolean and locale now uses `-` instead of `:`
+Changes can be found in the [CHANGELOG.md][changelog] file.
