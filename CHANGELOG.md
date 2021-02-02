@@ -2,7 +2,7 @@
 This file lists the different changes of the Formatter-expansion in detail.
 
 ## `1.5.0`
-- Change `format` placeholder structure.
+- Changed `number_format` placeholder structure.
   ```
   # Old
   #
@@ -12,6 +12,16 @@ This file lists the different changes of the Formatter-expansion in detail.
   #
   %formatter_number_format_<number>%
   %formatter_number_format_[locale]:[format]_<number>%
+  ```
+- Changed `text_join` placeholder structure to allow own target system.
+  ```
+  # Old (Only combines text separated by Spaces)
+  #
+  %formatter_text_join_<separator>_<text>%
+  
+  # New (Define your own cridentials)
+  #
+  %formatter_text_join_<target>_<separator>_<text>%
   ```
 
 ## `1.4.1`

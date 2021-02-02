@@ -50,14 +50,11 @@ Works similar to [uppercase](#uppercase) but instead of making anything large do
 ```
 
 #### `join`
-This option will combine the provided text with the specified character(s).  
-The text to combine needs to be separated by spaces.
-
-The full syntax is `%formatter_text_join_<character>_<text with spaces>%`
+This option will combine all words separated by the provided `<target>` with the provided `<separator>`
 
 **Example**:  
 ```
-%formatter_text_join_, _Andre_601 Funnycube extended_clip% -> Andre_601, Funnycube, extended_clip
+%formatter_text_join_ _, _Andre_601 Funnycube extended_clip% -> Andre_601, Funnycube, extended_clip
 ```
 
 ### `number`
@@ -67,20 +64,20 @@ The first argument after this option determines how the number is handled.
 #### `format`
 The format option will tell the expansion to format the provided number (optionally with a provided pattern).
 
-By default would the expansion use the [`format`](#format-1) config option which is `#,###,###.##` by default.  
-You can override this by providing a `format:<format>` option at the end of the placeholder.
+By default, does the expansion use the [`format`](#format-1) and [`locale`](#locale) options set in the config.yml of PlaceholderAPI.
 
-Note that the format displayed might vary depending on the location your server is hosted at.  
-You can override the location by using the `locale:<locale>` option too.  
-It is important to point out, that you have to provide the locale in a different format (i.e. `en-US` inestead of `en_US`)  
+The expansion uses `#,###,###.##` as default format and `en_US` as default locale.  
+You can override those however, by providing your own format and locale.
+
+When using your own locale will you need to use `-` instead of `_`, so `en_US` becomes `en-US`.  
 You can find an up to date list of all (known) and supported locales on the [wiki].
 
 **Examples**:  
 ```
-%formatter_number_format_1000357%                          -> 1,000,357
-%formatter_number_format_1000357_format:#,##%              -> 1,00,03,57
-%formatter_number_format_1000357_locale:de-CH%             -> 1'000'357
-%formatter_number_format_1000357_format:#,##_locale:de-CH% -> 1'00'03'57
+%formatter_number_format_1234567%            -> 1,234,567
+%formatter_number_format_:#,##_1234567%      -> 1,23,45,67
+%formatter_number_format_de-CH:_1234567%     -> 1'234'567
+%formatter_number_format_de-CH:#,##_1234567% -> 1'23'45'67
 ```
 
 #### `time`
