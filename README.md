@@ -4,18 +4,18 @@
 # Formatter Expansion
 The formatter expansion allows you to format numbers and text in various ways.
 
-## Placeholder
-The placeholder follows specific patterns that you have to use.  
+## Placeholders
+The formatter expansion currently offers two specific placeholder patterns:
 
-For [text placeholders](#text) is the format either `%formatter_text_<option>_<values>%` or `%formatter_text_<option1>_<option2>_<values>%`.  
-For [number placeholders](#number) is the format `%formatter_number_<option>_<number>[_<options>]%`.
-
-Note that `<>` indicates required options while `[]` indicates optional ones.
+- [`%formatter_text_<options>_<text>%`](#text)
+- [`%formatter_number_<options>_<number>%`](#number)
 
 ### `text`
 The text option tells the expansion to treat the provided value as a Text depending on the provided option.
 
 #### `substring`
+> `%formatter_text_substring_[start]:[end]_<text>%`
+
 Substring gives back a specific range of the provided String.  
 If the provided String is smaller than the provided value will the full text be returned.
 
@@ -34,6 +34,8 @@ Either number can be ommited to default to the very first and very last characte
 ```
 
 #### `uppercase`
+> `%formatter_text_uppercase_<text>%`
+
 Uppercase turns the entire text into uppercase.
 
 **Example**:  
@@ -42,6 +44,8 @@ Uppercase turns the entire text into uppercase.
 ```
 
 #### `lowercase`
+> `%formatter_text_lowercase_<text>%`
+
 Works similar to [uppercase](#uppercase) but instead of making anything large does it lowercase stuff.
 
 **Example**:  
@@ -50,6 +54,8 @@ Works similar to [uppercase](#uppercase) but instead of making anything large do
 ```
 
 #### `join`
+> `%formatter_text_join_<target>_<separator>_<text>%`
+
 This option will combine all words separated by the provided `<target>` with the provided `<separator>`
 
 **Example**:  
@@ -62,6 +68,9 @@ The number option tells the expansion to treat the provided value as a number.
 The first argument after this option determines how the number is handled.
 
 #### `format`
+> `%formatter_number_format_<number>%`  
+> `%formatter_number_format_[locale]:[format]_<number>%`
+
 The format option will tell the expansion to format the provided number (optionally with a provided pattern).
 
 By default, does the expansion use the [`format`](#format-1) and [`locale`](#locale) options set in the config.yml of PlaceholderAPI.
@@ -81,6 +90,8 @@ You can find an up to date list of all (known) and supported locales on the [wik
 ```
 
 #### `time`
+> `%formatter_number_time_<number>%`
+
 The time option will transform the provided number into a delay (i.e. `100` becomes `1m 40s`).  
 The returned time will usually have spaces between each option, but you can change this using the [condensed](#timecondensed) config option.
 
@@ -91,6 +102,9 @@ The returned time will usually have spaces between each option, but you can chan
 ```
 
 #### `time_seconds` / `time_secs`
+> `%formatter_number_time_seconds_<number>%`  
+> `%formatter_number_time_secs_<number>%`
+
 Exactly the same as the [`time`](#time) option.
 
 **Examples**:
@@ -100,6 +114,9 @@ Exactly the same as the [`time`](#time) option.
 ```
 
 #### `time_minutes` / `time_mins`
+> `%formatter_number_time_minutes_<number>%`  
+> `%formatter_number_time_mins_<number>%`
+
 Similar to the [`time`](#time) option, but treats the provided number as minutes instead of seconds.
 
 **Examples**:
@@ -109,6 +126,9 @@ Similar to the [`time`](#time) option, but treats the provided number as minutes
 ```
 
 #### `time_hours` / `time_hrs`
+> `%formatter_number_time_hours_<number>%`  
+> `%formatter_number_time_hrs_<number>%`
+
 Similar to the [`time`](#time) option, but treats the provided number as hours instead of seconds.
 
 **Examples**:
