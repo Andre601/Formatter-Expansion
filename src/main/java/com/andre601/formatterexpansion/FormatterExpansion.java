@@ -86,6 +86,9 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
                             start = 0;
                     }
                     
+                    if(values[4] != null)
+                        values[3] += "_" + values[4];
+                    
                     if(isNullOrEmpty(options[1])){
                         end = values[3].length();
                     }else{
@@ -109,10 +112,10 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
                         return null;
                     
                     if(values[3] != null)
-                        values[2] = String.join("_", values[2], values[3]);
+                        values[2] += "_" + values[3];
                     
                     if(values[4] != null)
-                        values[2] = String.join("_", values[2], values[4]);
+                        values[2] += "_" + values[4];
                     
                     return values[2].toUpperCase();
                 
@@ -121,10 +124,10 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
                         return null;
     
                     if(values[3] != null)
-                        values[2] = String.join("_", values[2], values[3]);
+                        values[2] += "_" + values[3];
     
                     if(values[4] != null)
-                        values[2] = String.join("_", values[2], values[4]);
+                        values[2] += "_" + values[4];
                     
                     return values[2].toLowerCase();
                 
@@ -133,11 +136,11 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
                         return null;
                     
                     String target = values[2];
-                    String replacement = values[3];
+                    String separator = values[3];
                     
                     String[] splits = values[4].split(Pattern.quote(target));
                     
-                    return String.join(replacement, splits);
+                    return String.join(separator, splits);
             }
         }else
         if(values[0].equalsIgnoreCase("number")){
@@ -147,25 +150,14 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
             switch(values[1].toLowerCase()){
                 case "format":
                     if(values[3] == null){
-                        long number;
-                        try{
-                            number = Long.parseLong(values[2]);
-                        }catch(NumberFormatException ex){
-                            return null;
-                        }
-                        
-                        return formatNumber(number);
+                        return formatNumber(values[2]);
                     }
                     
-                    long number;
-                    try{
-                        number = Long.parseLong(values[3]);
-                    }catch(NumberFormatException ex){
-                        return null;
-                    }
+                    if(values[4] != null)
+                        values[3] += "_" + values[4];
                     
                     if(isNullOrEmpty(values[2])){
-                        return formatNumber(number);
+                        return formatNumber(values[3]);
                     }
                     
                     String[] options = getSplit(values[2], ":", 2);
@@ -173,39 +165,28 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
                     String locale = isNullOrEmpty(options[0]) ? this.getString("locale", "en-US") : options[0];
                     String format = isNullOrEmpty(options[1]) ? this.getString("format", "#,###,###.##") : options[1];
                     
-                    return formatNumber(number, format, locale);
+                    return formatNumber(values[3], format, locale);
                 
                 case "time":
                     if(isNullOrEmpty(values[3])){
-                        long time;
-                        try{
-                            time = Long.parseLong(values[2]);
-                        }catch(NumberFormatException ex){
-                            return null;
-                        }
+                        return formatTime(values[2], TimeUnit.SECONDS);
+                    }
     
-                        return formatTime(time, TimeUnit.SECONDS);
-                    }
-                    
-                    long num;
-                    try{
-                        num = Long.parseLong(values[3]);
-                    }catch(NumberFormatException ex){
-                        return null;
-                    }
+                    if(values[4] != null)
+                        values[3] += "_" + values[4];
                     
                     switch(values[2].toLowerCase()){
                         case "secs":
                         case "seconds":
-                            return formatTime(num, TimeUnit.SECONDS);
+                            return formatTime(values[3], TimeUnit.SECONDS);
                         
                         case "mins":
                         case "minutes":
-                            return formatTime(num, TimeUnit.MINUTES);
+                            return formatTime(values[3], TimeUnit.MINUTES);
                         
                         case "hrs":
                         case "hours":
-                            return formatTime(num, TimeUnit.HOURS);
+                            return formatTime(values[3], TimeUnit.HOURS);
                         
                         default:
                             return null;
@@ -216,6 +197,7 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         return null;
     }
     
+    // Convenience method to check if any provided String is either null, or empty
     private boolean isNullOrEmpty(String... strings){
         for(String s : strings){
             if(s == null || s.isEmpty())
@@ -225,7 +207,13 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         return false;
     }
     
-    private String formatTime(long number, TimeUnit timeUnit){
+    private String formatTime(String num, TimeUnit timeUnit){
+        long number;
+        try{
+            number = Long.parseLong(num);
+        }catch(NumberFormatException ex){
+            return null;
+        }
         
         long days;
         long hours;
@@ -328,11 +316,18 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         }
     }
     
-    private String formatNumber(long number){
-        return formatNumber(number, this.getString("format", "#,###,###.##"), this.getString("locale", "en-US"));
+    private String formatNumber(String num){
+        return formatNumber(num, this.getString("format", "#,###,###.##"), this.getString("locale", "en-US"));
     }
     
-    private String formatNumber(long number, String format, String locale){
+    private String formatNumber(String num, String format, String locale){
+        long number;
+        try{
+            number = Long.parseLong(num);
+        }catch(NumberFormatException ex){
+            return null;
+        }
+        
         Locale loc = getLocale(locale);
         NumberFormat numberFormat = NumberFormat.getNumberInstance(loc);
         DecimalFormat decimalFormat = (DecimalFormat)numberFormat;
@@ -362,6 +357,12 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         return Arrays.copyOf(text.split(split, length), length);
     }
     
+    /*
+     * We have this method for two specific reasons:
+     * 
+     *   1. Backwards-compatability for anyone using configs from before 1.3.2
+     *   2. PlaceholderAPI doesn't offer a getBoolean method itself... yet.
+     */
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean isCondensed(){
         Object condensed = this.get("time.condensed", null);
