@@ -25,7 +25,7 @@ The number after the `:` is NOT 0-indexed, so 1 is the first character, 2 the se
 Either number can be ommited to default to the very first and very last character respectively.
 
 **Examples**:  
-```
+```yaml
 %formatter_text_substring_0:5_Andre_601% -> Andre
 %formatter_text_substring_:5_Andre_601%  -> Andre
 %formatter_text_substring_0:_Andre_601%  -> Andre_601
@@ -39,7 +39,7 @@ Either number can be ommited to default to the very first and very last characte
 Uppercase turns the entire text into uppercase.
 
 **Example**:  
-```
+```yaml
 %formatter_text_uppercase_Andre_601% -> ANDRE_601
 ```
 
@@ -49,18 +49,23 @@ Uppercase turns the entire text into uppercase.
 Works similar to [uppercase](#uppercase) but instead of making anything large does it lowercase stuff.
 
 **Example**:  
-```
+```yaml
 %formatter_text_lowercase_ANDRE_601% -> andre_601
 ```
 
-#### `join`
-> `%formatter_text_join_<target>_<separator>_<text>%`
+#### `replace`
+> `%formatter_text_replace_<target>_<replacement>_<text>%`
 
-This option will combine all words separated by the provided `<target>` with the provided `<separator>`
+Will replace any `<target>` with the provided `<replacement>`.  
 
-**Example**:  
-```
-%formatter_text_join_ _, _Andre_601 Funnycube extended_clip% -> Andre_601, Funnycube, extended_clip
+`<replacement>` allows providing nothing (An empty String).  
+When you want to use an underline for either `<target>` or `<replacement>` use `{{u}}` as placeholder.
+
+**Examples**:  
+```yaml
+%formatter_text_replace_-_, _Andre_601-Funnycube-clip% -> Andre_601, Funnycube, clip
+%formatter_text_replace_{{u}}_ _Andre_601%             -> Andre 601
+%formatter_text_replace_ __Repl a ce%                  -> Replace
 ```
 
 ### `number`
@@ -82,7 +87,7 @@ When using your own locale will you need to use `-` instead of `_`, so `en_US` b
 You can find an up to date list of all (known) and supported locales on the [wiki].
 
 **Examples**:  
-```
+```yaml
 %formatter_number_format_1234567%            -> 1,234,567
 %formatter_number_format_:#,##_1234567%      -> 1,23,45,67
 %formatter_number_format_de-CH:_1234567%     -> 1'234'567
@@ -96,7 +101,7 @@ The time option will transform the provided number into a delay (i.e. `100` beco
 The returned time will usually have spaces between each option, but you can change this using the [condensed](#timecondensed) config option.
 
 **Examples**:  
-```
+```yaml
 %formatter_number_time_100%   -> 1m 40s     (1m40s with condensed set to true)
 %formatter_number_time_20454% -> 5h 40m 54s (5h40m54s with condensed set to true)
 ```
@@ -108,7 +113,7 @@ The returned time will usually have spaces between each option, but you can chan
 Exactly the same as the [`time`](#time) option.
 
 **Examples**:
-```
+```yaml
 %formatter_number_time_seconds_100%   -> 1m 40s     (1m40s with condensed set to true)
 %formatter_number_time_seconds_20454% -> 5h 40m 54s (5h40m54s with condensed set to true)
 ```
@@ -120,7 +125,7 @@ Exactly the same as the [`time`](#time) option.
 Similar to the [`time`](#time) option, but treats the provided number as minutes instead of seconds.
 
 **Examples**:
-```
+```yaml
 %formatter_number_time_minutes_100%   -> 1h 40m     (1h40m with condensed set to true)
 %formatter_number_time_minutes_20454% -> 14d 4h 54m (14d4h54m with condensed set to true)
 ```
@@ -132,7 +137,7 @@ Similar to the [`time`](#time) option, but treats the provided number as minutes
 Similar to the [`time`](#time) option, but treats the provided number as hours instead of seconds.
 
 **Examples**:
-```
+```yaml
 %formatter_number_time_hours_100%   -> 4d 4h   (4d4h with condensed set to true)
 %formatter_number_time_hours_20454% -> 852d 6h (852d6h with condensed set to true)
 ```

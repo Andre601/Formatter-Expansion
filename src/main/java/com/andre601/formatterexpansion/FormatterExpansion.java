@@ -135,12 +135,37 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
                     if(isNullOrEmpty(values[2], values[3], values[4]))
                         return null;
                     
-                    String target = values[2];
+                    String split = values[2];
                     String separator = values[3];
                     
-                    String[] splits = values[4].split(Pattern.quote(target));
+                    String[] splits = values[4].split(Pattern.quote(split));
+                    
+                    this.getPlaceholderAPI()
+                        .getLogger()
+                        .warning("[Formatter] Usage of deprecated 'join' placeholder. Use the new 'replace' placeholder!");
+                    this.getPlaceholderAPI()
+                            .getLogger()
+                            .warning(String.format(
+                                    "[Formatter] %%formatter_text_join_%s_%s_%s%% -> %%formatter_text_replace_%s_%s_%s%%",
+                                    values[2],
+                                    values[3],
+                                    values[4],
+                                    values[2],
+                                    values[3],
+                                    values[4]
+                            ));
                     
                     return String.join(separator, splits);
+                
+                case "replace":
+                    // We allow values[3] to be empty, but not null.
+                    if(isNullOrEmpty(values[2], values[4]) || values[3] == null)
+                        return null;
+                    
+                    String target = values[2].equalsIgnoreCase("{{u}}") ? "_" : values[2];
+                    String replacement = values[3].equalsIgnoreCase("{{u}}") ? "_" : values[3];
+                    
+                    return values[4].replace(target, replacement);
             }
         }else
         if(values[0].equalsIgnoreCase("number")){

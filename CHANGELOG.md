@@ -2,8 +2,17 @@
 This file lists the different changes of the Formatter-expansion in detail.
 
 ## `1.5.0`
-- Changed `number_format` placeholder structure.
+- Add `replace` placeholder.  
+  It supports empty String for `<replacement>` and `{{u}}` for underlines.
+  ```yaml
+  %formatter_text_replace_<target>_<replacement>_<text>%
   ```
+- Deprecated `join` placeholder.  
+  Will be removed in next update. Also prints warnings about that when used and displays `replace` alternative.
+
+## `1.5.0`
+- Changed `number_format` placeholder structure.
+  ```yaml
   # Old
   #
   %formatter_number_format_<number>[_<option>]%
@@ -14,7 +23,7 @@ This file lists the different changes of the Formatter-expansion in detail.
   %formatter_number_format_[locale]:[format]_<number>%
   ```
 - Changed `text_join` placeholder structure to allow own target system.
-  ```
+  ```yaml
   # Old (Only combines text separated by Spaces)
   #
   %formatter_text_join_<separator>_<text>%
@@ -29,7 +38,7 @@ This file lists the different changes of the Formatter-expansion in detail.
 
 ## `1.4.0`
 - Added placeholders for `time` to treat the number as different time.
-  ```
+  ```yaml
   # Same as %formatter_number_time_<number>%
   #
   %formatter_number_time_seconds_<number>%
@@ -57,7 +66,7 @@ This file lists the different changes of the Formatter-expansion in detail.
 
 ## `1.3.1`
 - New Text option `join` (Combines space-separated text with the provided character(s))
-  ```
+  ```yaml
   %formatter_text_join_<characters>_<text>%
   ```
 
@@ -68,7 +77,7 @@ This file lists the different changes of the Formatter-expansion in detail.
 - Added Support for formatting Text.
 - Switched locale Placeholder from using a `_` to using `:`
 - Placeholder structure has been changed:
-  ```
+  ```yaml
   %formatter_text_substring_[start]:[end]_<text>%
   %formatter_text_uppercase_<text>%
   %formatter_text_lowercase_<text>%
@@ -82,7 +91,7 @@ This file lists the different changes of the Formatter-expansion in detail.
 
 ## `1.1.0`
 - Added `time` placeholder to return duration from provided number.
-  ```
+  ```yaml
   %formatter_time_value:(<number>)%
   ```
 - New config options for the time placeholder.
@@ -103,7 +112,7 @@ This file lists the different changes of the Formatter-expansion in detail.
 - First release.
 
 Placeholders:
-```
+```yaml
 %formatter_value:(<number>)%
 %formatter_value:(<number>)_format:(<format>)%
 %formatter_value:(<number>)_locale:(<locale>)%
