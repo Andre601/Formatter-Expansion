@@ -10,6 +10,7 @@ import javax.annotation.Nonnull;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
+import java.util.BigDecimal;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -346,9 +347,10 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
     }
     
     private String formatNumber(String num, String format, String locale){
-        long number;
+        // Allow arbitrary numbers
+        BigDecimal number;
         try{
-            number = Long.parseLong(num);
+            number = new BigDecimal(num);
         }catch(NumberFormatException ex){
             return null;
         }
