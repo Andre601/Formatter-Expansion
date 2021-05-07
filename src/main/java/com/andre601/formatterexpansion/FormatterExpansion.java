@@ -7,10 +7,10 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 
 import javax.annotation.Nonnull;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
-import java.util.BigDecimal;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -132,39 +132,13 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
                     
                     return values[2].toLowerCase();
                 
-                case "join":
-                    if(isNullOrEmpty(values[2], values[3], values[4]))
-                        return null;
-                    
-                    String split = values[2];
-                    String separator = values[3];
-                    
-                    String[] splits = values[4].split(Pattern.quote(split));
-                    
-                    this.getPlaceholderAPI()
-                        .getLogger()
-                        .warning("[Formatter] Usage of deprecated 'join' placeholder. Use the new 'replace' placeholder!");
-                    this.getPlaceholderAPI()
-                            .getLogger()
-                            .warning(String.format(
-                                    "[Formatter] %%formatter_text_join_%s_%s_%s%% -> %%formatter_text_replace_%s_%s_%s%%",
-                                    values[2],
-                                    values[3],
-                                    values[4],
-                                    values[2],
-                                    values[3],
-                                    values[4]
-                            ));
-                    
-                    return String.join(separator, splits);
-                
                 case "replace":
                     // We allow values[3] to be empty, but not null.
                     if(isNullOrEmpty(values[2], values[4]) || values[3] == null)
                         return null;
                     
-                    String target = values[2].equalsIgnoreCase("{{u}}") ? "_" : values[2];
-                    String replacement = values[3].equalsIgnoreCase("{{u}}") ? "_" : values[3];
+                    String target = values[2].replace("{{u}}", "_");
+                    String replacement = values[3].replace("{{u}}", "_");
                     
                     return values[4].replace(target, replacement);
             }
