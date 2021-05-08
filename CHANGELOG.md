@@ -2,7 +2,7 @@
 This file lists the different changes of the Formatter-expansion in detail.
 
 ## `1.7.0`
-- Switch from `long` to `BigDecimal` to allow larger numbers with decimals (#2)
+- Switch from `long` to `BigDecimal` to allow larger numbers with decimals ([#2](https://github.com/Andre601/Formatter-Expansion/pull/2))
 - Always change `{{u}}` into `_` and not just when the text is only `{{u}}`
 - Removed `join` option. This was deprecated since [1.6.0](#160)
 
