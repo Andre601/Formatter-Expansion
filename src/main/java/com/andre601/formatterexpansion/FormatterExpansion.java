@@ -4,7 +4,6 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.Configurable;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.configuration.ConfigurationSection;
 
 import javax.annotation.Nonnull;
 import java.math.BigDecimal;
@@ -358,10 +357,7 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
     }
     
     /*
-     * We have this method for two specific reasons:
-     * 
-     *   1. Backwards-compatability for anyone using configs from before 1.3.2
-     *   2. PlaceholderAPI doesn't offer a getBoolean method itself... yet.
+     * We have this method for backwards-compatability with configurations from before 1.3.2
      */
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean isCondensed(){
@@ -373,13 +369,8 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         if(condensed instanceof String)
             return this.getString("time.condensed", "no").equalsIgnoreCase("yes");
         
-        if(condensed instanceof Boolean){
-            ConfigurationSection section = this.getConfigSection();
-            if(section == null)
-                return true;
-            
-            return section.getBoolean("time.condensed", false);
-        }
+        if(condensed instanceof Boolean)
+            return this.getBoolean("time.condensed", false);
         
         return true;
     }

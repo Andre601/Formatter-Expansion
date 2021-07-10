@@ -5,19 +5,19 @@ plugins {
 }
 
 group = 'com.andre601'
-version = '1.7.0'
+version = '1.7.1'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
-    maven {url = 'http://repo.extendedclip.com/content/repositories/placeholderapi'}
+    maven {url = 'https://repo.extendedclip.com/content/repositories/placeholderapi'}
     maven {url = 'https://papermc.io/repo/repository/maven-public/'}
 }
 
 dependencies {
-    compileOnly group: 'me.clip', name: 'placeholderapi', version: '2.10.7'
+    compileOnly group: 'me.clip', name: 'placeholderapi', version: '2.10.10'
     compileOnly group: 'com.destroystokyo.paper', name: 'paper-api', version: '1.16.1-R0.1-SNAPSHOT'
 }
 

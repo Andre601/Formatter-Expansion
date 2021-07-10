@@ -1,6 +1,12 @@
 # Changelog
 This file lists the different changes of the Formatter-expansion in detail.
 
+## `1.7.1`
+**Note:**  
+This update is ONLY compatible with PlaceholderAPI 2.10.10 onwards!
+
+- Updated to PlaceholderAPI 2.10.10 to have access to the `getBoolean(String, boolean)` method
+
 ## `1.7.0`
 - Switch from `long` to `BigDecimal` to allow larger numbers with decimals ([#2](https://github.com/Andre601/Formatter-Expansion/pull/2))
 - Always change `{{u}}` into `_` and not just when the text is only `{{u}}`
