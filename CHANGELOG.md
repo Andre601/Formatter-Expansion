@@ -6,7 +6,7 @@ This file lists the different changes of the Formatter-expansion in detail.
   This treats the provided number as milliseconds.  
   ```yaml
   %formatter_number_time_fromMilliseconds_<number>%
-  %formatter_number_time_time_fromMs_<number>%
+  %formatter_number_time_fromMs_<number>%
   ```
 - Renamed all `time_<unit>` placeholders to `time_from<unit>` to make their purpose more clear.  
   This means that f.e. `time_seconds` is now `time_fromSeconds`.  

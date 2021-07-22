@@ -137,8 +137,8 @@ The returned time will usually have spaces between each option, but you can chan
 ```
 
 #### `time_fromMilliseconds` / `time_fromMs`
-> `%formatter_number_time_time_fromMilliseconds_<number>%`  
-> `%formatter_number_time_time_fromMs_<number>%`
+> `%formatter_number_time_fromMilliseconds_<number>%`  
+> `%formatter_number_time_fromMs_<number>%`
 
 Similar to the [`time`](#time) option, but treats the provided number as milliseconds instead of seconds.
 
@@ -149,8 +149,8 @@ Similar to the [`time`](#time) option, but treats the provided number as millise
 ```
 
 #### `time_fromSeconds` / `time_fromSecs`
-> `%formatter_number_time_time_fromSeconds_<number>%`  
-> `%formatter_number_time_time_fromSecs_<number>%`
+> `%formatter_number_time_fromSeconds_<number>%`  
+> `%formatter_number_time_fromSecs_<number>%`
 
 Exactly the same as the [`time`](#time) option.
 
