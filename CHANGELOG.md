@@ -1,6 +1,22 @@
 # Changelog
 This file lists the different changes of the Formatter-expansion in detail.
 
+## `1.8.0`
+- Added `time_fromMilliseconds` and `time_fromMs` placeholders to `number` option.  
+  This treats the provided number as milliseconds.  
+  ```yaml
+  %formatter_number_time_fromMilliseconds_<number>%
+  %formatter_number_time_time_fromMs_<number>%
+  ```
+- Renamed all `time_<unit>` placeholders to `time_from<unit>` to make their purpose more clear.  
+  This means that f.e. `time_seconds` is now `time_fromSeconds`.  
+  The old placeholders are still supported but print a warning and will be removed in the next release.
+- Added `from:<unit>_to:<unit>` placeholder to `number` option.  
+  This placeholder allows the conversion of a number from one time unit to another (i.e. from seconds to hours).  
+  ```yaml
+  %formatter_number_from:<unit>_to:<unit>_<number>%
+  ```
+
 ## `1.7.1`
 **Note:**  
 This update is ONLY compatible with PlaceholderAPI 2.10.10 onwards!
