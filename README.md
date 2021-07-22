@@ -100,6 +100,30 @@ You can find an up to date list of all (known) and supported locales on the [wik
 %formatter_number_format_de-CH:#,##_1234567% -> 1'23'45'67
 ```
 
+#### `from:<time>_to:<time>`
+> `%formatter_number_from:<time>_to:<time>_<number>%`
+
+Converts the number from the given time unit to the other time unit.  
+This is useful if you want to convert a single value to another single value.
+
+The result will be a **whole number** (No decimals) and have one of the different `time` suffixes from the config applied, depending on the target time unit.
+
+**Supported time units**:
+
+| Time Unit   | Options                                       |
+| ----------- | --------------------------------------------- |
+| Day         | `days`, `day`                                 |
+| Hour        | `hours`, `hour`, `hrs`                        |
+| Minute      | `minutes`, `minute`, `mins`, `min`            |
+| Second      | `seconds`, `second`, `secs`, `sec`            |
+| Millisecond | `milliseconds`, `millisecond`, `millis`, `ms` |
+
+**Examples**:  
+```yaml
+%formatter_number_from:secs_to:minutes_120%  -> 2m
+%formatter_number_from:minutes_to:hours_119% -> 1h
+```
+
 #### `time`
 > `%formatter_number_time_<number>%`
 
@@ -112,16 +136,28 @@ The returned time will usually have spaces between each option, but you can chan
 %formatter_number_time_20454% -> 5h 40m 54s (5h40m54s with condensed set to true)
 ```
 
-#### `time_seconds` / `time_secs`
-> `%formatter_number_time_seconds_<number>%`  
-> `%formatter_number_time_secs_<number>%`
+#### `time_fromMilliseconds` / `time_fromMs`
+> `%formatter_number_time_fromMilliseconds_<number>%`  
+> `%formatter_number_time_fromMs_<number>%`
+
+Similar to the [`time`](#time) option, but treats the provided number as milliseconds instead of seconds.
+
+**Examples**:  
+```yaml
+%formatter_number_time_fromMilliseconds_1200%  -> 1s 200ms (1s200ms with condensed set to true)
+%formatter_number_time_fromMilliseconds_65200% -> 1m 5s 200ms (1m5s200ms with condensed set to true)
+```
+
+#### `time_fromSeconds` / `time_fromSecs`
+> `%formatter_number_time_fromSeconds_<number>%`  
+> `%formatter_number_time_fromSecs_<number>%`
 
 Exactly the same as the [`time`](#time) option.
 
 **Examples**:
 ```yaml
-%formatter_number_time_seconds_100%   -> 1m 40s     (1m40s with condensed set to true)
-%formatter_number_time_seconds_20454% -> 5h 40m 54s (5h40m54s with condensed set to true)
+%formatter_number_time_fromSeconds_100%   -> 1m 40s     (1m40s with condensed set to true)
+%formatter_number_time_fromSecs_20454%    -> 5h 40m 54s (5h40m54s with condensed set to true)
 ```
 
 #### `time_minutes` / `time_mins`
@@ -186,6 +222,10 @@ Defaults to `m`.
 ### `time.seconds`
 The text that is used to indicate seconds when the [time](#time) option is used.  
 Defaults to `s`.
+
+### `time.milliseconds`
+The text that is used to indicate milliseconds when the [time](#time) option is used.  
+Defaults to `ms`.
 
 ## Changelog
 Changes can be found in the [CHANGELOG.md][changelog] file.

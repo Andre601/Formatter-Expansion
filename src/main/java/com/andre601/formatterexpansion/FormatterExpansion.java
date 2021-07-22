@@ -1,6 +1,7 @@
 package com.andre601.formatterexpansion;
 
 import me.clip.placeholderapi.PlaceholderAPI;
+import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.expansion.Configurable;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
@@ -9,13 +10,13 @@ import javax.annotation.Nonnull;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 public class FormatterExpansion extends PlaceholderExpansion implements Configurable{
+    
+    private final Logger logger = PlaceholderAPIPlugin.getInstance().getLogger();
     
     @Override
     @Nonnull
@@ -42,6 +43,7 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         defaults.put("format", "#,###,###.##");
         defaults.put("locale", "en-US");
         
+        defaults.put("time.milliseconds", "ms");
         defaults.put("time.seconds", "s");
         defaults.put("time.minutes", "m");
         defaults.put("time.hours", "h");
@@ -54,137 +56,134 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
     @Override
     public String onRequest(OfflinePlayer player, @Nonnull String identifier){
         identifier = PlaceholderAPI.setBracketPlaceholders(player, identifier);
-        String[] values = getSplit(identifier, "_", 5);
+        String[] temp = getSplit(identifier, "_", 3);
         
-        if(values[0] == null)
+        if(isNullOrEmpty(temp[0], temp[1], temp[2]))
             return null;
+    
+        String type = temp[0];
+        String option = temp[1];
+        String value = temp[2];
         
-        if(values[0].equalsIgnoreCase("text")){
-            if(isNullOrEmpty(values[1]))
-                return null;
-            
-            switch(values[1].toLowerCase()){
+        if(type.equalsIgnoreCase("text")){
+            switch(option.toLowerCase(Locale.ROOT)){
                 case "substring":
-                    if(isNullOrEmpty(values[3]))
+                    String[] split = getSplit(value, "_", 2);
+                    
+                    if(isNullOrEmpty(split[0], split[1]))
                         return null;
                     
-                    String[] options = getSplit(values[2], ":", 2);
-                    int start;
-                    int end;
+                    String[] range = getSplit(split[0], ":", 2);
+                    int start = 0;
+                    int end = split[1].length();
                     
-                    if(isNullOrEmpty(options[0])){
-                        start = 0;
-                    }else{
+                    if(!isNullOrEmpty(range[0])){
                         try{
-                            start = Integer.parseInt(options[0]);
-                        }catch(NumberFormatException ex){
-                            start = 0;
-                        }
+                            start = Integer.parseInt(range[0]);
+                        }catch(NumberFormatException ignored){}
                         
                         if(start < 0)
                             start = 0;
                     }
                     
-                    if(values[4] != null)
-                        values[3] += "_" + values[4];
-                    
-                    if(isNullOrEmpty(options[1])){
-                        end = values[3].length();
-                    }else{
+                    if(!isNullOrEmpty(range[1])){
                         try{
-                            end = Integer.parseInt(options[1]);
-                        }catch(NumberFormatException ex){
-                            end = values[3].length();
-                        }
+                            end = Integer.parseInt(range[1]);
+                        }catch(NumberFormatException ignored){}
                         
-                        if(end == -1 || end > values[3].length())
-                            end = values[3].length();
+                        if(end > split[1].length())
+                            end = split[1].length();
                     }
                     
-                    if(start > end)
-                        return null;
-                    
-                    return values[3].substring(start, end);
+                    return split[1].substring(start, end);
                 
                 case "uppercase":
-                    if(isNullOrEmpty(values[2]))
-                        return null;
-                    
-                    if(values[3] != null)
-                        values[2] += "_" + values[3];
-                    
-                    if(values[4] != null)
-                        values[2] += "_" + values[4];
-                    
-                    return values[2].toUpperCase();
+                    return value.toUpperCase(Locale.ROOT);
                 
                 case "lowercase":
-                    if(isNullOrEmpty(values[2]))
-                        return null;
-    
-                    if(values[3] != null)
-                        values[2] += "_" + values[3];
-    
-                    if(values[4] != null)
-                        values[2] += "_" + values[4];
-                    
-                    return values[2].toLowerCase();
+                    return value.toLowerCase(Locale.ROOT);
                 
                 case "replace":
-                    // We allow values[3] to be empty, but not null.
-                    if(isNullOrEmpty(values[2], values[4]) || values[3] == null)
+                    String[] replaceValues = getSplit(value, "_", 3);
+                    if(isNullOrEmpty(replaceValues[0], replaceValues[2]) || replaceValues[1] == null)
                         return null;
                     
-                    String target = values[2].replace("{{u}}", "_");
-                    String replacement = values[3].replace("{{u}}", "_");
+                    String target = replaceValues[0].replace("{{u}}", "_");
+                    String replacement = replaceValues[1].replace("{{u}}", "_");
                     
-                    return values[4].replace(target, replacement);
+                    return replaceValues[2].replace(target, replacement);
+                
+                default:
+                    return null;
             }
         }else
-        if(values[0].equalsIgnoreCase("number")){
-            if(isNullOrEmpty(values[1]))
-                return null;
+        if(type.equalsIgnoreCase("number") || temp[0].equalsIgnoreCase("num")){
+            if(option.toLowerCase(Locale.ROOT).startsWith("from:")){
+                if(!value.toLowerCase(Locale.ROOT).startsWith("to:"))
+                    return null;
+                
+                // %formatter_num_from:<type>_to:<type>_<number>%
+                
+                String[] valueOptions = getSplit(value, "_", 2);
+                
+                String fromValue = getSplit(option, ":", 2)[1];
+                String toValue = getSplit(valueOptions[0], ":", 2)[1];
+                
+                if(isNullOrEmpty(fromValue, toValue, valueOptions[1]))
+                    return null;
+                
+                return convert(getTimeUnit(fromValue), getTimeUnit(toValue), valueOptions[1]);
+            }
             
-            switch(values[1].toLowerCase()){
+            switch(option.toLowerCase(Locale.ROOT)){
                 case "format":
-                    if(values[3] == null){
-                        return formatNumber(values[2]);
-                    }
+                    String[] formatValues = getSplit(value, "_", 2);
                     
-                    if(values[4] != null)
-                        values[3] += "_" + values[4];
+                    // placeholder must be %formatter_num(ber)_format_<number>%
+                    if(isNullOrEmpty(formatValues[1]))
+                        return formatNumber(formatValues[0]);
                     
-                    if(isNullOrEmpty(values[2])){
-                        return formatNumber(values[3]);
-                    }
-                    
-                    String[] options = getSplit(values[2], ":", 2);
-                    
+                    String[] options = getSplit(formatValues[0], ":", 2);
                     String locale = isNullOrEmpty(options[0]) ? this.getString("locale", "en-US") : options[0];
-                    String format = isNullOrEmpty(options[1]) ? this.getString("format", "#,###,###.##") : options[1];
+                    String pattern = isNullOrEmpty(options[1]) ? this.getString("format", "#,###,###.##") : options[1];
                     
-                    return formatNumber(values[3], format, locale);
+                    return formatNumber(formatValues[1], locale, pattern);
                 
                 case "time":
-                    if(isNullOrEmpty(values[3])){
-                        return formatTime(values[2], TimeUnit.SECONDS);
-                    }
-    
-                    if(values[4] != null)
-                        values[3] += "_" + values[4];
+                    String[] timeValues = getSplit(value, "_", 2);
                     
-                    switch(values[2].toLowerCase()){
-                        case "secs":
+                    // placeholder must be %formatter_num(ber)_time_<number>%
+                    if(isNullOrEmpty(timeValues[1]))
+                        return formatTime(timeValues[0], TimeUnit.SECONDS);
+                    
+                    switch(timeValues[0].toLowerCase(Locale.ROOT)){
+                        case "frommilliseconds":
+                        case "fromms":
+                            return formatTime(timeValues[1], TimeUnit.MILLISECONDS);
+                        
                         case "seconds":
-                            return formatTime(values[3], TimeUnit.SECONDS);
+                        case "secs":
+                            logDeprecated(timeValues[0]);
                         
-                        case "mins":
+                        case "fromseconds":
+                        case "fromsecs":
+                            return formatTime(timeValues[1], TimeUnit.SECONDS);
+                        
                         case "minutes":
-                            return formatTime(values[3], TimeUnit.MINUTES);
+                        case "mins":
+                            logDeprecated(timeValues[0]);
                         
-                        case "hrs":
+                        case "fromminutes":
+                        case "frommins":
+                            return formatTime(timeValues[1], TimeUnit.MINUTES);
+                        
                         case "hours":
-                            return formatTime(values[3], TimeUnit.HOURS);
+                        case "hrs":
+                            logDeprecated(timeValues[0]);
+                        
+                        case "fromhours":
+                        case "fromhrs":
+                            return formatTime(timeValues[1], TimeUnit.HOURS);
                         
                         default:
                             return null;
@@ -217,6 +216,7 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         long hours;
         long minutes;
         long seconds;
+        long milliseconds;
         
         final StringBuilder builder = new StringBuilder();
         
@@ -250,7 +250,7 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
                     builder.append(days)
                            .append(this.getString("time.days", "d"));
                 }
-                
+    
                 if(hours > 0){
                     if((builder.length() > 0) && !isCondensed()){
                         builder.append(" ");
@@ -259,7 +259,7 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
                     builder.append(hours)
                            .append(this.getString("time.hours", "h"));
                 }
-                
+    
                 if(minutes > 0){
                     if((builder.length() > 0) && !isCondensed()){
                         builder.append(" ");
@@ -311,6 +311,125 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
                 }
     
                 return builder.toString();
+            
+            case MILLISECONDS:
+                days = timeUnit.toDays(number);
+                hours = timeUnit.toHours(number) - days * 24;
+                minutes = timeUnit.toMinutes(number) - hours * 60 - days * 1440;
+                seconds = timeUnit.toSeconds(number) - minutes * 60 - hours * 3600 - days * 86400;
+                milliseconds = number - seconds * 1000 - minutes * 60000 - hours * 3600000 - days * 86400000;
+                
+                if(days > 0){
+                    builder.append(days)
+                           .append(this.getString("time.days", "d"));
+                }
+    
+                if(hours > 0){
+                    if((builder.length() > 0) && !isCondensed()){
+                        builder.append(" ");
+                    }
+        
+                    builder.append(hours)
+                           .append(this.getString("time.hours", "h"));
+                }
+    
+                if(minutes > 0){
+                    if((builder.length() > 0) && !isCondensed()){
+                        builder.append(" ");
+                    }
+        
+                    builder.append(minutes)
+                           .append(this.getString("time.minutes", "m"));
+                }
+    
+                if(seconds > 0){
+                    if((builder.length() > 0) && !isCondensed()){
+                        builder.append(" ");
+                    }
+        
+                    builder.append(seconds)
+                           .append(this.getString("time.seconds", "s"));
+                }
+                
+                if(milliseconds > 0){
+                    if((builder.length() > 0) && !isCondensed()){
+                        builder.append(" ");
+                    }
+                    
+                    builder.append(milliseconds)
+                           .append(this.getString("time.milliseconds", "ms"));
+                }
+                
+                return builder.toString();
+        }
+    }
+    
+    private String convert(TimeUnit from, TimeUnit to, String num){
+        long number;
+        try{
+            number = Long.parseLong(num);
+        }catch(NumberFormatException ignored){
+            return null;
+        }
+        
+        number = to.convert(number, from);
+        StringBuilder builder = new StringBuilder().append(number);
+        
+        switch(to){
+            case DAYS:
+                builder.append(this.getString("time.days", "d"));
+                break;
+            
+            case HOURS:
+                builder.append(this.getString("time.hours", "h"));
+                break;
+            
+            case MINUTES:
+                builder.append(this.getString("time.minutes", "m"));
+                break;
+            
+            case SECONDS:
+            default:
+                builder.append(this.getString("time.seconds", "s"));
+                break;
+            
+            case MILLISECONDS:
+                builder.append(this.getString("time.milliseconds", "ms"));
+                break;
+        }
+        
+        return builder.toString();
+    }
+    
+    private TimeUnit getTimeUnit(String value){
+        switch(value.toLowerCase(Locale.ROOT)){
+            case "days":
+            case "day":
+                return TimeUnit.DAYS;
+            
+            case "hours":
+            case "hour":
+            case "hrs":
+                return TimeUnit.HOURS;
+            
+            case "minutes":
+            case "minute":
+            case "mins":
+            case "min":
+                return TimeUnit.MINUTES;
+            
+            case "seconds":
+            case "second":
+            case "secs":
+            case "sec":
+            default:
+                return TimeUnit.SECONDS;
+            
+            case "milliseconds":
+            case "millisecond":
+            case "millis":
+            case "ms":
+                return TimeUnit.MILLISECONDS;
         }
     }
     
@@ -373,5 +492,19 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
             return this.getBoolean("time.condensed", false);
         
         return true;
+    }
+    
+    private void logDeprecated(String name){
+        String word = name.substring(0, 1).toUpperCase(Locale.ROOT) + name.substring(1).toLowerCase(Locale.ROOT);
+        
+        logger.warning(String.format(
+                "[Formatter] Usage of %%formatter_number_time_%s_<number>%% detected!",
+                name.toLowerCase(Locale.ROOT)
+        ));
+        logger.warning("[Formatter] This placeholder is DEPRECATED and will be removed in a future release.");
+        logger.warning(String.format(
+                "[Formatter] Please switch to %%formatter_number_time_from%s_<number>%% instead!",
+                word
+        ));
     }
 }
