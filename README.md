@@ -78,6 +78,8 @@ When you want to use an underline for either `<target>` or `<replacement>` use `
 The number option tells the expansion to treat the provided value as a number.  
 The first argument after this option determines how the number is handled.
 
+You can also use `num` as a shorter alias.
+
 #### `format`
 > `%formatter_number_format_<number>%`  
 > `%formatter_number_format_[locale]:[format]_<number>%`
