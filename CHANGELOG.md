@@ -1,6 +1,9 @@
 # Changelog
 This file lists the different changes of the Formatter-expansion in detail.
 
+## `1.8.1`
+- Fix `%formatter_num_format_[locale]:[pattern]_<number>%` switching locale and pattern.
+
 ## `1.8.0`
 - Added `time_fromMilliseconds` and `time_fromMs` placeholders to `number` option.  
   This treats the provided number as milliseconds.  

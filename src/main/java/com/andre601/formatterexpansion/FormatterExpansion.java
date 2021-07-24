@@ -434,10 +434,10 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
     }
     
     private String formatNumber(String num){
-        return formatNumber(num, this.getString("format", "#,###,###.##"), this.getString("locale", "en-US"));
+        return formatNumber(num, this.getString("locale", "en-US"), this.getString("format", "#,###,###.##"));
     }
     
-    private String formatNumber(String num, String format, String locale){
+    private String formatNumber(String num, String locale, String format){
         // Allow arbitrary numbers
         BigDecimal number;
         try{
@@ -457,11 +457,11 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
     
     private Locale getLocale(String input){
         if(input.contains("-")){
-            String[] args = Arrays.copyOf(input.split("-", 2), 2);
-            if(args[0] != null && args[1] != null){
+            String[] args = getSplit(input, "-", 2);
+            if(!isNullOrEmpty(args[0]) && !isNullOrEmpty(args[1])){
                 return new Locale(args[0], args[1]);
             }else
-            if(args[0] != null){
+            if(!isNullOrEmpty(args[0])){
                 return new Locale(args[0]);
             }else{
                 return Locale.US;
