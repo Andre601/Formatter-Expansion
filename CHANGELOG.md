@@ -1,6 +1,9 @@
 # Changelog
 This file lists the different changes of the Formatter-expansion in detail.
 
+## `1.8.2`
+- Added `%formatter_text_length_<text>%` to return the lentgh of a provided text.
+
 ## `1.8.1`
 - Fix `%formatter_num_format_[locale]:[pattern]_<number>%` switching locale and pattern.
 

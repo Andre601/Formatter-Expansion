@@ -113,6 +113,9 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
                     
                     return replaceValues[2].replace(target, replacement);
                 
+                case "length":
+                    return String.valueOf(value.length());
+                
                 default:
                     return null;
             }
@@ -161,25 +164,13 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
                         case "fromms":
                             return formatTime(timeValues[1], TimeUnit.MILLISECONDS);
                         
-                        case "seconds":
-                        case "secs":
-                            logDeprecated(timeValues[0]);
-                        
                         case "fromseconds":
                         case "fromsecs":
                             return formatTime(timeValues[1], TimeUnit.SECONDS);
                         
-                        case "minutes":
-                        case "mins":
-                            logDeprecated(timeValues[0]);
-                        
                         case "fromminutes":
                         case "frommins":
                             return formatTime(timeValues[1], TimeUnit.MINUTES);
-                        
-                        case "hours":
-                        case "hrs":
-                            logDeprecated(timeValues[0]);
                         
                         case "fromhours":
                         case "fromhrs":
