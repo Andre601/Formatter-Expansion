@@ -1,0 +1,53 @@
+name: Bug Report
+about: Please use this template if you found a bug with the Formatter Expansion.
+
+body:
+- type: markdown
+  attributes: |-
+    Thank you for reporting a bug.
+    Make sure to fill out the issue form in its entirety and provide the requested information.
+    
+    You should also make sure that you're using the latest release of both PlaceholderAPI and the Formatter Expansion.
+    - [PlaceholderAPI](https://www.spigotmc.org/resources/6245/)
+    - [Formatter Expansion](https://api.extendedclip.com/expansions/formatter/)
+    
+    For general questions regarding PlaceholderAPI should you join the [HelpChat Discord](https://discord.gg/helpchat) and for questions/suggestions regarding this expansion join [Andre's Support Discord](https://discord.gg/6dazXp6) and ask in the `#formatter` channel.
+- type: checkboxes
+  attributes:
+    label: Checks
+    description: Please confirm that you made the below checks first.
+    options:
+    - label: I use the latest release of PlaceholderAPI (`/papi version`)
+      required: true
+    - label: I use the latest release of the Formatter Expansion (`/papi ecloud info Formatter`)
+- type: textarea
+  attributes:
+    label: Description
+    placeholder: Formatter Expansion does ...
+    description: |-
+      What kind of issue do you encounter? Describe it in as much detail as possible.
+      
+      **Do not post errors here! Use the "Errors" Section below for those!**
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Steps to reproduce
+    placeholder: |-
+      1. Do this
+      2. ...
+      3. Profit!
+    description: Please provide steps to reproduce this issue reliably.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Errors
+    placeholder: java.lang.NullPointerException
+    description: |-
+      Provide any errors you found in the console that are caused by PlaceholderAPI and while using the formatter placeholder.
+      
+      **This text field is automatically rendered as code block, so you don't have to put it in one yourself!**
+    render: unknownrenderlol
+  validations:
+    required: true

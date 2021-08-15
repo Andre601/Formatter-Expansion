@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+- name: HelpChat Discord
+  url: 'https://discord.gg/helpchat'
+  about: HelpChat is the home of PlaceholderAPI. If you have questions about this plugin, ask there instead!
+- name: Andre''s Support Discord
+  url: 'https://discord.gg/6dazXp6'
+  about: Main place for support regarding the Formatter Expansion. Please ask in the `#formatter` channel for support.
+- name: Download Formatter Expansion
+  url: 'https://api.extendedclip.com/expansions/formatter/'
+  about: You can get the lates version of the Formatter Expansion from here, or through `/papi ecloud download formatter`
+- name: Download PlaceholderAPI
+  url: 'https://www.spigotmc.org/resources/6245/'
+  about: Get the latest release from PlaceholderAPI here.
