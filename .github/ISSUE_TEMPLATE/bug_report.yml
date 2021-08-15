@@ -1,5 +1,5 @@
 name: Bug Report
-about: 'Please use this template if you found a bug with the Formatter Expansion.'
+description: 'Please use this template if you found a bug with the Formatter Expansion.'
 
 body:
 - type: markdown
