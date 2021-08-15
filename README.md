@@ -74,6 +74,16 @@ When you want to use an underline for either `<target>` or `<replacement>` use `
 %formatter_text_replace_ __Repl a ce%                  -> Replace
 ```
 
+#### `length`
+> `%formatter_text_length_<text>%`
+
+Will return the length of the provided text.
+
+**Examples**:  
+```yaml
+%formatter_text_length_Andre_601% -> 9
+```
+
 ### `number`
 The number option tells the expansion to treat the provided value as a number.  
 The first argument after this option determines how the number is handled.
