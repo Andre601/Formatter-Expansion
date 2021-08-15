@@ -1,5 +1,5 @@
 name: Bug Report
-about: Please use this template if you found a bug with the Formatter Expansion.
+about: 'Please use this template if you found a bug with the Formatter Expansion.'
 
 body:
 - type: markdown
@@ -15,16 +15,16 @@ body:
 - type: checkboxes
   attributes:
     label: Checks
-    description: Please confirm that you made the below checks first.
+    description: 'Please confirm that you made the below checks first.'
     options:
-    - label: I use the latest release of PlaceholderAPI (`/papi version`)
+    - label: 'I use the latest release of PlaceholderAPI (`/papi version`)'
       required: true
-    - label: I use the latest release of the Formatter Expansion (`/papi ecloud info Formatter`)
+    - label: 'I use the latest release of the Formatter Expansion (`/papi ecloud info Formatter`)'
       required: true
 - type: textarea
   attributes:
     label: Description
-    placeholder: Formatter Expansion does ...
+    placeholder: 'Formatter Expansion does ...'
     description: |-
       What kind of issue do you encounter? Describe it in as much detail as possible.
       
@@ -38,7 +38,7 @@ body:
       1. Do this
       2. ...
       3. Profit!
-    description: Please provide steps to reproduce this issue reliably.
+    description: 'Please provide steps to reproduce this issue reliably.'
   validations:
     required: true
 - type: textarea
@@ -49,6 +49,6 @@ body:
       Provide any errors you found in the console that are caused by PlaceholderAPI and while using the formatter placeholder.
       
       **This text field is automatically rendered as code block, so you don't have to put it in one yourself!**
-    render: unknownrenderlol
+    render: 'yesyes'
   validations:
     required: true
