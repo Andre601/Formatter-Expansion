@@ -3,15 +3,16 @@ about: 'Please use this template if you found a bug with the Formatter Expansion
 
 body:
 - type: markdown
-  attributes: |-
-    Thank you for reporting a bug.
-    Make sure to fill out the issue form in its entirety and provide the requested information.
-    
-    You should also make sure that you're using the latest release of both PlaceholderAPI and the Formatter Expansion.
-    - [PlaceholderAPI](https://www.spigotmc.org/resources/6245/)
-    - [Formatter Expansion](https://api.extendedclip.com/expansions/formatter/)
-    
-    For general questions regarding PlaceholderAPI should you join the [HelpChat Discord](https://discord.gg/helpchat) and for questions/suggestions regarding this expansion join [Andre's Support Discord](https://discord.gg/6dazXp6) and ask in the `#formatter` channel.
+  attributes:
+    value: |-
+      Thank you for reporting a bug.
+      Make sure to fill out the issue form in its entirety and provide the requested information.
+      
+      You should also make sure that you're using the latest release of both PlaceholderAPI and the Formatter Expansion.
+      - [PlaceholderAPI](https://www.spigotmc.org/resources/6245/)
+      - [Formatter Expansion](https://api.extendedclip.com/expansions/formatter/)
+      
+      For general questions regarding PlaceholderAPI should you join the [HelpChat Discord](https://discord.gg/helpchat) and for questions/suggestions regarding this expansion join [Andre's Support Discord](https://discord.gg/6dazXp6) and ask in the `#formatter` channel.
 - type: checkboxes
   attributes:
     label: Checks
