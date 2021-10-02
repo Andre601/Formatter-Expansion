@@ -202,7 +202,7 @@ The expansion adds several config options to the config.yml of PlaceholderAPI, w
 
 ### `format`
 The default Format used for the numbers.  
-More info on how the formatting works can be found here: https://docs.oracle.com/javase/7/docs/api/java/text/DecimalFormat.html
+The format is based on Java's DecimalFormat[^1].
 
 ### `locale`
 This option is used for the [format](#format).  
@@ -241,3 +241,6 @@ Defaults to `ms`.
 
 ## Changelog
 Changes can be found in the [CHANGELOG.md][changelog] file.
+
+<!-- Footnotes -->
+[^1]: https://docs.oracle.com/javase/7/docs/api/java/text/DecimalFormat.html
