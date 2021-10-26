@@ -1,6 +1,9 @@
 # Changelog
 This file lists the different changes of the Formatter-expansion in detail.
 
+## `1.8.3`
+- Use StringJoiner instead of StringBuilder for `time_fromX` placeholders.
+
 ## `1.8.2`
 - Added `%formatter_text_length_<text>%` to return the lentgh of a provided text.
 

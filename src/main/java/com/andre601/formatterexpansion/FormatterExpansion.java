@@ -1,7 +1,6 @@
 package com.andre601.formatterexpansion;
 
 import me.clip.placeholderapi.PlaceholderAPI;
-import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.expansion.Configurable;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
@@ -12,11 +11,8 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
 public class FormatterExpansion extends PlaceholderExpansion implements Configurable{
-    
-    private final Logger logger = PlaceholderAPIPlugin.getInstance().getLogger();
     
     @Override
     @Nonnull
@@ -209,58 +205,36 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         long seconds;
         long milliseconds;
         
-        final StringBuilder builder = new StringBuilder();
+        final StringJoiner joiner = new StringJoiner(isCondensed() ? "" : " ");
         
         switch(timeUnit){
             case HOURS:
                 days = timeUnit.toDays(number);
                 hours = timeUnit.toHours(number) - days * 24;
                 
-                if(days > 0){
-                    builder.append(days)
-                           .append(this.getString("time.days", "d"));
-                }
+                if(days > 0)
+                    joiner.add(days + this.getString("time.days", "d"));
                 
-                if(hours > 0){
-                    if((builder.length() > 0) && !isCondensed()){
-                        builder.append(" ");
-                    }
-                    
-                    builder.append(hours)
-                           .append(this.getString("time.hours", "h"));
-                }
+                if(hours > 0)
+                    joiner.add(hours + this.getString("time.hours", "h"));
                 
-                return builder.toString();
+                break;
             
             case MINUTES:
                 days = timeUnit.toDays(number);
                 hours = timeUnit.toHours(number) - days * 24;
                 minutes = timeUnit.toMinutes(number) - hours * 60 - days * 1440;
                 
-                if(days > 0){
-                    builder.append(days)
-                           .append(this.getString("time.days", "d"));
-                }
+                if(days > 0)
+                    joiner.add(days + this.getString("time.days", "d"));
     
-                if(hours > 0){
-                    if((builder.length() > 0) && !isCondensed()){
-                        builder.append(" ");
-                    }
-                    
-                    builder.append(hours)
-                           .append(this.getString("time.hours", "h"));
-                }
-    
-                if(minutes > 0){
-                    if((builder.length() > 0) && !isCondensed()){
-                        builder.append(" ");
-                    }
-                    
-                    builder.append(minutes)
-                           .append(this.getString("time.minutes", "m"));
-                }
+                if(hours > 0)
+                    joiner.add(hours + this.getString("time.hours", "h"));
                 
-                return builder.toString();
+                if(minutes > 0)
+                    joiner.add(minutes + this.getString("time.minutes", "m"));
+                
+                break;
             
             case SECONDS:
             default:
@@ -268,40 +242,20 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
                 hours = timeUnit.toHours(number) - days * 24;
                 minutes = timeUnit.toMinutes(number) - hours * 60 - days * 1440;
                 seconds = number - minutes * 60 - hours * 3600 - days * 86400;
-    
-                if(days > 0){
-                    builder.append(days)
-                           .append(this.getString("time.days", "d"));
-                }
-    
-                if(hours > 0){
-                    if((builder.length() > 0) && !isCondensed()){
-                        builder.append(" ");
-                    }
-        
-                    builder.append(hours)
-                           .append(this.getString("time.hours", "h"));
-                }
-    
-                if(minutes > 0){
-                    if((builder.length() > 0) && !isCondensed()){
-                        builder.append(" ");
-                    }
-        
-                    builder.append(minutes)
-                           .append(this.getString("time.minutes", "m"));
-                }
                 
-                if(seconds > 0){
-                    if((builder.length() > 0) && !isCondensed()){
-                        builder.append(" ");
-                    }
-                    
-                    builder.append(seconds)
-                           .append(this.getString("time.seconds", "s"));
-                }
-    
-                return builder.toString();
+                if(days > 0)
+                    joiner.add(days + this.getString("time.days", "d"));
+                
+                if(hours > 0)
+                    joiner.add(hours + this.getString("time.hours", "h"));
+                
+                if(minutes > 0)
+                    joiner.add(minutes + this.getString("time.minutes", "m"));
+                
+                if(seconds > 0)
+                    joiner.add(seconds + this.getString("time.seconds", "s"));
+                
+                break;
             
             case MILLISECONDS:
                 days = timeUnit.toDays(number);
@@ -310,49 +264,25 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
                 seconds = timeUnit.toSeconds(number) - minutes * 60 - hours * 3600 - days * 86400;
                 milliseconds = number - seconds * 1000 - minutes * 60000 - hours * 3600000 - days * 86400000;
                 
-                if(days > 0){
-                    builder.append(days)
-                           .append(this.getString("time.days", "d"));
-                }
-    
-                if(hours > 0){
-                    if((builder.length() > 0) && !isCondensed()){
-                        builder.append(" ");
-                    }
-        
-                    builder.append(hours)
-                           .append(this.getString("time.hours", "h"));
-                }
-    
-                if(minutes > 0){
-                    if((builder.length() > 0) && !isCondensed()){
-                        builder.append(" ");
-                    }
-        
-                    builder.append(minutes)
-                           .append(this.getString("time.minutes", "m"));
-                }
-    
-                if(seconds > 0){
-                    if((builder.length() > 0) && !isCondensed()){
-                        builder.append(" ");
-                    }
-        
-                    builder.append(seconds)
-                           .append(this.getString("time.seconds", "s"));
-                }
+                if(days > 0)
+                    joiner.add(days + this.getString("time.days", "d"));
                 
-                if(milliseconds > 0){
-                    if((builder.length() > 0) && !isCondensed()){
-                        builder.append(" ");
-                    }
-                    
-                    builder.append(milliseconds)
-                           .append(this.getString("time.milliseconds", "ms"));
-                }
+                if(hours > 0)
+                    joiner.add(hours + this.getString("time.hours", "h"));
                 
-                return builder.toString();
+                if(minutes > 0)
+                    joiner.add(minutes + this.getString("time.minutes", "m"));
+                
+                if(seconds > 0)
+                    joiner.add(seconds + this.getString("time.seconds", "s"));
+                
+                if(milliseconds > 0)
+                    joiner.add(milliseconds + this.getString("time.milliseconds", "ms"));
+                
+                break;
         }
+        
+        return joiner.toString();
     }
     
     private String convert(TimeUnit from, TimeUnit to, String num){
@@ -483,19 +413,5 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
             return this.getBoolean("time.condensed", false);
         
         return true;
-    }
-    
-    private void logDeprecated(String name){
-        String word = name.substring(0, 1).toUpperCase(Locale.ROOT) + name.substring(1).toLowerCase(Locale.ROOT);
-        
-        logger.warning(String.format(
-                "[Formatter] Usage of %%formatter_number_time_%s_<number>%% detected!",
-                name.toLowerCase(Locale.ROOT)
-        ));
-        logger.warning("[Formatter] This placeholder is DEPRECATED and will be removed in a future release.");
-        logger.warning(String.format(
-                "[Formatter] Please switch to %%formatter_number_time_from%s_<number>%% instead!",
-                word
-        ));
     }
 }
