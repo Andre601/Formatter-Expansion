@@ -172,7 +172,7 @@ Exactly the same as the [`time`](#time) option.
 %formatter_number_time_fromSecs_20454%    -> 5h 40m 54s (5h40m54s with condensed set to true)
 ```
 
-#### `time_minutes` / `time_mins`
+#### `time_fromMinutes` / `time_fromMins`
 > `%formatter_number_time_minutes_<number>%`  
 > `%formatter_number_time_mins_<number>%`
 
@@ -184,7 +184,7 @@ Similar to the [`time`](#time) option, but treats the provided number as minutes
 %formatter_number_time_minutes_20454% -> 14d 4h 54m (14d4h54m with condensed set to true)
 ```
 
-#### `time_hours` / `time_hrs`
+#### `time_fromHours` / `time_fromHrs`
 > `%formatter_number_time_hours_<number>%`  
 > `%formatter_number_time_hrs_<number>%`
 
