@@ -196,6 +196,82 @@ Similar to the [`time`](#time) option, but treats the provided number as hours i
 %formatter_number_time_hours_20454% -> 852d 6h (852d6h with condensed set to true)
 ```
 
+#### `rounding` / `round`
+> `%formatter_number_rounding_<number>%`  
+> `%formatter_number_round_<number>%`
+> 
+> `%formatter_number_rounding_[precision]:[mode]_<number>%`
+> `%formatter_number_round_[precision]:[mode]_<number>%`
+
+Rounds the provided number.  
+Providing a `[precision]` and/or `[mode]` value will influence how many decimals are shown, and how the number is rounded.
+
+`[precision]` can be any positive number starting at 0 and `[mode]` can be any of the following options:
+
+- [`up`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/RoundingMode.html#UP)
+  - Rounds away from zero. Always increases the digit prior to a non-zero discarded fraction.
+  - Examples:
+    - `-1.5 -> -2` 
+    - `-1.1 -> -2`
+    - `-1.0 -> -1`
+    - `1.0 -> 1`
+    - `1.1 -> 2`
+    - `1.5 -> 2`
+- [`down`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/RoundingMode.html#DOWN)
+  - Rounds towards zero. Always decreases the digit prior to a non-zero discarded fraction.
+  - Examples:
+    - `-1.5 -> -1`
+    - `-1.1 -> -1`
+    - `-1.0 -> -1`
+    - `1.0 -> 1`
+    - `1.1 -> 1`
+    - `1.5 -> 1`
+- [`ceiling`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/RoundingMode.html#CEILING)
+  - Rounds towards positive infinity. Always rounds up if number is positive, otherwise rounds down.
+  - Examples:
+    - `-1.5 -> -1`
+    - `-1.1 -> -1`
+    - `-1.0 -> -1`
+    - `1.0 -> 1`
+    - `1.1 -> 2`
+    - `1.5 -> 2`
+- [`floor`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/RoundingMode.html#FLOOR)
+  - Rounds towards negative infinity. Always rounds down if number is positive, otherwise rounds up.
+  - Examples:
+    - `-1.5 -> -2`
+    - `-1.1 -> -2`
+    - `-1.0 -> -1`
+    - `1.0 -> 1`
+    - `1.1 -> 1`
+    - `1.5 -> 1`
+- [`half-up`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/RoundingMode.html#HALF_UP)
+  - Rounds to nearest neighbour unless both neighbours are equidistant (5) in which case round up. This is what you are usually taught in school.
+  - Examples:
+    - `-1.5 -> -2`
+    - `-1.1 -> -1`
+    - `-1.0 -> -1`
+    - `1.0 -> 1`
+    - `1.1 -> 1`
+    - `1.5 -> 2`
+- [`half-down`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/RoundingMode.html#HALF_DOWN)
+  - Rounds to nearest neighbour unless both neighbours are equidistant (5) in which case round down.
+  - Examples:
+    - `-1.5 -> -1`
+    - `-1.1 -> -1`
+    - `-1.0 -> -1`
+    - `1.0 -> 1`
+    - `1.1 -> 1`
+    - `1.5 -> 1`
+- [`half-even`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/RoundingMode.html#HALF_EVEN)
+  - Rounds to nearest neighbour unless both neighbours are equidistant (5), in which case, round to nearest even neighbour (Up if digit to the left is odd, otherwise down)
+  - Examples:
+    - `-1.5 -> -2`
+    - `-1.1 -> -1`
+    - `-1.0 -> -1`
+    - `1.0 -> 1`
+    - `1.1 -> 1`
+    - `1.5 -> 2`
+
 ----
 ## Config
 The expansion adds several config options to the config.yml of PlaceholderAPI, which can be altered.
