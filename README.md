@@ -200,7 +200,7 @@ Similar to the [`time`](#time) option, but treats the provided number as hours i
 > `%formatter_number_rounding_<number>%`  
 > `%formatter_number_round_<number>%`
 > 
-> `%formatter_number_rounding_[precision]:[mode]_<number>%`
+> `%formatter_number_rounding_[precision]:[mode]_<number>%`  
 > `%formatter_number_round_[precision]:[mode]_<number>%`
 
 Rounds the provided number.  
