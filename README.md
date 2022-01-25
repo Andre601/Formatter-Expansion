@@ -331,4 +331,4 @@ Defaults to `0`.
 Changes can be found in the [CHANGELOG.md][changelog] file.
 
 <!-- Footnotes -->
-[^1]: https://docs.oracle.com/javase/7/docs/api/java/text/DecimalFormat.html
+[^1]: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/text/DecimalFormat.html
