@@ -315,6 +315,18 @@ Defaults to `s`.
 The text that is used to indicate milliseconds when the [time](#time) option is used.  
 Defaults to `ms`.
 
+### `rounding.mode`
+Determines the rounding behaviour that should be used.  
+Can be `up`, `down`, `ceiling`, `floor`, `half-up`, `half-down` or `half-even`.
+
+Defaults to `half-up`.
+
+### `rounding.precision`
+Sets how precise the number should be. The higher the number, the more decimal fractions are displayed.  
+Can be any positive number starting from 0.
+
+Defaults to `0`.
+
 ## Changelog
 Changes can be found in the [CHANGELOG.md][changelog] file.
 

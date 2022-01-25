@@ -1,6 +1,14 @@
 # Changelog
 This file lists the different changes of the Formatter-expansion in detail.
 
+## `1.9.0`
+- Added `rounding_<number>` and `rounding_[precision]:[mode]_<number>` placeholders to `number` option.  
+  Second placeholder allows you to set a optional precision and rounding behaviour.
+  ```yaml
+  %formatter_number_rounding_<number>%
+  %formatter_number_rounding_[precision]:[mode]_<number>%
+  ```
+
 ## `1.8.3`
 - Use StringJoiner instead of StringBuilder for `time_fromX` placeholders.
 
