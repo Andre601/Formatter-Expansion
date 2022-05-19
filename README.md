@@ -2,11 +2,11 @@
 [changelog]: https://github.com/Andre601/Formatter-Expansion/blob/master/CHANGELOG.md
 
 # Formatter Expansion
-> ### Supported Java Version
-> The Formatter Expansion will only work on Servers using Java 11 or newer.  
-> If your Serverhost is still on Java 8 and you want to use this expansion should you ask them to update their Java enviroment to at least Java 11.
+> **Note**  
+> The Formatter-Expansion will only work on Servers using Java 11 or newer.  
+> If your Server-host is still using an older Java Version (i.e. 1.8) ask them to update to at least Java 11.
 > 
-> **Servers trying to use this expansion while not using Java 11 will receive a `UnsupportedClassVersionError`!**
+> **If you try using this Expansion in a Server with a Java version older than 11, you'll receive a `UnsupportedClassVersionError`!**
 
 The formatter expansion allows you to format numbers and text in various ways.
 
