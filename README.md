@@ -142,6 +142,8 @@ The result will be a **whole number** (No decimals) and have one of the differen
 The time option will transform the provided number into a delay (i.e. `100` becomes `1m 40s`).  
 The returned time will usually have spaces between each option, but you can change this using the [condensed](#timecondensed) config option.
 
+The provided number will be treated as seconds.
+
 **Examples**:  
 ```yaml
 %formatter_number_time_100%   -> 1m 40s     (1m40s with condensed set to true)
@@ -173,27 +175,27 @@ Exactly the same as the [`time`](#time) option.
 ```
 
 #### `time_fromMinutes` / `time_fromMins`
-> `%formatter_number_time_minutes_<number>%`  
-> `%formatter_number_time_mins_<number>%`
+> `%formatter_number_time_fromMinutes_<number>%`  
+> `%formatter_number_time_fromMins_<number>%`
 
 Similar to the [`time`](#time) option, but treats the provided number as minutes instead of seconds.
 
 **Examples**:
 ```yaml
-%formatter_number_time_minutes_100%   -> 1h 40m     (1h40m with condensed set to true)
-%formatter_number_time_minutes_20454% -> 14d 4h 54m (14d4h54m with condensed set to true)
+%formatter_number_time_fromMinutes_100%   -> 1h 40m     (1h40m with condensed set to true)
+%formatter_number_time_fromMins_20454%    -> 14d 4h 54m (14d4h54m with condensed set to true)
 ```
 
 #### `time_fromHours` / `time_fromHrs`
-> `%formatter_number_time_hours_<number>%`  
-> `%formatter_number_time_hrs_<number>%`
+> `%formatter_number_time_fromHours_<number>%`  
+> `%formatter_number_time_fromHrs_<number>%`
 
 Similar to the [`time`](#time) option, but treats the provided number as hours instead of seconds.
 
 **Examples**:
 ```yaml
-%formatter_number_time_hours_100%   -> 4d 4h   (4d4h with condensed set to true)
-%formatter_number_time_hours_20454% -> 852d 6h (852d6h with condensed set to true)
+%formatter_number_time_fromHours_100%   -> 4d 4h   (4d4h with condensed set to true)
+%formatter_number_time_fromHrs_20454%   -> 852d 6h (852d6h with condensed set to true)
 ```
 
 #### `rounding` / `round`
