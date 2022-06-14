@@ -30,34 +30,31 @@ The number after the `:` is NOT 0-indexed, so 1 is the first character, 2 the se
 
 Either number can be ommited to default to the very first and very last character respectively.
 
-**Examples**:  
-```yaml
-%formatter_text_substring_0:5_Andre_601% -> Andre
-%formatter_text_substring_:5_Andre_601%  -> Andre
-%formatter_text_substring_0:_Andre_601%  -> Andre_601
-%formatter_text_substring_2:5_Andre_601% -> dre
-%formatter_text_substring_2:_Andre_601%  -> dre_601
-```
+| Examples:                                  | Result:     | Notes: |
+| ------------------------------------------ | ----------- | ------ |
+| `%formatter_text_substring_0:5_Andre_601%` | `Andre`     |        |
+| `%formatter_text_substring_:5_Andre_601%`  | `Andre`     |        |
+| `%formatter_text_substring_0:_Andre_601%`  | `Andre_601` |        |
+| `%formatter_text_substring_2:5_Andre_601%` | `dre`       |        |
+| `%formatter_text_substring_2:_Andre_601%`  | `dre_601`   |        |
 
 #### `uppercase`
 > `%formatter_text_uppercase_<text>%`
 
 Uppercase turns the entire text into uppercase.
 
-**Example**:  
-```yaml
-%formatter_text_uppercase_Andre_601% -> ANDRE_601
-```
+| Examples:                              | Result:     | Notes: |
+| -------------------------------------- | ----------- | ------ |
+| `%formatter_text_uppercase_andre_601%` | `ANDRE_601` |        |
 
 #### `lowercase`
 > `%formatter_text_lowercase_<text>%`
 
 Works similar to [uppercase](#uppercase) but instead of making anything large does it lowercase stuff.
 
-**Example**:  
-```yaml
-%formatter_text_lowercase_ANDRE_601% -> andre_601
-```
+| Examples:                              | Result:     | Notes: |
+| -------------------------------------- | ----------- | ------ |
+| `%formatter_text_lowercase_ANDRE_601%` | `andre_601` |        |
 
 #### `replace`
 > `%formatter_text_replace_<target>_<replacement>_<text>%`
@@ -67,22 +64,20 @@ Will replace any `<target>` with the provided `<replacement>`.
 `<replacement>` allows providing nothing (An empty String).  
 When you want to use an underline for either `<target>` or `<replacement>` use `{{u}}` as placeholder.
 
-**Examples**:  
-```yaml
-%formatter_text_replace_-_, _Andre_601-Funnycube-clip% -> Andre_601, Funnycube, clip
-%formatter_text_replace_{{u}}_ _Andre_601%             -> Andre 601
-%formatter_text_replace_ __Repl a ce%                  -> Replace
-```
+| Examples:                                                | Result:                      | Notes:                                  |
+| -------------------------------------------------------- | ---------------------------- | --------------------------------------- |
+| `%formatter_text_replace_-_, _Andre_601-Funnycube-clip%` | `Andre_601, Funnycube, clip` |                                         |
+| `%formatter_text_replace_{{u}}_ _Andre_601%`             | `Andre 601`                  | Use of `{{u}}` for replacing underlines |
+| `%formatter_text_replace_ __Re pla ce%`                  | `Replace`                    |                                         |
 
 #### `length`
 > `%formatter_text_length_<text>%`
 
 Will return the length of the provided text.
 
-**Examples**:  
-```yaml
-%formatter_text_length_Andre_601% -> 9
-```
+| Examples:                           | Result: | Notes: |
+| ----------------------------------- | ------- | ------ |
+| `%formatter_text_length_Andre_601%` | `9`     |        |
 
 ### `number`
 The number option tells the expansion to treat the provided value as a number.  
@@ -104,13 +99,12 @@ You can override those however, by providing your own format and locale.
 When using your own locale will you need to use `-` instead of `_`, so `en_US` becomes `en-US`.  
 You can find an up to date list of all (known) and supported locales on the [wiki].
 
-**Examples**:  
-```yaml
-%formatter_number_format_1234567%            -> 1,234,567
-%formatter_number_format_:#,##_1234567%      -> 1,23,45,67
-%formatter_number_format_de-CH:_1234567%     -> 1'234'567
-%formatter_number_format_de-CH:#,##_1234567% -> 1'23'45'67
-```
+| Examples:                                      | Result:      | Notes: |
+| ---------------------------------------------- | ------------ | ------ |
+| `%formatter_number_format_1234567%`            | `1,234,567`  |        |
+| `%formatter_number_format_:#,##_1234567%`      | `1,23,45,67` |        |
+| `%formatter_number_format_de-CH:_1234567%`     | `1'234'567`  |        |
+| `%formatter_number_format_de-CH:#,##_1234567%` | `1'23'45'67` |        |
 
 #### `from:<time>_to:<time>`
 > `%formatter_number_from:<time>_to:<time>_<number>%`
@@ -130,11 +124,10 @@ The result will be a **whole number** (No decimals) and have one of the differen
 | Second      | `seconds`, `second`, `secs`, `sec`            |
 | Millisecond | `milliseconds`, `millisecond`, `millis`, `ms` |
 
-**Examples**:  
-```yaml
-%formatter_number_from:secs_to:minutes_120%  -> 2m
-%formatter_number_from:minutes_to:hours_119% -> 1h
-```
+| Examples:                                      | Result: | Notes:                                                  |
+| ---------------------------------------------- | ------- | ------------------------------------------------------- |
+| `%formatter_number_from:secs_to:minutes_120%`  | `2m`    | Turns 120 seconds into minutes.                         |
+| `%formatter_number_from:minutes_to:hours_119%` | `1h`    | Turns 119 minutes into hours (Any remainder is ignored) |
 
 #### `time`
 > `%formatter_number_time_<number>%`
@@ -144,11 +137,10 @@ The returned time will usually have spaces between each option, but you can chan
 
 The provided number will be treated as seconds.
 
-**Examples**:  
-```yaml
-%formatter_number_time_100%   -> 1m 40s     (1m40s with condensed set to true)
-%formatter_number_time_20454% -> 5h 40m 54s (5h40m54s with condensed set to true)
-```
+| Examples:                       | Result:      | Notes:                                                                  |
+| ------------------------------- | ------------ | ----------------------------------------------------------------------- |
+| `%formatter_number_time_100%`   | `1m 40s`     | Displayed as `1m40s` with [`condensed`](#timecondensed) set to true.    |
+| `%formatter_number_time_20454%` | `5h 40m 54s` | Displayed as `5h40m54s` with [`condensed`](#timecondensed) set to true. |
 
 #### `time_fromMilliseconds` / `time_fromMs`
 > `%formatter_number_time_fromMilliseconds_<number>%`  
@@ -156,11 +148,10 @@ The provided number will be treated as seconds.
 
 Similar to the [`time`](#time) option, but treats the provided number as milliseconds instead of seconds.
 
-**Examples**:  
-```yaml
-%formatter_number_time_fromMilliseconds_1200%  -> 1s 200ms (1s200ms with condensed set to true)
-%formatter_number_time_fromMilliseconds_65200% -> 1m 5s 200ms (1m5s200ms with condensed set to true)
-```
+| Examples:                              | Result:       | Notes:                                                                   |
+| -------------------------------------- | ------------- | ------------------------------------------------------------------------ |
+| `%formatter_number_time_fromMs_1200%`  | `1s 200ms`    | Displayed as `1s200ms` with [`condensed`](#timecondensed) set to true.   |
+| `%formatter_number_time_fromMs_65200%` | `1m 5s 200ms` | Displayed as `1m5s200ms` with [`condensed`](#timecondensed) set to true. |
 
 #### `time_fromSeconds` / `time_fromSecs`
 > `%formatter_number_time_fromSeconds_<number>%`  
@@ -168,11 +159,10 @@ Similar to the [`time`](#time) option, but treats the provided number as millise
 
 Exactly the same as the [`time`](#time) option.
 
-**Examples**:
-```yaml
-%formatter_number_time_fromSeconds_100%   -> 1m 40s     (1m40s with condensed set to true)
-%formatter_number_time_fromSecs_20454%    -> 5h 40m 54s (5h40m54s with condensed set to true)
-```
+| Examples:                                | Result:      | Notes:                                                                  |
+| ---------------------------------------- | ------------ | ----------------------------------------------------------------------- |
+| `%formatter_number_time_fromSecs_100%`   | `1m 40s`     | Displayed as `1m40s` with [`condensed`](#timecondensed) set to true.    |
+| `%formatter_number_time_fromSecs_20454%` | `5h 40m 54s` | Displayed as `5h40m54s` with [`condensed`](#timecondensed) set to true. |
 
 #### `time_fromMinutes` / `time_fromMins`
 > `%formatter_number_time_fromMinutes_<number>%`  
@@ -180,11 +170,10 @@ Exactly the same as the [`time`](#time) option.
 
 Similar to the [`time`](#time) option, but treats the provided number as minutes instead of seconds.
 
-**Examples**:
-```yaml
-%formatter_number_time_fromMinutes_100%   -> 1h 40m     (1h40m with condensed set to true)
-%formatter_number_time_fromMins_20454%    -> 14d 4h 54m (14d4h54m with condensed set to true)
-```
+| Examples:                                | Result:      | Notes:                                                                  |
+| ---------------------------------------- | ------------ | ----------------------------------------------------------------------- |
+| `%formatter_number_time_fromMins_100%`   | `1h 40m`     | Displayed as `1h40m` with [`condensed`](#timecondensed) set to true.    |
+| `%formatter_number_time_fromMins_20454%` | `14d 4h 54m` | Displayed as `14d4h54m` with [`condensed`](#timecondensed) set to true. |
 
 #### `time_fromHours` / `time_fromHrs`
 > `%formatter_number_time_fromHours_<number>%`  
@@ -192,11 +181,10 @@ Similar to the [`time`](#time) option, but treats the provided number as minutes
 
 Similar to the [`time`](#time) option, but treats the provided number as hours instead of seconds.
 
-**Examples**:
-```yaml
-%formatter_number_time_fromHours_100%   -> 4d 4h   (4d4h with condensed set to true)
-%formatter_number_time_fromHrs_20454%   -> 852d 6h (852d6h with condensed set to true)
-```
+| Examples:                               | Result:   | Notes:                                                                |
+| --------------------------------------- | --------- | --------------------------------------------------------------------- |
+| `%formatter_number_time_fromHrs_100%`   | `4d 4h`   | Displayed as `4d4h` with [`condensed`](#timecondensed) set to true.   |
+| `%formatter_number_time_fromHrs_20454%` | `852d 6h` | Displayed as `852d6h` with [`condensed`](#timecondensed) set to true. |
 
 #### `rounding` / `round`
 > `%formatter_number_rounding_<number>%`  
