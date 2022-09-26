@@ -2,6 +2,14 @@
 [changelog]: https://github.com/Andre601/Formatter-Expansion/blob/master/CHANGELOG.md
 
 # Formatter Expansion
+
+<a href="https://discord.gg/6dazXp6" target="_blank">
+  <img alt="discord" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@2/assets/minimal/social/discord-singular_vector.svg" height="64" align="right">
+</a>
+<a href="https://app.revolt.chat/invite/74TpERXA" target="_blank">
+  <img alt="revolt" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@2/assets/minimal/social/revolt-singular_vector.svg" height="64" align="right">
+</a>
+
 > **Note**  
 > The Formatter-Expansion will only work on Servers using Java 11 or newer.  
 > If your Server-host is still using an older Java Version (i.e. 1.8) ask them to update to at least Java 11.
