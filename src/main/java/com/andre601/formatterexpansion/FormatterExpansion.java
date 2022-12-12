@@ -17,28 +17,12 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
     private final Map<String, Object> defaults = new HashMap<>();
     private final List<IFormatter> formatters;
     
-    private static FormatterExpansion expansion;
-    
     public FormatterExpansion(){
-        defaults.put("format", "#,###,###.##");
-        defaults.put("locale", "en-US");
-        
-        defaults.put("time.milliseconds", "ms");
-        defaults.put("time.seconds", "s");
-        defaults.put("time.minutes", "m");
-        defaults.put("time.hours", "h");
-        defaults.put("time.days", "d");
-        defaults.put("time.condensed", false);
-        
-        defaults.put("rounding.precision", 0);
-        defaults.put("rounding.mode", "half-up");
-        
+        loadDefaults();
         this.formatters = Arrays.asList(
-            new NumberFormatter(),
+            new NumberFormatter(this),
             new TextFormatter()
         );
-        
-        expansion = this;
     }
     
     @Override
@@ -80,10 +64,6 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         return null;
     }
     
-    public static FormatterExpansion getExpansion(){
-        return expansion;
-    }
-    
     /*
      * We have this method for backwards-compatability with configurations from before 1.3.2
      */
@@ -101,5 +81,20 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
             return this.getBoolean("time.condensed", false);
         
         return true;
+    }
+    
+    private void loadDefaults(){
+        defaults.put("format", "#,###,###.##");
+        defaults.put("locale", "en-US");
+    
+        defaults.put("time.milliseconds", "ms");
+        defaults.put("time.seconds", "s");
+        defaults.put("time.minutes", "m");
+        defaults.put("time.hours", "h");
+        defaults.put("time.days", "d");
+        defaults.put("time.condensed", false);
+    
+        defaults.put("rounding.precision", 0);
+        defaults.put("rounding.mode", "half-up");
     }
 }

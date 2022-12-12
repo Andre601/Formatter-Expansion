@@ -1,6 +1,7 @@
 package com.andre601.formatterexpansion.formatters.text;
 
 import com.andre601.formatterexpansion.formatters.IFormatter;
+import com.andre601.formatterexpansion.utils.NumberUtils;
 import com.andre601.formatterexpansion.utils.StringUtils;
 
 public class Substring implements IFormatter{
@@ -19,10 +20,10 @@ public class Substring implements IFormatter{
         int end = values[1].length();
         
         if(!StringUtils.isNullOrEmpty(ranges[0]))
-            start = StringUtils.parseNumber(ranges[0], start);
+            start = NumberUtils.parseNumber(ranges[0], start);
         
         if(!StringUtils.isNullOrEmpty(ranges[1]))
-            end = StringUtils.parseNumber(ranges[1], end);
+            end = NumberUtils.parseNumber(ranges[1], end);
         
         return values[1].substring(start, end);
     }

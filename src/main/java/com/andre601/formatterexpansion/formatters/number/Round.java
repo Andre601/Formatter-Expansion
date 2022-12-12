@@ -5,7 +5,19 @@ import com.andre601.formatterexpansion.formatters.IFormatter;
 import com.andre601.formatterexpansion.utils.NumberUtils;
 import com.andre601.formatterexpansion.utils.StringUtils;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+import java.util.Locale;
+
 public class Round implements IFormatter{
+    
+    private final FormatterExpansion expansion;
+    
+    public Round(FormatterExpansion expansion){
+        this.expansion = expansion;
+    }
+    
     @Override
     public String name(){
         return "round";
@@ -13,20 +25,61 @@ public class Round implements IFormatter{
     
     @Override
     public String parse(String option, String... values){
+        int precision = expansion.getInt("rounding.precision", 0);
+        String rounding = expansion.getString("rounding.mode", "half-up");
+        
         if(values.length == 1)
-            return NumberUtils.roundNumber(values[0]);
+            return roundNumber(values[0], precision, rounding);
         
         String[] roundingOptions = StringUtils.getSplit(values[0], ":", 2);
         
-        int precision = FormatterExpansion.getExpansion().getInt("rounding.precision", 0);
-        String rounding = FormatterExpansion.getExpansion().getString("rounding.mode", "half-up");
-        
         if(!StringUtils.isNullOrEmpty(roundingOptions[0]))
-            precision = StringUtils.parseNumber(roundingOptions[0], precision);
+            precision = NumberUtils.parseNumber(roundingOptions[0], precision);
         
         if(!StringUtils.isNullOrEmpty(roundingOptions[1]))
             rounding = roundingOptions[1];
         
-        return NumberUtils.roundNumber(StringUtils.merge(1, values), precision, rounding);
+        return roundNumber(StringUtils.merge(1, values), precision, rounding);
+    }
+    
+    private String roundNumber(String number, int precision, String roundingMode){
+        // Allow arbitrary numbers
+        BigDecimal decimal = NumberUtils.getBigDecimal(number);
+        if(decimal == null)
+            return null;
+        
+        if(precision < 0)
+            precision = 0; // Making sure precision isn't negative
+        
+        RoundingMode mode = getRoundingMode(roundingMode);
+        MathContext context = new MathContext(precision, mode);
+        
+        return decimal.round(context).toPlainString();
+    }
+    
+    private RoundingMode getRoundingMode(String roundingMode){
+        switch(roundingMode.toLowerCase(Locale.ROOT)){
+            case "up":
+                return RoundingMode.UP;
+            
+            case "down":
+                return RoundingMode.DOWN;
+            
+            case "ceiling":
+                return RoundingMode.CEILING;
+            
+            case "floor":
+                return RoundingMode.FLOOR;
+            
+            case "half-down":
+                return RoundingMode.HALF_DOWN;
+            
+            case "half-even":
+                return RoundingMode.HALF_EVEN;
+            
+            case "half-up":
+            default:
+                return RoundingMode.HALF_UP;
+        }
     }
 }

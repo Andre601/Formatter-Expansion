@@ -1,5 +1,6 @@
 package com.andre601.formatterexpansion.formatters.number;
 
+import com.andre601.formatterexpansion.FormatterExpansion;
 import com.andre601.formatterexpansion.formatters.IFormatter;
 
 import java.util.Arrays;
@@ -9,14 +10,15 @@ import java.util.Locale;
 public class NumberFormatter implements IFormatter{
     
     private final List<IFormatter> subFormatters;
-    private final FromTo fromToFormatter = new FromTo();
+    private final FromTo fromToFormatter;
     
-    public NumberFormatter(){
+    public NumberFormatter(FormatterExpansion expansion){
         this.subFormatters = Arrays.asList(
-            new Format(),
-            new Round(),
-            new Time()
+            new Format(expansion),
+            new Round(expansion),
+            new Time(expansion)
         );
+        this.fromToFormatter = new FromTo(expansion);
     }
     
     @Override
