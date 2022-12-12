@@ -13,13 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class NumberUtils{
     
-    private final FormatterExpansion expansion;
-    
-    public NumberUtils(FormatterExpansion expansion){
-        this.expansion = expansion;
-    }
-    
-    public String formatTime(String number, String unit){
+    public static String formatTime(String number, String unit){
         Long finalNumber = getNumber(number);
         if(finalNumber == null)
             return null;
@@ -30,7 +24,7 @@ public class NumberUtils{
         
         long days = 0, hours = 0, minutes = 0, seconds = 0, milliseconds = 0;
         
-        final StringJoiner joiner = new StringJoiner(expansion.isCondensed() ? "" : " ");
+        final StringJoiner joiner = new StringJoiner(FormatterExpansion.getExpansion().isCondensed() ? "" : " ");
         
         switch(timeUnit){
             case HOURS:
@@ -65,24 +59,24 @@ public class NumberUtils{
         }
         
         if(days > 0)
-            joiner.add(days + expansion.getString("time.days", "d"));
+            joiner.add(days + FormatterExpansion.getExpansion().getString("time.days", "d"));
         
         if(hours > 0)
-            joiner.add(hours + expansion.getString("time.hours", "h"));
+            joiner.add(hours + FormatterExpansion.getExpansion().getString("time.hours", "h"));
         
         if(minutes > 0)
-            joiner.add(minutes + expansion.getString("time.minutes", "m"));
+            joiner.add(minutes + FormatterExpansion.getExpansion().getString("time.minutes", "m"));
         
         if(seconds > 0)
-            joiner.add(seconds + expansion.getString("time.seconds", "s"));
+            joiner.add(seconds + FormatterExpansion.getExpansion().getString("time.seconds", "s"));
         
         if(milliseconds > 0)
-            joiner.add(milliseconds + expansion.getString("time.milliseconds", "ms"));
+            joiner.add(milliseconds + FormatterExpansion.getExpansion().getString("time.milliseconds", "ms"));
         
         return joiner.toString();
     }
     
-    public String convert(String number, String from, String to){
+    public static String convert(String number, String from, String to){
         Long finalNumber = getNumber(number);
         if(finalNumber == null)
             return null;
@@ -97,30 +91,34 @@ public class NumberUtils{
         
         switch(toUnit){
             case DAYS:
-                return finalNumber + expansion.getString("time.days", "d");
+                return finalNumber + FormatterExpansion.getExpansion().getString("time.days", "d");
             
             case HOURS:
-                return finalNumber + expansion.getString("time.hours", "h");
+                return finalNumber + FormatterExpansion.getExpansion().getString("time.hours", "h");
             
             case MINUTES:
-                return finalNumber + expansion.getString("time.minutes", "m");
+                return finalNumber + FormatterExpansion.getExpansion().getString("time.minutes", "m");
             
             case SECONDS:
-                return finalNumber + expansion.getString("time.seconds", "s");
+                return finalNumber + FormatterExpansion.getExpansion().getString("time.seconds", "s");
             
             case MILLISECONDS:
-                return finalNumber + expansion.getString("time.milliseconds", "ms");
+                return finalNumber + FormatterExpansion.getExpansion().getString("time.milliseconds", "ms");
             
             default:
                 return String.valueOf(finalNumber);
         }
     }
     
-    public String formatNumber(String number){
-        return formatNumber(number, expansion.getString("locale", "en-US"), expansion.getString("format", "#,###,###.##"));
+    public static String formatNumber(String number){
+        return formatNumber(
+            number,
+            FormatterExpansion.getExpansion().getString("locale", "en-US"),
+            FormatterExpansion.getExpansion().getString("format", "#,###,###.##")
+        );
     }
     
-    public String formatNumber(String number, String locale, String format){
+    public static String formatNumber(String number, String locale, String format){
         // Allow arbitrary numbers
         BigDecimal decimal = getBigDecimal(number);
         if(decimal == null)
@@ -135,11 +133,15 @@ public class NumberUtils{
         return decimalFormat.format(decimal);
     }
     
-    public String roundNumber(String number){
-        return roundNumber(number, expansion.getInt("rounding.precision", 0), expansion.getString("rounding.mode", "half-up"));
+    public static String roundNumber(String number){
+        return roundNumber(
+            number,
+            FormatterExpansion.getExpansion().getInt("rounding.precision", 0),
+            FormatterExpansion.getExpansion().getString("rounding.mode", "half-up")
+        );
     }
     
-    public String roundNumber(String number, int precision, String roundingMode){
+    public static String roundNumber(String number, int precision, String roundingMode){
         // Allow arbitrary numbers
         BigDecimal decimal = getBigDecimal(number);
         if(decimal == null)
@@ -154,13 +156,13 @@ public class NumberUtils{
         return decimal.round(context).toPlainString();
     }
     
-    private Locale getLocale(String input){
+    private static Locale getLocale(String input){
         if(input.contains("-")){
-            String[] args = expansion.getSplit(input, "-", 2);
-            if(!expansion.isNullOrEmpty(args[0], args[1])){
+            String[] args = StringUtils.getSplit(input, "-", 2);
+            if(!StringUtils.isNullOrEmpty(args[0], args[1])){
                 return new Locale(args[0], args[1]);
             }else
-            if(!expansion.isNullOrEmpty(args[0])){
+            if(!StringUtils.isNullOrEmpty(args[0])){
                 return new Locale(args[0]);
             }else{
                 return Locale.US;
@@ -170,7 +172,7 @@ public class NumberUtils{
         }
     }
     
-    private Long getNumber(String number){
+    private static Long getNumber(String number){
         try{
             return Long.parseLong(number);
         }catch(NumberFormatException ex){
@@ -178,7 +180,7 @@ public class NumberUtils{
         }
     }
     
-    private BigDecimal getBigDecimal(String number){
+    private static BigDecimal getBigDecimal(String number){
         try{
             return new BigDecimal(number);
         }catch(NumberFormatException ex){
@@ -186,8 +188,8 @@ public class NumberUtils{
         }
     }
     
-    private RoundingMode getRoundingMode(String roundingMode){
-        switch(roundingMode.toUpperCase(Locale.ROOT)){
+    private static RoundingMode getRoundingMode(String roundingMode){
+        switch(roundingMode.toLowerCase(Locale.ROOT)){
             case "up":
                 return RoundingMode.UP;
             
@@ -212,7 +214,7 @@ public class NumberUtils{
         }
     }
     
-    private TimeUnit getTimeUnit(String value){
+    private static TimeUnit getTimeUnit(String value){
         switch(value.toLowerCase(Locale.ROOT)){
             case "days":
             case "day":
