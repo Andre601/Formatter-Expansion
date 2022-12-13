@@ -1,10 +1,10 @@
-<table>
-  <tr><td>
-    <a href="/README.md#"
-  </td></tr>
-</table>
+[\<-- Go back to README.md](/README.md)
 
-## Options
+### Length
+
+Returns the number of characters the provided text has, including spaces.
+
+#### Options
 
 <table>
   <tr><td align="center">
