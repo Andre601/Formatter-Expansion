@@ -32,7 +32,7 @@ Rounds the provided number based on the provided precision and/or rounding behav
     </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> No</td><br><b>Default:</b> Config value (<code>expansion.formatter.rounding.mode</code>)</td>
+    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> No<br><b>Default:</b> Config value (<code>expansion.formatter.rounding.mode</code>)</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>number</code></h4></td>
