@@ -32,7 +32,7 @@ public class FromTo implements IFormatter{
         if(StringUtils.isNullOrEmpty(from, to))
             return null;
     
-        return convert(StringUtils.merge(1, values), from, to);
+        return convert(StringUtils.merge(1, "", values), from, to);
     }
     
     private String convert(String number, String from, String to){
@@ -47,25 +47,14 @@ public class FromTo implements IFormatter{
             return null;
         
         finalNumber = toUnit.convert(finalNumber, fromUnit);
-        
-        switch(toUnit){
-            case DAYS:
-                return finalNumber + expansion.getString("time.days", "d");
-            
-            case HOURS:
-                return finalNumber + expansion.getString("time.hours", "h");
-            
-            case MINUTES:
-                return finalNumber + expansion.getString("time.minutes", "m");
-            
-            case SECONDS:
-                return finalNumber + expansion.getString("time.seconds", "s");
-            
-            case MILLISECONDS:
-                return finalNumber + expansion.getString("time.milliseconds", "ms");
-            
-            default:
-                return String.valueOf(finalNumber);
-        }
+    
+        return switch(toUnit){
+            case DAYS -> finalNumber + expansion.getString("time.days", "d");
+            case HOURS -> finalNumber + expansion.getString("time.hours", "h");
+            case MINUTES -> finalNumber + expansion.getString("time.minutes", "m");
+            case SECONDS -> finalNumber + expansion.getString("time.seconds", "s");
+            case MILLISECONDS -> finalNumber + expansion.getString("time.milliseconds", "ms");
+            default -> null;
+        };
     }
 }

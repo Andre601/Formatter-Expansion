@@ -28,8 +28,8 @@ public class Format implements IFormatter{
         String locale = expansion.getString("locale", "en-US");
         String pattern = expansion.getString("format", "#,###,###.##");
         
-        if(values.length == 1)
-            return formatNumber(values[0], locale, pattern);
+        if(values.length == 1 || !values[0].contains(":"))
+            return formatNumber(String.join("", values), locale, pattern);
         
         String[] options = StringUtils.getSplit(values[0], ":", 2);
         
@@ -40,7 +40,7 @@ public class Format implements IFormatter{
         if(!StringUtils.isNullOrEmpty(options[1]))
             pattern = options[1];
         
-        return formatNumber(values[1], locale, pattern);
+        return formatNumber(StringUtils.merge(1, "", values), locale, pattern);
     }
     
     private String formatNumber(String number, String locale, String format){

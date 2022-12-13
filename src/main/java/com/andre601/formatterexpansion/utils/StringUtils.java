@@ -11,8 +11,8 @@ public class StringUtils{
         return Arrays.copyOf(text.split(split,length), length);
     }
     
-    public static String merge(int startIndex, String... inputs){
-        StringJoiner joiner = new StringJoiner("_");
+    public static String merge(int startIndex, String delimiter, String... inputs){
+        StringJoiner joiner = new StringJoiner(delimiter);
         for(int i = startIndex; i < inputs.length; i++)
             joiner.add(inputs[i]);
         
@@ -29,48 +29,13 @@ public class StringUtils{
     }
     
     public static TimeUnit getTimeUnit(String value){
-        switch(value.toLowerCase(Locale.ROOT)){
-            case "days":
-            case "day":
-                return TimeUnit.DAYS;
-            
-            case "fromhours":
-            case "fromhrs":
-            
-            case "hours":
-            case "hour":
-            case "hrs":
-                return TimeUnit.HOURS;
-            
-            case "fromminutes":
-            case "frommins":
-            
-            case "minutes":
-            case "minute":
-            case "mins":
-            case "min":
-                return TimeUnit.MINUTES;
-            
-            case "fromseconds":
-            case "fromsecs":
-            
-            case "seconds":
-            case "second":
-            case "secs":
-            case "sec":
-                return TimeUnit.SECONDS;
-            
-            case "frommilliseconds":
-            case "fromms":
-            
-            case "milliseconds":
-            case "millisecond":
-            case "millis":
-            case "ms":
-                return TimeUnit.MILLISECONDS;
-            
-            default:
-                return null;
-        }
+        return switch(value.toLowerCase(Locale.ROOT)){
+            case "days", "day" -> TimeUnit.DAYS;
+            case "fromhours", "fromhrs", "hours", "hour", "hrs" -> TimeUnit.HOURS;
+            case "fromminutes", "frommins", "minutes", "minute", "mins", "min" -> TimeUnit.MINUTES;
+            case "fromseconds", "fromsecs", "seconds", "second", "secs", "sec" -> TimeUnit.SECONDS;
+            case "frommilliseconds", "fromms", "milliseconds", "millisecond", "millis", "ms" -> TimeUnit.MILLISECONDS;
+            default -> null;
+        };
     }
 }

@@ -34,12 +34,12 @@ public class Round implements IFormatter{
         String[] roundingOptions = StringUtils.getSplit(values[0], ":", 2);
         
         if(!StringUtils.isNullOrEmpty(roundingOptions[0]))
-            precision = NumberUtils.parseNumber(roundingOptions[0], precision);
+            precision = NumberUtils.parseNumber(roundingOptions[0]);
         
         if(!StringUtils.isNullOrEmpty(roundingOptions[1]))
             rounding = roundingOptions[1];
         
-        return roundNumber(StringUtils.merge(1, values), precision, rounding);
+        return roundNumber(StringUtils.merge(1, "", values), precision, rounding);
     }
     
     private String roundNumber(String number, int precision, String roundingMode){
@@ -58,28 +58,14 @@ public class Round implements IFormatter{
     }
     
     private RoundingMode getRoundingMode(String roundingMode){
-        switch(roundingMode.toLowerCase(Locale.ROOT)){
-            case "up":
-                return RoundingMode.UP;
-            
-            case "down":
-                return RoundingMode.DOWN;
-            
-            case "ceiling":
-                return RoundingMode.CEILING;
-            
-            case "floor":
-                return RoundingMode.FLOOR;
-            
-            case "half-down":
-                return RoundingMode.HALF_DOWN;
-            
-            case "half-even":
-                return RoundingMode.HALF_EVEN;
-            
-            case "half-up":
-            default:
-                return RoundingMode.HALF_UP;
-        }
+        return switch(roundingMode.toLowerCase(Locale.ROOT)){
+            case "up" -> RoundingMode.UP;
+            case "down" -> RoundingMode.DOWN;
+            case "ceiling" -> RoundingMode.CEILING;
+            case "floor" -> RoundingMode.FLOOR;
+            case "half-down" -> RoundingMode.HALF_DOWN;
+            case "half-even" -> RoundingMode.HALF_EVEN;
+            default -> RoundingMode.HALF_UP;
+        };
     }
 }

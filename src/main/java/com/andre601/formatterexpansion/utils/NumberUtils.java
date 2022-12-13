@@ -4,15 +4,12 @@ import java.math.BigDecimal;
 
 public class NumberUtils{
     
-    public static int parseNumber(String value, int def){
-        int number;
+    public static int parseNumber(String value){
         try{
-            number = Integer.parseInt(value);
+            return Integer.parseInt(value);
         }catch(NumberFormatException ex){
-            number = def;
+            return -1;
         }
-        
-        return Math.min(number, def);
     }
     
     public static Long optLong(String value){

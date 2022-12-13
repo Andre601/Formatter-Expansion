@@ -17,6 +17,6 @@ public class Replace implements IFormatter{
         String target = values[0].replace("{{u}}", "_");
         String replacement = values[1].replace("{{u}}", "_");
         
-        return StringUtils.merge(2, values).replace(target, replacement);
+        return StringUtils.merge(2, "_", values).replace(target, replacement);
     }
 }

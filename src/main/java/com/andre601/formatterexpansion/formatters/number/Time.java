@@ -26,7 +26,7 @@ public class Time implements IFormatter{
         if(values.length == 1 || !StringUtils.isNullOrEmpty(values[0]))
             return formatTime(values[0], "fromSeconds");
         
-        return formatTime(StringUtils.merge(1, values), values[0]);
+        return formatTime(StringUtils.merge(1, "", values), values[0]);
     }
     
     private String formatTime(String number, String unit){
@@ -41,37 +41,30 @@ public class Time implements IFormatter{
         long days = 0, hours = 0, minutes = 0, seconds = 0, milliseconds = 0;
         
         final StringJoiner joiner = new StringJoiner(expansion.isCondensed() ? "" : " ");
-        
+    
         switch(timeUnit){
-            case HOURS:
+            case HOURS -> {
                 days = timeUnit.toDays(finalNumber);
                 hours = timeUnit.toHours(finalNumber) - (days * 24);
-                
-                break;
-            
-            case MINUTES:
+            }
+            case MINUTES -> {
                 days = timeUnit.toDays(finalNumber);
                 hours = timeUnit.toHours(finalNumber) - (days * 24);
                 minutes = timeUnit.toMinutes(finalNumber) - (hours * 60) - (days * 1440);
-                
-                break;
-            
-            case SECONDS:
+            }
+            case SECONDS -> {
                 days = timeUnit.toDays(finalNumber);
                 hours = timeUnit.toHours(finalNumber) - (days * 24);
                 minutes = timeUnit.toMinutes(finalNumber) - (hours * 60) - (days * 1440);
                 seconds = timeUnit.toSeconds(finalNumber) - (minutes * 60) - (hours * 3600) - (days * 86400);
-                
-                break;
-            
-            case MILLISECONDS:
+            }
+            case MILLISECONDS -> {
                 days = timeUnit.toDays(finalNumber);
                 hours = timeUnit.toHours(finalNumber) - (days * 24);
                 minutes = timeUnit.toMinutes(finalNumber) - (hours * 60) - (days * 1440);
                 seconds = timeUnit.toSeconds(finalNumber) - (minutes * 60) - (hours * 3600) - (days * 86400);
                 milliseconds = finalNumber - (seconds * 1000) - (minutes * 60000) - (hours * 3600000) - (days * 86400000);
-                
-                break;
+            }
         }
         
         if(days > 0)

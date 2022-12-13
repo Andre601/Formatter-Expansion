@@ -12,19 +12,24 @@ public class Substring implements IFormatter{
     
     @Override
     public String parse(String option, String... values){
-        if(values.length < 2 || StringUtils.isNullOrEmpty(values[0], values[1]))
+        if(values.length < 2)
             return null;
         
         String[] ranges = StringUtils.getSplit(values[0], ":", 2);
-        int start = 0;
-        int end = values[1].length();
         
-        if(!StringUtils.isNullOrEmpty(ranges[0]))
-            start = NumberUtils.parseNumber(ranges[0], start);
+        int start = NumberUtils.parseNumber(ranges[0]);
+        int end = NumberUtils.parseNumber(ranges[1]);
         
-        if(!StringUtils.isNullOrEmpty(ranges[1]))
-            end = NumberUtils.parseNumber(ranges[1], end);
+        return subString(StringUtils.merge(1, "_", values), start, end);
+    }
+    
+    private String subString(String text, int start, int end){
+        if(start < 0)
+            start = 0; // Make sure start isn't negative.
         
-        return values[1].substring(start, end);
+        if(end > text.length())
+            end = text.length(); // Make sure end isn't larger than the string itself.
+        
+        return text.substring(start, end);
     }
 }
