@@ -47,49 +47,49 @@ They can be found under `expansions.formatter`.
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>locale</code></h4></td>
-    <td rowspan="2">The country code to use for the decimal format.<td>
+    <td rowspan="2">The country code to use for the decimal format.</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><b>Type:</b> String<br><b>Default:</b> <code>en-US</code></td>
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>time.condensed</code></h4></td>
-    <td rowspan="2">Whether the time returned by the <a href="/placeholders/number/time">time placeholder</a> should not have any spaces.<td>
+    <td rowspan="2">Whether the time returned by the <a href="/placeholders/number/time">time placeholder</a> should not have any spaces.</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><b>Type:</b> Boolean<br><b>Default:</b> <code>false</code></td>
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>time.days</code></h4></td>
-    <td rowspan="2">The text used to indicate days.<td>
+    <td rowspan="2">The text used to indicate days.</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><b>Type:</b> String<br><b>Default:</b> <code>d</code></td>
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>time.hours</code></h4></td>
-    <td rowspan="2">The text used to indicate hours.<td>
+    <td rowspan="2">The text used to indicate hours.</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><b>Type:</b> String<br><b>Default:</b> <code>h</code></td>
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>time.minutes</code></h4></td>
-    <td rowspan="2">The text used to indicate minutes.<td>
+    <td rowspan="2">The text used to indicate minutes.</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><b>Type:</b> String<br><b>Default:</b> <code>m</code></td>
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>time.seconds</code></h4></td>
-    <td rowspan="2">The text used to indicate seconds.<td>
+    <td rowspan="2">The text used to indicate seconds.</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><b>Type:</b> String<br><b>Default:</b> <code>s</code></td>
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>time.milliseconds</code></h4></td>
-    <td rowspan="2">The text used to indicate milliseconds.<td>
+    <td rowspan="2">The text used to indicate milliseconds.</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><b>Type:</b> String<br><b>Default:</b> <code>ms</code></td>
@@ -116,7 +116,7 @@ They can be found under `expansions.formatter`.
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>rounding.precision</code></h4></td>
-    <td rowspan="2">Default number of decimal points to display when no precision was defined the <a href="/placeholders/number/round.md">rounding placeholder</a>.<td>
+    <td rowspan="2">Default number of decimal points to display when no precision was defined the <a href="/placeholders/number/round.md">rounding placeholder</a>.</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><b>Type:</b> Number <i>(0 ≤ x)</i><br><b>Default:</b> <code>0</code></td>
