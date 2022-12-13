@@ -26,6 +26,9 @@ The displayed time units depend on if any remainder can be converted into one an
         <li><code>fromSeconds</code> / <code>fromSecs</code> - Treats the number as seconds</li>
         <li><code>fromMinutes</code> / <code>fromMins</code> - Treats the number as minutes</li>
         <li><code>fromHours</code> / <code>fromHrs</code> - Treats the number as hours</li>
+      </ul>
+      </p>
+    </td>
   </tr>
   <tr>
     <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> No<br><b>Default:</b> <code>fromSeconds</code></td>
