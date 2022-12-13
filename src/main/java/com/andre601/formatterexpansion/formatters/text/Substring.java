@@ -24,6 +24,9 @@ public class Substring implements IFormatter{
     }
     
     private String subString(String text, int start, int end){
+        if(start > text.length() - 1 || end <= start)
+            return null; // Invalid range (Start is larger than text length or end is less than start)
+        
         if(start < 0)
             start = 0; // Make sure start isn't negative.
         
