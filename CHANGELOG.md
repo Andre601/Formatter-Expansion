@@ -1,6 +1,12 @@
 # Changelog
 This file lists the different changes of the Formatter-expansion in detail.
 
+## `2.0.0`
+- **[BREAKING]** Removed `%formatter_num_...%` placeholder. Use `%formatter_number_...%` instead.
+- **[BREAKING]** Removed `rounding` option for number placeholder. Use `round` instead.
+- **[BREAKING?]** Updated Paper version to 1.19.3 and Java version to 17.
+- Moved the different options into their own classes for better maintainability.
+
 ## `1.9.0`
 - Added `rounding_<number>` and `rounding_[precision]:[mode]_<number>` placeholders to `number` option.  
   Second placeholder allows you to set a optional precision and rounding behaviour.
