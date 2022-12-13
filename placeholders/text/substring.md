@@ -23,14 +23,14 @@ Returns a specific part of the text based on the provided start and end index.
     </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> Number <i>(0 ≤ x)</i><br><b>Required?</b> No<br><b>Default:</b> 0</td>
+    <td nowrap="nowrap"><b>Type:</b> Number <i>(0 ≤ x ≤ (<code>text.length()</code> - 1))</i><br><b>Required?</b> No<br><b>Default:</b> 0</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>end</code></h4></td>
-    <td rowspan="2">The end index to indicate the beginning of the text.</td>
+    <td rowspan="2">The end index to indicate the end of the text.</td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> Number <i>(x ≤ <code>text.length()</code>)</i><br><b>Required?</b> No<br><b>Default:</b> <code>text.length()</code></td>
+    <td nowrap="nowrap"><b>Type:</b> Number <i>(0 ≤ x ≤ <code>text.length()</code>)</i><br><b>Required?</b> No<br><b>Default:</b> <code>text.length()</code></td>
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>text</code></h4></td>
