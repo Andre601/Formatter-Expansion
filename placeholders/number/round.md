@@ -14,11 +14,12 @@ Rounds the provided number based on the provided precision and/or rounding behav
   <tr>
     <td align="center" nowrap="nowrap">Option</td>
     <td align="center" nowrap="nowrap">Description</td>
-  <tr>
+  </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>precision</code></h4></td>
     <td rowspan="2">
       <p>How many digits after the decimal point should be kept.</p>
+    </td>
   </tr>
   <tr>
     <td nowrap="nowrap"><b>Type:</b> Number <i>(0 ≤ x)</i><br><b>Required?</b> No<br><b>Default:</b> Config value (<code>expansion.formatter.rounding.precision</code>)</td>
@@ -28,14 +29,14 @@ Rounds the provided number based on the provided precision and/or rounding behav
     <td rowspan="2">
       <p>How the number should be rounded if any fractions are discarded.</p>
       <p>⚠️ <a href="#rounding-modes">See below</a> for available rounding modes. ⚠️</p>
-    <td>
+    </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> No</td><br><b>Default:</b> Config value (<code>expansion.formatter.rounding.mode</code>)
+    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> No</td><br><b>Default:</b> Config value (<code>expansion.formatter.rounding.mode</code>)</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>number</code></h4></td>
-    <td rowspan="2">The number to convert.<td>
+    <td rowspan="2">The number to convert.</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><b>Type:</b> Number<br><b>Required?</b> Yes</td>

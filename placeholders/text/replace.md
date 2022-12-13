@@ -14,7 +14,7 @@ Replaces any appearance of the provided `<target>` with the provided `<replaceme
   <tr>
     <td align="center" nowrap="nowrap">Option</td>
     <td align="center" nowrap="nowrap">Description</td>
-  <tr>
+  </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>target</code></h4></td>
     <td rowspan="2">

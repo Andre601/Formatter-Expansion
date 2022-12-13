@@ -14,7 +14,7 @@ Returns a specific part of the text based on the provided start and end index.
   <tr>
     <td align="center" nowrap="nowrap">Option</td>
     <td align="center" nowrap="nowrap">Description</td>
-  <tr>
+  </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>start</code></h4></td>
     <td rowspan="2">

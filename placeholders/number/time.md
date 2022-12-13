@@ -15,7 +15,7 @@ The displayed time units depend on if any remainder can be converted into one an
   <tr>
     <td align="center" nowrap="nowrap">Option</td>
     <td align="center" nowrap="nowrap">Description</td>
-  <tr>
+  </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>source_unit</code></h4></td>
     <td rowspan="2">
@@ -35,7 +35,7 @@ The displayed time units depend on if any remainder can be converted into one an
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>number</code></h4></td>
-    <td rowspan="2">The number to convert.<td>
+    <td rowspan="2">The number to convert.</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><b>Type:</b> Number<br><b>Required?</b> Yes</td>

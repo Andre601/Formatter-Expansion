@@ -14,7 +14,7 @@ Returns the number of characters the provided text has, including whitespaces.
   <tr>
     <td align="center" nowrap="nowrap">Option</td>
     <td align="center" nowrap="nowrap">Description</td>
-  <tr>
+  </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>text</code></h4></td>
     <td rowspan="2">The text to get the length from.</td>

@@ -15,12 +15,13 @@ Any remainders/fractions will be discarded.
   <tr>
     <td align="center" nowrap="nowrap">Option</td>
     <td align="center" nowrap="nowrap">Description</td>
-  <tr>
+  </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>old_time_unit</code></h4></td>
     <td rowspan="2">
       <p>The Time unit to use as the original number's unit.</p>
-      <p>⚠️ <a href="#time-units">See below</a> for available time units and their options. ⚠️</p><td>
+      <p>⚠️ <a href="#time-units">See below</a> for available time units and their options. ⚠️</p>
+    </td>
   </tr>
   <tr>
     <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> Yes</td>
@@ -30,14 +31,14 @@ Any remainders/fractions will be discarded.
     <td rowspan="2">
       <p>The Time unit to use as the number's new format.</p>
       <p>⚠️ <a href="#time-units">See below</a> for available time units and their options. ⚠️</p>
-    <td>
+    </td>
   </tr>
   <tr>
     <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> Yes</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>number</code></h4></td>
-    <td rowspan="2">The number to convert.<td>
+    <td rowspan="2">The number to convert.</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><b>Type:</b> Number<br><b>Required?</b> Yes</td>
