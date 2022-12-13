@@ -7,7 +7,7 @@ The displayed time units depend on if any remainder can be converted into one an
 
 ### Placeholder pattern
 
-`%formatter_number_time[_<source_unit>]_<number>%`
+`%formatter_number_time[_<time_unit>]_<number>%`
 
 ### Options
 
@@ -17,7 +17,7 @@ The displayed time units depend on if any remainder can be converted into one an
     <td align="center" nowrap="nowrap">Description</td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><h4><code>source_unit</code></h4></td>
+    <td nowrap="nowrap"><h4><code>time_unit</code></h4></td>
     <td rowspan="2">
       <p>The Time unit to treat the provided number as</p>
       <p>Available Time units:
@@ -44,9 +44,9 @@ The displayed time units depend on if any remainder can be converted into one an
 
 ### Examples
 ```
-/papi parse me %formatter_number_time_100% -> 1m 40s
-/papi parse me %formatter_number_time_fromMs_1200% -> 1s 200ms
+/papi parse me %formatter_number_time_100%          -> 1m 40s
+/papi parse me %formatter_number_time_fromMs_1200%  -> 1s 200ms
 /papi parse me %formatter_number_time_fromSecs_100% -> 1m 40s
 /papi parse me %formatter_number_time_fromMins_100% -> 1h 40m
-/papi parse me %formatter_number_time_fromHrs_100% -> 4d 4h
+/papi parse me %formatter_number_time_fromHrs_100%  -> 4d 4h
 ```
