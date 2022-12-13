@@ -37,7 +37,7 @@ They can be found under `expansions.formatter`.
   <tr>
     <td align="center" nowrap="nowrap">Option</td>
     <td align="center" nowrap="nowrap">Description</td>
-  <tr>
+  </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>format</code></h4></td>
     <td rowspan="2">The default <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/text/DecimalFormat.html">DecimalFormat</a> to use for the <a href="/placeholders/number/format.md">format placeholder</a>.</td>
