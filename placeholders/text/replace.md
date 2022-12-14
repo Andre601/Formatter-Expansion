@@ -24,7 +24,7 @@ Replaces any appearance of the provided `<target>` with the provided `<replaceme
       <h4><code>target</code></h4>
     </td>
     <td rowspan="2">
-      <p>The text to target and replace with <code>replacement</code>..</p>
+      <p>The text to target and replace with <code>replacement</code>.<br>Text can be an empty String.</p>
       <p>⚠️ You have to use <code>{{u}}</code> to target <code>_</code> ⚠️</p>
     </td>
   </tr>
