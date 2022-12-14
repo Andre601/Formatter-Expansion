@@ -31,8 +31,7 @@ Replaces any appearance of the provided `<target>` with the provided `<replaceme
   <tr>
     <td nowrap="nowrap">
       <b>Type:</b> String<br>
-      <b>Required?</b> Yes<br>
-      <b>Condition:</b> <code>text.isEmpty() == false</code>
+      <b>Required?</b> Yes
     </td>
   </tr>
   <tr>
