@@ -30,8 +30,7 @@ Turns the provided text into all lowercase.
   <tr>
     <td nowrap="nowrap">
       <b>Type:</b> String<br>
-      <b>Required?</b> Yes<br>
-      <b>Condition: <code>text.isEmpty() == false</code>
+      <b>Required?</b> Yes
     </td>
   </tr>
 </table>
