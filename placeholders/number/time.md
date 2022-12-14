@@ -13,11 +13,17 @@ The displayed time units depend on if any remainder can be converted into one an
 
 <table>
   <tr>
-    <td align="center" nowrap="nowrap">Option</td>
-    <td align="center" nowrap="nowrap">Description</td>
+    <td align="center" nowrap="nowrap">
+      Option
+    </td>
+    <td align="center" nowrap="nowrap">
+      Description
+    </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><h4><code>time_unit</code></h4></td>
+    <td nowrap="nowrap">
+      <h4><code>time_unit</code></h4>
+    </td>
     <td rowspan="2">
       <p>The Time unit to treat the provided number as</p>
       <p>Available Time units:
@@ -27,18 +33,32 @@ The displayed time units depend on if any remainder can be converted into one an
         <li><code>fromMinutes</code> / <code>fromMins</code> - Treats the number as minutes</li>
         <li><code>fromHours</code> / <code>fromHrs</code> - Treats the number as hours</li>
       </ul>
-      </p>
     </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> No<br><b>Default:</b> <code>fromSeconds</code></td>
+    <td nowrap="nowrap">
+      <b>Type:</b> String<br>
+      <b>Required?</b> No<br>
+      <b>Default:</b> <code>fromSeconds</code>
+    </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><h4><code>number</code></h4></td>
-    <td rowspan="2">The number to convert.</td>
+    <td nowrap="nowrap">
+      <h4><code>number</code></h4>
+    </td>
+    <td rowspan="2">
+      The number to convert.
+    </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> Number<br><b>Required?</b> Yes<br><b>Condition:</b> <code>0 ≤ x</code></td>
+    <td nowrap="nowrap">
+      <b>Type:</b> Number<br>
+      <b>Required?</b> Yes<br>
+      <b>Condition:</b>
+      <ul>
+        <li><code>0 ≤ x</code></li>
+      </ul>
+    </td>
   </tr>
 </table>
 
