@@ -17,7 +17,7 @@
 > Please make sure to use **at least** Java 17 or else you may get a `UnsupportedClassVersionError` when it loads.
 
 ## Placeholders
-The Formatter expansion currently offers the following placeholders (Click them for more infos):
+The Formatter expansion currently offers the following placeholders:
 
 - [`%formatter_number_format[_[locale]:[patter]]_<number>%`](/placeholders/number/format.md)
 - [`%formatter_number_from:<time_unit>_to:<time_unit>_<number>%`](/placeholders/number/fromto.md)
@@ -28,6 +28,12 @@ The Formatter expansion currently offers the following placeholders (Click them 
 - [`%formatter_text_replace_<target>_<replacement>_<text>%`](/placeholders/text/replace.md)
 - [`%formatter_text_substring_[start]:[end]_<text>%`](/placeholders/text/substring.md)
 - [`%formatter_text_uppercase_<text>%`](/placeholders/text/uppercase.md)
+
+An explanation of the placeholder pages is found in the [placeholders folder](/placeholders/README.md)
+
+### External placeholder support
+The expansion allows you to use placeholders from other expansions such as the Player expansion.  
+To use a placeholder, make sure to use the bracket-format instead of the percent one (i.e. `{player_name}` instead of `%player_name%`).
 
 ## Config options
 The expansion adds a few options to the config.yml of PlaceholderAPI.  
