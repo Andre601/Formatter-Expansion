@@ -12,35 +12,55 @@ Replaces any appearance of the provided `<target>` with the provided `<replaceme
 
 <table>
   <tr>
-    <td align="center" nowrap="nowrap">Option</td>
-    <td align="center" nowrap="nowrap">Description</td>
-  </tr>
-  <tr>
-    <td nowrap="nowrap"><h4><code>target</code></h4></td>
-    <td rowspan="2">
-      <p>The text to target and replace with <code>replacement</code>..</p>
-      <p>⚠️ <code>_</code> cannot be used directly. You have to use <code>{{u}}</code> instead. ⚠️</p>
+    <td align="center" nowrap="nowrap">
+      Option
+    </td>
+    <td align="center" nowrap="nowrap">
+      Description
     </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> Yes</td>
+    <td nowrap="nowrap">
+      <h4><code>target</code></h4>
+    </td>
+    <td rowspan="2">
+      <p>The text to target and replace with <code>replacement</code>..</p>
+      <p>⚠️ You have to use <code>{{u}}</code> to target <code>_</code> ⚠️</p>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap="nowrap">
+      <b>Type:</b> String<br>
+      <b>Required?</b> Yes<br>
+      <b>Condition:</b> <code>text.isEmpty() == false</code>
+    </td>
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>replacement</code></h4></td>
     <td rowspan="2">
       <p>The text to replace the target with.<br>Text can be an empty String.</p>
-      <p>⚠️ <code>_</code> cannot be used directly. You have to use <code>{{u}}</code> instead. ⚠️</p>
+      <p>⚠️ You have to use <code>{{u}}</code> to replace <code>_</code> ⚠️</p>
     </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> Yes</td>
+    <td nowrap="nowrap">
+      <b>Type:</b> String<br>
+      <b>Required?</b> Yes
+    </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><h4><code>text</code></h4></td>
-    <td rowspan="2">The text in which the provided <code>target</code> should be replaced by the <code>replacement</code>.</td>
+    <td nowrap="nowrap">
+      <h4><code>text</code></h4>
+    </td>
+    <td rowspan="2">
+      The text in which the provided <code>target</code> should be replaced by the <code>replacement</code>.
+    </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> Yes</td>
+    <td nowrap="nowrap">
+      <b>Type:</b> String<br>
+      <b>Required?</b> Yes
+    </td>
   </tr>
 </table>
 
