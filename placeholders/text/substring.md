@@ -32,8 +32,11 @@ Returns a specific part of the text based on the provided start and end index.
     <td nowrap="nowrap">
       <b>Type:</b> Number<br>
       <b>Required?</b> No<br>
-      <b>Condition:</b> <code>0 ≤ x ≤ (text.length() - 1)</code><br>
-      <b>Default:</b> 0
+      <b>Conditions:</b>
+      <ul>
+        <li><code>0 ≤ x ≤ (text.length() - 1)</code></li>
+      </ul>
+      <b>Default:</b> <code>0</code>
     </td>
   </tr>
   <tr>
@@ -48,7 +51,11 @@ Returns a specific part of the text based on the provided start and end index.
     <td nowrap="nowrap">
       <b>Type:</b> Number<br>
       <b>Required?</b> No<br>
-      <b>Condition:</b> <code>0 ≤ x ≤ text.length()</code><br>
+      <b>Conditions:</b><br>
+      <ul>
+        <li><code>0 ≤ x ≤ text.length()</code></li>
+        <li><code>start < x</code></li>
+      </ul>
       <b>Default:</b> <code>text.length()</code>
     </td>
   </tr>
