@@ -23,7 +23,7 @@ Formats the provided number by adding separators such as `,` to it.
     </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> No<br><b>Default:</b> Config value (<code>expansion.formatter.locale</code>)</td>
+    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> No<br><b>Default:</b> Config value (<code>expansions.formatter.locale</code>)</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>pattern</code></h4></td>
@@ -33,7 +33,7 @@ Formats the provided number by adding separators such as `,` to it.
     </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> No<br><b>Default:</b> Config value (<code>expansion.formatter.format</code>)</td>
+    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> No<br><b>Default:</b> Config value (<code>expansions.formatter.format</code>)</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>number</code></h4></td>

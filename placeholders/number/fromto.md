@@ -41,7 +41,10 @@ Any remainders/fractions will be discarded.
     <td rowspan="2">The number to convert.</td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> Number<br><b>Required?</b> Yes</td>
+    <td nowrap="nowrap">
+      <b>Type:</b> Number<br>
+      <b>Required?</b> Yes
+    </td>
   </tr>
 </table>
 

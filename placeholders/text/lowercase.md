@@ -12,15 +12,26 @@ Turns the provided text into all lowercase.
 
 <table>
   <tr>
-    <td align="center" nowrap="nowrap">Option</td>
-    <td align="center" nowrap="nowrap">Description</td>
+    <td align="center" nowrap="nowrap">
+      Option
+    </td>
+    <td align="center" nowrap="nowrap">
+      Description
+    </td>
   <tr>
   <tr>
-    <td nowrap="nowrap"><h4><code>text</code></h4></td>
-    <td rowspan="2">The text to turn all lowercase.</td>
+    <td nowrap="nowrap">
+      <h4><code>text</code></h4>
+    </td>
+    <td rowspan="2">
+      The text to turn all lowercase.
+    </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> Yes</td>
+    <td nowrap="nowrap">
+      <b>Type:</b> String<br>
+      <b>Required?</b> Yes
+    </td>
   </tr>
 </table>
 
