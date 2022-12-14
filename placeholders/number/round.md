@@ -22,7 +22,7 @@ Rounds the provided number based on the provided precision and/or rounding behav
     </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> Number <i>(0 ≤ x)</i><br><b>Required?</b> No<br><b>Default:</b> Config value (<code>expansion.formatter.rounding.precision</code>)</td>
+    <td nowrap="nowrap"><b>Type:</b> Number<br><b>Required?</b> No<br><b>Condition:</b> <code>0 ≤ x</code><br><b>Default:</b> Config value (<code>expansion.formatter.rounding.precision</code>)</td>
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>rounding_mode</code></h4></td>
