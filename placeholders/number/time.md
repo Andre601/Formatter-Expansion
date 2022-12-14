@@ -38,7 +38,7 @@ The displayed time units depend on if any remainder can be converted into one an
     <td rowspan="2">The number to convert.</td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> Number<br><b>Required?</b> Yes<br><b>Condition:</b> 0 ≤ x</td>
+    <td nowrap="nowrap"><b>Type:</b> Number<br><b>Required?</b> Yes<br><b>Condition:</b> <code>0 ≤ x</code></td>
   </tr>
 </table>
 
