@@ -31,7 +31,7 @@ public class Time implements IFormatter{
     
     private String formatTime(String number, String unit){
         Long finalNumber = NumberUtils.optLong(number);
-        if(finalNumber == null)
+        if(finalNumber == null || finalNumber < 0L)
             return null;
         
         TimeUnit timeUnit = StringUtils.getTimeUnit(unit);

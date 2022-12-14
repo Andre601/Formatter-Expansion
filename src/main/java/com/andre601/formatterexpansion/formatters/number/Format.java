@@ -33,7 +33,6 @@ public class Format implements IFormatter{
         
         String[] options = StringUtils.getSplit(values[0], ":", 2);
         
-        
         if(!StringUtils.isNullOrEmpty(options[0]))
             locale = options[0];
         
