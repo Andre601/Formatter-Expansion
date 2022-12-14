@@ -2,11 +2,11 @@
 
 ## Replace
 
-Replaces any appearance of the provided `<target>` with the provided `<replacement>` in the text.
+Replaces any appearance of the provided `[target]` with the provided `[replacement]` in the text.
 
 ### Placeholder pattern
 
-`%formatter_text_replace_<target>_<replacement>_<text>%`
+`%formatter_text_replace_[target]_[replacement]_<text>%`
 
 ### Options
 
@@ -31,7 +31,7 @@ Replaces any appearance of the provided `<target>` with the provided `<replaceme
   <tr>
     <td nowrap="nowrap">
       <b>Type:</b> String<br>
-      <b>Required?</b> Yes
+      <b>Required?</b> No
     </td>
   </tr>
   <tr>
@@ -44,7 +44,7 @@ Replaces any appearance of the provided `<target>` with the provided `<replaceme
   <tr>
     <td nowrap="nowrap">
       <b>Type:</b> String<br>
-      <b>Required?</b> Yes
+      <b>Required?</b> No
     </td>
   </tr>
   <tr>
