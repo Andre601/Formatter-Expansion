@@ -12,17 +12,31 @@ Rounds the provided number based on the provided precision and/or rounding behav
 
 <table>
   <tr>
-    <td align="center" nowrap="nowrap">Option</td>
-    <td align="center" nowrap="nowrap">Description</td>
+    <td align="center" nowrap="nowrap">
+      Option
+    </td>
+    <td align="center" nowrap="nowrap">
+      Description
+    </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><h4><code>precision</code></h4></td>
+    <td nowrap="nowrap">
+      <h4><code>precision</code></h4>
+    </td>
     <td rowspan="2">
       <p>How many digits after the decimal point should be kept.</p>
     </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> Number<br><b>Required?</b> No<br><b>Condition:</b> <code>0 ≤ x</code><br><b>Default:</b> Config value (<code>expansion.formatter.rounding.precision</code>)</td>
+    <td nowrap="nowrap">
+      <b>Type:</b> Number<br>
+      <b>Required?</b> No<br>
+      <b>Conditions:</b>
+      <ul>
+        <li><code>0 ≤ x</code></li>
+      </ul>
+      <b>Default:</b> Config value (<code>expansion.formatter.rounding.precision</code>)
+    </td>
   </tr>
   <tr>
     <td nowrap="nowrap"><h4><code>rounding_mode</code></h4></td>
