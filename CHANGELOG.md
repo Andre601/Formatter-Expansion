@@ -1,6 +1,12 @@
 # Changelog
 This file lists the different changes of the Formatter-expansion in detail.
 
+## `2.0.2`
+- **[Added]** Safety checks to only allow positive numbers for the time placeholder.
+
+## `2.0.1`
+- **[Added]** Safety-checks for substring placeholder to make sure that start index isn't larger than the text length and that the end index isn't less or equal to start index.
+
 ## `2.0.0`
 - **[BREAKING]** Removed `%formatter_num_...%` placeholder. Use `%formatter_number_...%` instead.
 - **[BREAKING]** Removed `rounding` option for number placeholder. Use `round` instead.
