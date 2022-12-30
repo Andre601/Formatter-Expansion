@@ -1,6 +1,9 @@
 # Changelog
 This file lists the different changes of the Formatter-expansion in detail.
 
+## `2.0.3`
+- **[Fixed]** Wrong Null and empty checks for from-to placeholder.
+
 ## `2.0.2`
 - **[Added]** Safety checks to only allow positive numbers for the time placeholder.
 
