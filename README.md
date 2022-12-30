@@ -10,6 +10,10 @@
   <img alt="revolt" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@2/assets/minimal/social/revolt-singular_vector.svg" height="64" align="right">
 </a>
 
+> ## Repository moved
+> The Repository has been moved to [Codeberg](https://github.com/Andre601/Formatter-Expansion).  
+> This Repository is now archived and won't receive any future updates.
+
 > **Note**  
 > The Formatter expansion uses Paper 1.19.3 and therefore builds against Java 17.  
 > This makes it incompatible with older Java Distributions. Older Minecraft versions *may* be supported, but it isn't guaranteed.
