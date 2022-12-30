@@ -23,7 +23,7 @@ public class FromTo implements IFormatter{
     
     @Override
     public String parse(String option, String... values){
-        if(values.length < 2 || !StringUtils.isNullOrEmpty(values[0], values[1]) || !values[0].toLowerCase(Locale.ROOT).startsWith("to:"))
+        if(values.length < 2 || StringUtils.isNullOrEmpty(values[0], values[1]) || !values[0].toLowerCase(Locale.ROOT).startsWith("to:"))
             return null;
         
         String from = StringUtils.getSplit(option, ":", 2)[1];
