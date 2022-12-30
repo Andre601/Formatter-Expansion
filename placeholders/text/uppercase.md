@@ -1,4 +1,4 @@
-[\<-- Go back to README.md](/README.md)
+[\<-- Go back to README.md](../../README.md)
 
 ## Uppercase
 
@@ -21,7 +21,9 @@ Returns the provided text all uppercase.
   </tr>
   <tr>
     <td nowrap="nowrap">
-      <h4><code>text</code></h4>
+      <h4>
+        <code>text</code>
+      </h4>
     </td>
     <td rowspan="2">
       The text to turn uppercase.

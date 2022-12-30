@@ -1,4 +1,4 @@
-[\<-- Go back to README.md](/README.md)
+[\<-- Go back to README.md](../../README.md)
 
 ## Substring
 
@@ -24,8 +24,9 @@ Returns a specific part of the text based on the provided start and end index.
       <h4><code>start</code></h4>
     </td>
     <td rowspan="2">
-      <p>The start index to indicate the beginning of the text.</p>
-      <p>⚠️ The number is 0-indexed, meaning 0=1, 1=2, etc. ⚠️</p>
+      The start index to indicate the beginning of the text.<br>
+      <br>
+      ⚠️ The number is 0-indexed, meaning 0=1, 1=2, etc. ⚠️
     </td>
   </tr>
   <tr>

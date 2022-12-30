@@ -1,4 +1,4 @@
-[\<-- Go back to README.md](/README.md)
+[\<-- Go back to README.md](../../README.md)
 
 ## Round
 
@@ -25,8 +25,9 @@ The displayed time units depend on if any remainder can be converted into one an
       <h4><code>time_unit</code></h4>
     </td>
     <td rowspan="2">
-      <p>The Time unit to treat the provided number as</p>
-      <p>Available Time units:
+      The Time unit to treat the provided number as<br>
+      <br>
+      <b>Available Time units:</b>
       <ul>
         <li><code>fromMilliseconds</code> / <code>fromMs</code> - Treats the number as milliseconds</li>
         <li><code>fromSeconds</code> / <code>fromSecs</code> - Treats the number as seconds</li>

@@ -1,4 +1,4 @@
-[\<-- Go back to README.md](/README.md)
+[\<-- Go back to README.md](../../README.md)
 
 ## FromTo
 
@@ -13,32 +13,52 @@ Any remainders/fractions will be discarded.
 
 <table>
   <tr>
-    <td align="center" nowrap="nowrap">Option</td>
-    <td align="center" nowrap="nowrap">Description</td>
-  </tr>
-  <tr>
-    <td nowrap="nowrap"><h4><code>old_time_unit</code></h4></td>
-    <td rowspan="2">
-      <p>The Time unit to use as the original number's unit.</p>
-      <p>⚠️ <a href="#time-units">See below</a> for available time units and their options. ⚠️</p>
+    <td align="center" nowrap="nowrap">
+      Option
+    </td>
+    <td align="center" nowrap="nowrap">
+      Description
     </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> Yes</td>
-  </tr>
-  <tr>
-    <td nowrap="nowrap"><h4><code>new_time_unit</code></h4></td>
+    <td nowrap="nowrap">
+      <h4><code>old_time_unit</code></h4>
+    </td>
     <td rowspan="2">
-      <p>The Time unit to use as the number's new format.</p>
-      <p>⚠️ <a href="#time-units">See below</a> for available time units and their options. ⚠️</p>
+      The Time unit to use as the original number's unit.<br>
+      <br>
+      ⚠️ <a href="#time-units">See below</a> for available time units and their options. ⚠️
     </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> Yes</td>
+      <td nowrap="nowrap">
+      <b>Type:</b> String<br>
+      <b>Required?</b> Yes
+    </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><h4><code>number</code></h4></td>
-    <td rowspan="2">The number to convert.</td>
+    <td nowrap="nowrap">
+      <h4><code>new_time_unit</code></h4>
+    </td>
+    <td rowspan="2">
+      The Time unit to use as the number's new format.<br>
+      <br>
+      ⚠️ <a href="#time-units">See below</a> for available time units and their options. ⚠️
+    </td>
+  </tr>
+  <tr>
+    <td nowrap="nowrap">
+      <b>Type:</b> String<br>
+      <b>Required?</b> Yes
+    </td>
+  </tr>
+  <tr>
+    <td nowrap="nowrap">
+      <h4><code>number</code></h4>
+    </td>
+    <td rowspan="2">
+      The number to convert.
+    </td>
   </tr>
   <tr>
     <td nowrap="nowrap">

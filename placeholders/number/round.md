@@ -1,4 +1,4 @@
-[\<-- Go back to README.md](/README.md)
+[\<-- Go back to README.md](../../README.md)
 
 ## Round
 
@@ -24,7 +24,7 @@ Rounds the provided number based on the provided precision and/or rounding behav
       <h4><code>precision</code></h4>
     </td>
     <td rowspan="2">
-      <p>How many digits after the decimal point should be kept.</p>
+      How many digits after the decimal point should be kept.
     </td>
   </tr>
   <tr>
@@ -39,21 +39,35 @@ Rounds the provided number based on the provided precision and/or rounding behav
     </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><h4><code>rounding_mode</code></h4></td>
+    <td nowrap="nowrap">
+      <h4><code>rounding_mode</code></h4>
+    </td>
     <td rowspan="2">
-      <p>How the number should be rounded if any fractions are discarded.</p>
-      <p>⚠️ <a href="#rounding-modes">See below</a> for available rounding modes. ⚠️</p>
+      How the number should be rounded if any fractions are discarded.<br>
+      <br>
+      ⚠️ <a href="#rounding-modes">See below</a> for available rounding modes. ⚠️
     </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> No<br><b>Default:</b> Config value (<code>expansion.formatter.rounding.mode</code>)</td>
+    <td nowrap="nowrap">
+      <b>Type:</b> String<br>
+      <b>Required?</b> No<br>
+      <b>Default:</b> Config value (<code>expansion.formatter.rounding.mode</code>)
+    </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><h4><code>number</code></h4></td>
-    <td rowspan="2">The number to convert.</td>
+    <td nowrap="nowrap">
+      <h4><code>number</code></h4>
+    </td>
+    <td rowspan="2">
+      The number to convert.
+    </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> Number<br><b>Required?</b> Yes</td>
+    <td nowrap="nowrap">
+      <b>Type:</b> Number<br>
+      <b>Required?</b> Yes
+    </td>
   </tr>
 </table>
 

@@ -1,4 +1,4 @@
-[\<-- Go back to README.md](/README.md)
+[\<-- Go back to README.md](../../README.md)
 
 ## Replace
 
@@ -24,8 +24,9 @@ Replaces any appearance of the provided `[target]` with the provided `[replaceme
       <h4><code>target</code></h4>
     </td>
     <td rowspan="2">
-      <p>The text to target and replace with <code>replacement</code>.<br>Text can be an empty String.</p>
-      <p>⚠️ You have to use <code>{{u}}</code> to target <code>_</code> ⚠️</p>
+      The text to target and replace with <code>replacement</code>.<br>Text can be an empty String.<br>
+      <br>
+      ⚠️ You have to use <code>{{u}}</code> to target <code>_</code> ⚠️
     </td>
   </tr>
   <tr>
@@ -35,10 +36,13 @@ Replaces any appearance of the provided `[target]` with the provided `[replaceme
     </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><h4><code>replacement</code></h4></td>
+    <td nowrap="nowrap">
+      <h4><code>replacement</code></h4>
+    </td>
     <td rowspan="2">
-      <p>The text to replace the target with.<br>Text can be an empty String.</p>
-      <p>⚠️ You have to use <code>{{u}}</code> to replace <code>_</code> ⚠️</p>
+      The text to replace the target with.<br>Text can be an empty String.<br>
+      <br>
+      ⚠️ You have to use <code>{{u}}</code> to replace <code>_</code> ⚠️
     </td>
   </tr>
   <tr>

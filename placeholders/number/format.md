@@ -1,4 +1,4 @@
-[\<-- Go back to README.md](/README.md)
+[\<-- Go back to README.md](../../README.md)
 
 ## Format
 
@@ -12,35 +12,59 @@ Formats the provided number by adding separators such as `,` to it.
 
 <table>
   <tr>
-    <td align="center" nowrap="nowrap">Option</td>
-    <td align="center" nowrap="nowrap">Description</td>
-  </tr>
-  <tr>
-    <td nowrap="nowrap"><h4><code>locale</code></h4></td>
-    <td rowspan="2">
-      <p>The country code to use for the pattern.</p>
-      <p>⚠️ The country code needs to use <code>-</code> instead of <code>_</code> (i.e. <code>en-US</code> instead of <code>en_US</code>) ⚠️</p>
+    <td align="center" nowrap="nowrap">
+      Option
+    </td>
+    <td align="center" nowrap="nowrap">
+      Description
     </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> No<br><b>Default:</b> Config value (<code>expansions.formatter.locale</code>)</td>
-  </tr>
-  <tr>
-    <td nowrap="nowrap"><h4><code>pattern</code></h4></td>
+    <td nowrap="nowrap">
+      <h4><code>locale</code></h4>
+    </td>
     <td rowspan="2">
-      <p>The number pattern to use.</p>
-      <p>⚠️ The pattern uses the <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/text/DecimalFormat.html">DecimalFormat</a> from Java. ⚠️</p>
+      The country code to use for the pattern.<br>
+      <br>
+      ⚠️ The country code needs to use <code>-</code> instead of <code>_</code> (i.e. <code>en-US</code> instead of <code>en_US</code>) ⚠️
     </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> String<br><b>Required?</b> No<br><b>Default:</b> Config value (<code>expansions.formatter.format</code>)</td>
+    <td nowrap="nowrap">
+      <b>Type:</b> String<br>
+      <b>Required?</b> No<br>
+      <b>Default:</b> Config value (<code>expansions.formatter.locale</code>)
+    </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><h4><code>number</code></h4></td>
-    <td rowspan="2">The number to format.</td>
+    <td nowrap="nowrap">
+      <h4><code>pattern</code></h4>
+    </td>
+    <td rowspan="2">
+      The number pattern to use.<br>
+      <br>
+      ⚠️ The pattern uses the <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/text/DecimalFormat.html">DecimalFormat</a> from Java. ⚠️
+    </td>
   </tr>
   <tr>
-    <td nowrap="nowrap"><b>Type:</b> Number<br><b>Required?</b> Yes</td>
+    <td nowrap="nowrap">
+      <b>Type:</b> String<br>
+      <b>Required?</b> No<br>
+      <b>Default:</b> Config value (<code>expansions.formatter.format</code>)
+    </td>
+  </tr>
+  <tr>
+    <td nowrap="nowrap">
+      <h4><code>number</code></h4>
+    </td>
+    <td rowspan="2">
+      The number to format.
+    </td>
+  </tr>
+  <tr>
+    <td nowrap="nowrap">
+      <b>Type:</b> Number<br><b>Required?</b> Yes
+    </td>
   </tr>
 </table>
 
