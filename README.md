@@ -29,7 +29,7 @@ The Formatter expansion currently offers the following placeholders:
 - [`%formatter_text_substring_[start]:[end]_<text>%`](./placeholders/text/substring.md)
 - [`%formatter_text_uppercase_<text>%`](./placeholders/text/uppercase.md)
 
-An explanation of the placeholder pages is found in the [placeholders folder](/placeholders/README.md)
+An explanation of the placeholder pages is found in the [placeholders folder](./placeholders/README.md)
 
 ### External placeholder support
 The expansion allows you to use placeholders from other expansions such as the Player expansion.  
