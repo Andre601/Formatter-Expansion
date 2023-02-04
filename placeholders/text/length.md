@@ -4,9 +4,9 @@
 
 Returns the number of characters the provided text has, including whitespaces.
 
-### Placeholder pattern
+### Placeholder patterns
 
-`%formatter_text_length_<text>%`
+- `%formatter_text_length_<text>%`
 
 ### Options
 

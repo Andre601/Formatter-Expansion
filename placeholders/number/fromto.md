@@ -5,9 +5,9 @@
 Converts the provided number from one time unit to another. The time unit will also be attached to the number.  
 Any remainders/fractions will be discarded.
 
-### Placeholder pattern
+### Placeholder patterns
 
-`%formatter_number_from:<old_time_unit>_to:<new_time_unit>_<number>%`
+- `%formatter_number_from:<old_time_unit>_to:<new_time_unit>_<number>%`
 
 ### Options
 

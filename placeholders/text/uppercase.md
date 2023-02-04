@@ -4,9 +4,9 @@
 
 Returns the provided text all uppercase.
 
-### Placeholder pattern
+### Placeholder patterns
 
-`%formatter_text_uppercase_<text>%`
+- `%formatter_text_uppercase_<text>%`
 
 ### Options
 

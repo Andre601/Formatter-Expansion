@@ -4,9 +4,10 @@
 
 Rounds the provided number based on the provided precision and/or rounding behaviour.
 
-### Placeholder pattern
+### Placeholder patterns
 
-`%formatter_number_round[_[precision]:[rounding_mode]]_<number>%`
+- `%formatter_number_round_<number>%`
+- `%formatter_number_round_[precision]:[rounding_mode]_<number>%`
 
 ### Options
 

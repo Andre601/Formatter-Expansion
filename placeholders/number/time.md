@@ -5,9 +5,10 @@
 Converts the provided number into a collection of time units.  
 The displayed time units depend on if any remainder can be converted into one and the used source unit.
 
-### Placeholder pattern
+### Placeholder patterns
 
-`%formatter_number_time[_<time_unit>]_<number>%`
+- `%formatter_number_time_<number>%`
+- `%formatter_number_time_<time_unit>_<number>%`
 
 ### Options
 

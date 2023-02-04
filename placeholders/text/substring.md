@@ -4,9 +4,9 @@
 
 Returns a specific part of the text based on the provided start and end index.
 
-### Placeholder pattern
+### Placeholder patterns
 
-`%formatter_text_substring_[start]:[end]_<text>%`
+- `%formatter_text_substring_[start]:[end]_<text>%`
 
 ### Options
 

@@ -4,9 +4,9 @@
 
 Replaces any appearance of the provided `[target]` with the provided `[replacement]` in the text.
 
-### Placeholder pattern
+### Placeholder patterns
 
-`%formatter_text_replace_[target]_[replacement]_<text>%`
+- `%formatter_text_replace_[target]_[replacement]_<text>%`
 
 ### Options
 
