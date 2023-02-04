@@ -7,9 +7,7 @@ As an example `10000` becomes `10k`.
 
 ### Placeholder patterns
 
-- `%formatter_number_format_<number>`
-- `%formatter_number_format_[locale]:[pattern]_<number>%`
-- `%formatter_number_format_truncate_<number>%`
+- `%formatter_number_shorten_<number>`
 
 ### Options
 
