@@ -13,11 +13,11 @@ public class Shorten implements IFormatter{
     private final NavigableMap<Long, String> suffixes = new TreeMap<>();
     
     public Shorten(FormatterExpansion expansion){
-        suffixes.put(1_000L, expansion.getString("formatting.thousands", "K"));
-        suffixes.put(1_000_000L, expansion.getString("formatting.millions", "M"));
-        suffixes.put(1_000_000_000L, expansion.getString("formatting.billions", "B"));
-        suffixes.put(1_000_000_000_000L, expansion.getString("formatting.trillions", "T"));
-        suffixes.put(1_000_000_000_000_000L, expansion.getString("formatting.quadrillions", "Q"));
+        suffixes.put(1_000L, expansion.getString("shorten.thousands", "K"));
+        suffixes.put(1_000_000L, expansion.getString("shorten.millions", "M"));
+        suffixes.put(1_000_000_000L, expansion.getString("shorten.billions", "B"));
+        suffixes.put(1_000_000_000_000L, expansion.getString("shorten.trillions", "T"));
+        suffixes.put(1_000_000_000_000_000L, expansion.getString("shorten.quadrillions", "Q"));
     }
     
     @Override
