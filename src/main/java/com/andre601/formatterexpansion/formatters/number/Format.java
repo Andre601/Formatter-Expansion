@@ -25,9 +25,10 @@ public class Format implements IFormatter{
     
     @Override
     public String parse(String option, String... values){
-        String locale = expansion.getString("locale", "en-US");
-        String pattern = expansion.getString("format", "#,###,###.##");
+        String locale = expansion.getString("formatting.locale", "en-US");
+        String pattern = expansion.getString("formatting.pattern", "#,###,###.##");
         
+        // %formatter_number_format_<number>%
         if(values.length == 1 || !values[0].contains(":"))
             return formatNumber(String.join("", values), locale, pattern);
         

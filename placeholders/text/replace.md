@@ -4,9 +4,9 @@
 
 Replaces any appearance of the provided `[target]` with the provided `[replacement]` in the text.
 
-### Placeholder pattern
+### Placeholder patterns
 
-`%formatter_text_replace_[target]_[replacement]_<text>%`
+- `%formatter_text_replace_[target]_[replacement]_<text>%`
 
 ### Options
 
@@ -68,6 +68,7 @@ Replaces any appearance of the provided `[target]` with the provided `[replaceme
 </table>
 
 ### Examples
+
 ```
 /papi parse me %formatter_text_replace_ __Re pla ce%        -> Replace
 /papi parse me %formatter_text_replace_{{u}}__Re_pla_ce me% -> Replace me

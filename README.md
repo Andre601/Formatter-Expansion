@@ -22,6 +22,7 @@ The Formatter expansion currently offers the following placeholders:
 - [`%formatter_number_format[_[locale]:[pattern]]_<number>%`](./placeholders/number/format.md)
 - [`%formatter_number_from:<time_unit>_to:<time_unit>_<number>%`](./placeholders/number/fromto.md)
 - [`%formatter_number_round[_[precision]:[rounding_mode]]_<number>%`](./placeholders/number/round.md)
+- [`%formatter_number_shorten_<number>%`](./placeholders/number/shorten.md)
 - [`%formatter_number_time[_<time_unit>]_<number>%`](./placeholders/number/time.md)
 - [`%formatter_text_length_<text>%`](./placeholders/text/length.md)
 - [`%formatter_text_lowercase_<text>%`](./placeholders/text/lowercase.md)
@@ -50,7 +51,7 @@ They can be found under `expansions.formatter`.
   </tr>
   <tr>
     <td nowrap="nowrap">
-      <h4><code>format</code></h4>
+      <h4><code>formatting.pattern</code></h4>
     </td>
     <td rowspan="2">
       The default <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/text/DecimalFormat.html">DecimalFormat</a> to use for the <a href="./placeholders/number/format.md">format placeholder</a>.
@@ -64,7 +65,7 @@ They can be found under `expansions.formatter`.
   </tr>
   <tr>
     <td nowrap="nowrap">
-      <h4><code>locale</code></h4>
+      <h4><code>formatting.locale</code></h4>
     </td>
     <td rowspan="2">
       The country code to use for the decimal format.<br>
@@ -75,6 +76,76 @@ They can be found under `expansions.formatter`.
     <td nowrap="nowrap">
       <b>Type:</b> String<br>
       <b>Default:</b> <code>en-US</code>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap="nowrap">
+      <h4><code>shorten.thousands</code></h4>
+    </td>
+    <td rowspan="2">
+      The letter used to indicate thousands.
+    </td>
+  </tr>
+  <tr>
+    <td nowrap="nowrap">
+      <b>Type:</b> String<br>
+      <b>Default:</b> <code>K</code>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap="nowrap">
+      <h4><code>shorten.millions</code></h4>
+    </td>
+    <td rowspan="2">
+      The letter used to indicate millions.
+    </td>
+  </tr>
+  <tr>
+    <td nowrap="nowrap">
+      <b>Type:</b> String<br>
+      <b>Default:</b> <code>M</code>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap="nowrap">
+      <h4><code>shorten.billions</code></h4>
+    </td>
+    <td rowspan="2">
+      The letter used to indicate billions.
+    </td>
+  </tr>
+  <tr>
+    <td nowrap="nowrap">
+      <b>Type:</b> String<br>
+      <b>Default:</b> <code>B</code>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap="nowrap">
+      <h4><code>shorten.trillions</code></h4>
+    </td>
+    <td rowspan="2">
+      The letter used to indicate trillions.
+    </td>
+  </tr>
+  <tr>
+    <td nowrap="nowrap">
+      <b>Type:</b> String<br>
+      <b>Default:</b> <code>T</code>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap="nowrap">
+      <h4><code>shorten.quadrillions</code></h4>
+    </td>
+    <td rowspan="2">
+      The letter used to indicate quadrillions.
+    </td>
+  </tr>
+  <tr>
+    <td nowrap="nowrap">
+      <b>Type:</b> String<br>
+      <b>Default:</b> <code>Q</code>
     </td>
   </tr>
   <tr>

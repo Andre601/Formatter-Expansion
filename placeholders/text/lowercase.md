@@ -4,9 +4,9 @@
 
 Turns the provided text into all lowercase.
 
-### Placeholder pattern
+### Placeholder patterns
 
-`%formatter_text_lowercase_<text>%`
+- `%formatter_text_lowercase_<text>%`
 
 ### Options
 
@@ -36,6 +36,7 @@ Turns the provided text into all lowercase.
 </table>
 
 ### Examples
+
 ```
 /papi parse me %formatter_text_replace_ __LOWERCASE% -> lowercase
 ```

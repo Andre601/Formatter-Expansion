@@ -2,11 +2,12 @@
 
 ## Format
 
-Formats the provided number by adding separators such as `,` to it.
+Formats the provided number by "prettifying" it (i.e. adding separators such as `,` to divide thousands)
 
-### Placeholder pattern
+### Placeholder patterns
 
-`%formatter_number_format[_[locale]:[pattern]]_<number>%`
+- `%formatter_number_format_<number>`
+- `%formatter_number_format_[locale]:[pattern]_<number>%`
 
 ### Options
 
@@ -63,12 +64,14 @@ Formats the provided number by adding separators such as `,` to it.
   </tr>
   <tr>
     <td nowrap="nowrap">
-      <b>Type:</b> Number<br><b>Required?</b> Yes
+      <b>Type:</b> Number<br>
+      <b>Required?</b> Yes
     </td>
   </tr>
 </table>
 
 ### Examples
+
 ```
 /papi parse me %formatter_number_format_1000%             -> 1,000
 /papi parse me %formatter_number_format_de-CH:_1000%      -> 1'000

@@ -5,9 +5,9 @@
 Converts the provided number from one time unit to another. The time unit will also be attached to the number.  
 Any remainders/fractions will be discarded.
 
-### Placeholder pattern
+### Placeholder patterns
 
-`%formatter_number_from:<old_time_unit>_to:<new_time_unit>_<number>%`
+- `%formatter_number_from:<old_time_unit>_to:<new_time_unit>_<number>%`
 
 ### Options
 
@@ -79,6 +79,7 @@ Any remainders/fractions will be discarded.
 | Millisecond | `milliseconds`, `millisecond`, `millis`, `ms` |
 
 ### Examples
+
 ```
 /papi parse me %formatter_number_from:secs_to:mins_120% -> 2m
 /papi parse me %formatter_number_from:mins_to:hrs_119%  -> 1h
