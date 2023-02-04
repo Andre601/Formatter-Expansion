@@ -105,11 +105,11 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         defaults.put("formatting.pattern", "#,###,###.##");
         defaults.put("formatting.locale", "en-US");
         
-        defaults.put("formatting.thousands", "K");
-        defaults.put("formatting.millions", "M");
-        defaults.put("formatting.billions", "B");
-        defaults.put("formatting.trillions", "T");
-        defaults.put("formatting.quadrillions", "Q");
+        defaults.put("shorten.thousands", "K");
+        defaults.put("shorten.millions", "M");
+        defaults.put("shorten.billions", "B");
+        defaults.put("shorten.trillions", "T");
+        defaults.put("shorten.quadrillions", "Q");
     
         defaults.put("time.milliseconds", "ms");
         defaults.put("time.seconds", "s");

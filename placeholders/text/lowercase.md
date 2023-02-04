@@ -36,6 +36,7 @@ Turns the provided text into all lowercase.
 </table>
 
 ### Examples
+
 ```
 /papi parse me %formatter_text_replace_ __LOWERCASE% -> lowercase
 ```

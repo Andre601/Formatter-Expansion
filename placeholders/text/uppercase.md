@@ -38,6 +38,7 @@ Returns the provided text all uppercase.
 </table>
 
 ### Examples
+
 ```
 /papi parse me %formatter_text_uppercase_Uppercase% -> UPPERCASE
 ```

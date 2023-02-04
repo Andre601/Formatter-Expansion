@@ -68,6 +68,7 @@ Replaces any appearance of the provided `[target]` with the provided `[replaceme
 </table>
 
 ### Examples
+
 ```
 /papi parse me %formatter_text_replace_ __Re pla ce%        -> Replace
 /papi parse me %formatter_text_replace_{{u}}__Re_pla_ce me% -> Replace me

@@ -8,7 +8,6 @@ Formats the provided number by "prettifying" it (i.e. adding separators such as 
 
 - `%formatter_number_format_<number>`
 - `%formatter_number_format_[locale]:[pattern]_<number>%`
-- `%formatter_number_format_truncate_<number>%`
 
 ### Options
 
@@ -72,11 +71,10 @@ Formats the provided number by "prettifying" it (i.e. adding separators such as 
 </table>
 
 ### Examples
+
 ```
 /papi parse me %formatter_number_format_1000%             -> 1,000
 /papi parse me %formatter_number_format_de-CH:_1000%      -> 1'000
 /papi parse me %formatter_number_format_:##,##_1000%      -> 10,00
 /papi parse me %formatter_number_format_de-CH:##,##_1000% -> 10'00
-
-/papi parse me %formatter_number_truncate_10000 -> 10K
 ```

@@ -16,6 +16,7 @@ public class NumberFormatter implements IFormatter{
         this.subFormatters = Arrays.asList(
             new Format(expansion),
             new Round(expansion),
+            new Shorten(expansion),
             new Time(expansion)
         );
         this.fromToFormatter = new FromTo(expansion);

@@ -36,6 +36,7 @@ Returns the number of characters the provided text has, including whitespaces.
 </table>
 
 ### Examples
+
 ```
 /papi parse me %formatter_text_length_Length% -> 6
 ```

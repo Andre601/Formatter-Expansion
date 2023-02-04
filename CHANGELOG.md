@@ -2,11 +2,12 @@
 This file lists the different changes of the Formatter-expansion in detail.
 
 ## `2.1.0`
-- **[Added]** `truncate` option for the format number placeholder. Converts a large number to a smaller one and appends a indicator (i.e. `10000 -> 10k`)
+- **[Added]** `shorten` number placeholder.
+    - Format: `%formatter_number_shorten_<number>%`
+    - Shortens a large number by dividing it through 1,000, 1,000,000, ... and adding a letter at the end (i.e. `10000 -> 10K`)
     - New config options for the letters can be found under the `formatter.formatting` path.
-    - Placeholder pattern: `%formatter_number_format_truncate_<number>%`
-- **[BREAKING]** Moved old `format` and `locale` option to `formatting.pattern` and `formatting.locale` respectively.
-    - The expansion will try to migrate the old options to the new one. Please make a backup tho before updating.
+- **[BREAKING]** Moved `format` and `locate` to `formatting.pattern` and `formatting.locale` respectively.
+    - The expansion will try to migrate your previous values to the new options. Backup is still recommended.
 
 ## `2.0.3`
 - **[Fixed]** Wrong Null and empty checks for from-to placeholder.

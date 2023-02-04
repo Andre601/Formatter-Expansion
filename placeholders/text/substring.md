@@ -77,6 +77,7 @@ Returns a specific part of the text based on the provided start and end index.
 </table>
 
 ### Examples
+
 ```
 /papi parse me %formatter_text_substring_3:9_Substring% -> string
 /papi parse me %formatter_text_substring_:3_Substring%  -> Sub

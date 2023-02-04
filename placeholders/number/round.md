@@ -139,6 +139,7 @@ Rounds the provided number based on the provided precision and/or rounding behav
     - `1.5 -> 2`
 
 ### Examples
+
 ```
 /papi parse me %formatter_number_round_1.5%             -> 2     # Default is half-up
 /papi parse me %formatter_number_round_3:_1.5%          -> 2.000 # Default is half-up

@@ -79,6 +79,7 @@ Any remainders/fractions will be discarded.
 | Millisecond | `milliseconds`, `millisecond`, `millis`, `ms` |
 
 ### Examples
+
 ```
 /papi parse me %formatter_number_from:secs_to:mins_120% -> 2m
 /papi parse me %formatter_number_from:mins_to:hrs_119%  -> 1h
