@@ -42,7 +42,7 @@ Replaces any appearance of the provided `[target]` with the provided `[replaceme
     <td rowspan="2">
       The text to replace the target with.<br>Text can be an empty String.<br>
       <br>
-      ⚠️ You have to use <code>{{u}}</code> to replace <code>_</code> ⚠️
+      ⚠️ You have to use <code>{{u}}</code> to replace <code>target</code> with <code>_</code> ⚠️
     </td>
   </tr>
   <tr>
