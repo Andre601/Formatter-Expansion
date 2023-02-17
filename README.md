@@ -26,7 +26,7 @@ The Formatter expansion currently offers the following placeholders:
 - [`%formatter_number_time[_<time_unit>]_<number>%`](./placeholders/number/time.md)
 - [`%formatter_text_length_<text>%`](./placeholders/text/length.md)
 - [`%formatter_text_lowercase_<text>%`](./placeholders/text/lowercase.md)
-- [`%formatter_text_replace_<target>_<replacement>_<text>%`](./placeholders/text/replace.md)
+- [`%formatter_text_replace_[target]_[replacement]_<text>%`](./placeholders/text/replace.md)
 - [`%formatter_text_substring_[start]:[end]_<text>%`](./placeholders/text/substring.md)
 - [`%formatter_text_uppercase_<text>%`](./placeholders/text/uppercase.md)
 
