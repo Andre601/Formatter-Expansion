@@ -4,6 +4,7 @@ import com.andre601.formatterexpansion.formatters.IFormatter;
 import com.andre601.formatterexpansion.formatters.number.NumberFormatter;
 import com.andre601.formatterexpansion.formatters.text.TextFormatter;
 import com.andre601.formatterexpansion.utils.StringUtils;
+import com.andre601.formatterexpansion.utils.logging.CachedWarnHelper;
 import com.andre601.formatterexpansion.utils.logging.LegacyLogger;
 import com.andre601.formatterexpansion.utils.logging.LoggerUtil;
 import com.andre601.formatterexpansion.utils.logging.NativeLogger;
@@ -30,7 +31,7 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         loadDefaults();
         this.formatters = Arrays.asList(
             new NumberFormatter(this),
-            new TextFormatter()
+            new TextFormatter(this)
         );
     }
     
@@ -61,17 +62,21 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
     
     @Override
     public String onRequest(OfflinePlayer player, @Nonnull String identifier){
+        String raw = "%formatter_" + identifier + "%";
         identifier = PlaceholderAPI.setBracketPlaceholders(player, identifier);
         String[] temp = StringUtils.getSplit(identifier, "_", 3);
         
-        if(StringUtils.isNullOrEmpty(temp[0], temp[1], temp[2]))
+        if(StringUtils.isNullOrEmpty(temp[0], temp[1], temp[2])){
+            CachedWarnHelper.warn(this, raw, "Placeholder needs to be of format '%formatter_<type>_<option>_<values>%'");
             return null;
+        }
         
         for(IFormatter formatter : formatters){
             if(formatter.name().equalsIgnoreCase(temp[0]))
-                return formatter.parse(temp[1], temp[2].split("_"));
+                return formatter.parse(raw, temp[1], temp[2].split("_"));
         }
         
+        CachedWarnHelper.warn(this, raw, "Unknown placeholder type '" + temp[0] + "'.");
         return null;
     }
     
@@ -85,13 +90,13 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
         if(condensed == null)
             return false;
         
-        if(condensed instanceof String)
-            return this.getString("time.condensed", "no").equalsIgnoreCase("yes");
+        if(condensed instanceof String condensedString)
+            return condensedString.equalsIgnoreCase("yes");
         
-        if(condensed instanceof Boolean)
-            return this.getBoolean("time.condensed", false);
+        if(condensed instanceof Boolean condensedBool)
+            return condensedBool;
         
-        return true;
+        return false;
     }
     
     public LoggerUtil loadLogger(){
@@ -99,6 +104,10 @@ public class FormatterExpansion extends PlaceholderExpansion implements Configur
             return new NativeLogger(this);
         
         return new LegacyLogger();
+    }
+    
+    public LoggerUtil getLogger(){
+        return logger;
     }
     
     private void loadDefaults(){

@@ -4,6 +4,7 @@ import com.andre601.formatterexpansion.FormatterExpansion;
 import com.andre601.formatterexpansion.formatters.IFormatter;
 import com.andre601.formatterexpansion.utils.NumberUtils;
 import com.andre601.formatterexpansion.utils.StringUtils;
+import com.andre601.formatterexpansion.utils.logging.CachedWarnHelper;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -24,13 +25,13 @@ public class Format implements IFormatter{
     }
     
     @Override
-    public String parse(String option, String... values){
+    public String parse(String raw, String option, String... values){
         String locale = expansion.getString("formatting.locale", "en-US");
         String pattern = expansion.getString("formatting.pattern", "#,###,###.##");
         
         // %formatter_number_format_<number>%
         if(values.length == 1 || !values[0].contains(":"))
-            return formatNumber(String.join("", values), locale, pattern);
+            return formatNumber(raw, String.join("", values), locale, pattern);
         
         String[] options = StringUtils.getSplit(values[0], ":", 2);
         
@@ -40,14 +41,16 @@ public class Format implements IFormatter{
         if(!StringUtils.isNullOrEmpty(options[1]))
             pattern = options[1];
         
-        return formatNumber(StringUtils.merge(1, "", values), locale, pattern);
+        return formatNumber(raw, StringUtils.merge(1, "", values), locale, pattern);
     }
     
-    private String formatNumber(String number, String locale, String format){
+    private String formatNumber(String raw, String number, String locale, String format){
         // Allow arbitrary numbers
         BigDecimal decimal = NumberUtils.getBigDecimal(number);
-        if(decimal == null)
+        if(decimal == null){
+            CachedWarnHelper.warn(expansion, raw, "Cannot convert " + number + " into a BigDecimal.");
             return null;
+        }
         
         Locale loc = getLocale(locale);
         NumberFormat numberFormat = NumberFormat.getNumberInstance(loc);

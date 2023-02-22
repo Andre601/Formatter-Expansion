@@ -28,13 +28,14 @@ public class NumberFormatter implements IFormatter{
     }
     
     @Override
-    public String parse(String option, String... values){
-        if(option.toLowerCase(Locale.ROOT).startsWith("from:"))
-            return fromToFormatter.parse(option, values);
+    public String parse(String raw, String option, String... values){
+        if(option.toLowerCase(Locale.ROOT).startsWith("from:")){
+            return fromToFormatter.parse(raw, option, values);
+        }
             
         for(IFormatter subFormatter : subFormatters){
             if(subFormatter.name().equalsIgnoreCase(option))
-                return subFormatter.parse(option, values);
+                return subFormatter.parse(raw, option, values);
         }
         
         return null;

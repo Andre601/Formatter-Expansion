@@ -4,6 +4,7 @@ import com.andre601.formatterexpansion.FormatterExpansion;
 import com.andre601.formatterexpansion.formatters.IFormatter;
 import com.andre601.formatterexpansion.utils.NumberUtils;
 import com.andre601.formatterexpansion.utils.StringUtils;
+import com.andre601.formatterexpansion.utils.logging.CachedWarnHelper;
 
 import java.util.StringJoiner;
 import java.util.concurrent.TimeUnit;
@@ -22,21 +23,25 @@ public class Time implements IFormatter{
     }
     
     @Override
-    public String parse(String option, String... values){
+    public String parse(String raw, String option, String... values){
         if(values.length == 1 || !StringUtils.isNullOrEmpty(values[0]))
-            return formatTime(values[0], "fromSeconds");
+            return formatTime(raw, values[0], "fromSeconds");
         
-        return formatTime(StringUtils.merge(1, "", values), values[0]);
+        return formatTime(raw, StringUtils.merge(1, "", values), values[0]);
     }
     
-    private String formatTime(String number, String unit){
+    private String formatTime(String raw, String number, String unit){
         Long finalNumber = NumberUtils.optLong(number);
-        if(finalNumber == null || finalNumber < 0L)
+        if(finalNumber == null || finalNumber < 0L){
+            CachedWarnHelper.warn(expansion, "long", raw, "Cannot convert " + number + " to a long.");
             return null;
+        }
         
         TimeUnit timeUnit = StringUtils.getTimeUnit(unit);
-        if(timeUnit == null)
+        if(timeUnit == null){
+            CachedWarnHelper.warn(expansion, raw, "Unsupported time unit '" + unit + "'.");
             return null;
+        }
         
         long days = 0, hours = 0, minutes = 0, seconds = 0, milliseconds = 0;
         

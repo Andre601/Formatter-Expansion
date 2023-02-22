@@ -16,4 +16,9 @@ public class LegacyLogger implements LoggerUtil{
     public void info(String msg){
         logger.info("[Formatter] " + msg);
     }
+    
+    @Override
+    public void warn(String msg){
+        logger.warning("[Formatter] " + msg);
+    }
 }

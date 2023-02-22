@@ -25,17 +25,18 @@ Returns a specific part of the text based on the provided start and end index.
     </td>
     <td rowspan="2">
       The start index to indicate the beginning of the text.<br>
+      When no valid number is given will the 0-indexed position of the first String matching <code>start</code> be used.<br>
       <br>
       ⚠️ The number is 0-indexed, meaning 0=1, 1=2, etc. ⚠️
     </td>
   </tr>
   <tr>
     <td nowrap="nowrap">
-      <b>Type:</b> Number<br>
+      <b>Type:</b> Text<br>
       <b>Required?</b> No<br>
       <b>Conditions:</b>
       <ul>
-        <li><code>0 ≤ x ≤ (text.length() - 1)</code></li>
+        <li>(If number) <code>0 ≤ x ≤ (text.length() - 1)</code></li>
       </ul>
       <b>Default:</b> <code>0</code>
     </td>
@@ -45,12 +46,13 @@ Returns a specific part of the text based on the provided start and end index.
       <h4><code>end</code></h4>
     </td>
     <td rowspan="2">
-      The end index to indicate the end of the text.
+      The end index to indicate the end of the text.<br>
+      When no valid number is given will the 0-indexed position of the first String matching <code>end</code> be used.
     </td>
   </tr>
   <tr>
     <td nowrap="nowrap">
-      <b>Type:</b> Number<br>
+      <b>Type:</b> Text<br>
       <b>Required?</b> No<br>
       <b>Conditions:</b><br>
       <ul>
@@ -79,7 +81,9 @@ Returns a specific part of the text based on the provided start and end index.
 ### Examples
 
 ```
-/papi parse me %formatter_text_substring_3:9_Substring% -> string
-/papi parse me %formatter_text_substring_:3_Substring%  -> Sub
-/papi parse me %formatter_text_substring_3:_Substring%  -> string
+/papi parse me %formatter_text_substring_3:9_Substring%                -> string
+/papi parse me %formatter_text_substring_:3_Substring%                 -> Sub
+/papi parse me %formatter_text_substring_3:_Substring%                 -> string
+/papi parse me %formatter_text_substring_,:_Substring,Another String%  -> ,Another String
+/papi parse me %formatter_text_substring_:,_Substring,Another String%  -> Substring
 ```

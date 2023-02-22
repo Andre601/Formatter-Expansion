@@ -4,6 +4,7 @@ import com.andre601.formatterexpansion.FormatterExpansion;
 import com.andre601.formatterexpansion.formatters.IFormatter;
 import com.andre601.formatterexpansion.utils.NumberUtils;
 import com.andre601.formatterexpansion.utils.StringUtils;
+import com.andre601.formatterexpansion.utils.logging.CachedWarnHelper;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -24,12 +25,12 @@ public class Round implements IFormatter{
     }
     
     @Override
-    public String parse(String option, String... values){
+    public String parse(String raw, String option, String... values){
         int precision = expansion.getInt("rounding.precision", 0);
         String rounding = expansion.getString("rounding.mode", "half-up");
         
         if(values.length == 1)
-            return roundNumber(values[0], precision, rounding);
+            return roundNumber(raw, values[0], precision, rounding);
         
         String[] roundingOptions = StringUtils.getSplit(values[0], ":", 2);
         
@@ -39,14 +40,16 @@ public class Round implements IFormatter{
         if(!StringUtils.isNullOrEmpty(roundingOptions[1]))
             rounding = roundingOptions[1];
         
-        return roundNumber(StringUtils.merge(1, "", values), precision, rounding);
+        return roundNumber(raw, StringUtils.merge(1, "", values), precision, rounding);
     }
     
-    private String roundNumber(String number, int precision, String roundingMode){
+    private String roundNumber(String raw, String number, int precision, String roundingMode){
         // Allow arbitrary numbers
         BigDecimal decimal = NumberUtils.getBigDecimal(number);
-        if(decimal == null)
+        if(decimal == null){
+            CachedWarnHelper.warn(expansion, raw, "Cannot convert " + number + " to a BigDecimal.");
             return null;
+        }
         
         if(precision < 0)
             precision = 0; // Making sure precision isn't negative

@@ -9,7 +9,7 @@ public class Length implements IFormatter{
     }
     
     @Override
-    public String parse(String option, String... values){
+    public String parse(String raw, String option, String... values){
         return String.valueOf(String.join("_", values).length());
     }
 }

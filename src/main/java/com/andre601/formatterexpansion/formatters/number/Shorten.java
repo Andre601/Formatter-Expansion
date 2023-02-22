@@ -3,6 +3,7 @@ package com.andre601.formatterexpansion.formatters.number;
 import com.andre601.formatterexpansion.FormatterExpansion;
 import com.andre601.formatterexpansion.formatters.IFormatter;
 import com.andre601.formatterexpansion.utils.NumberUtils;
+import com.andre601.formatterexpansion.utils.logging.CachedWarnHelper;
 
 import java.util.Map;
 import java.util.NavigableMap;
@@ -10,9 +11,11 @@ import java.util.TreeMap;
 
 public class Shorten implements IFormatter{
     
+    private final FormatterExpansion expansion;
     private final NavigableMap<Long, String> suffixes = new TreeMap<>();
     
     public Shorten(FormatterExpansion expansion){
+        this.expansion = expansion;
         suffixes.put(1_000L, expansion.getString("shorten.thousands", "K"));
         suffixes.put(1_000_000L, expansion.getString("shorten.millions", "M"));
         suffixes.put(1_000_000_000L, expansion.getString("shorten.billions", "B"));
@@ -26,10 +29,12 @@ public class Shorten implements IFormatter{
     }
     
     @Override
-    public String parse(String option, String... values){
+    public String parse(String raw, String option, String... values){
         Long value = NumberUtils.optLong(String.join("", values));
-        if(value == null)
+        if(value == null){
+            CachedWarnHelper.warn(expansion, raw, "Cannot convert " + String.join("", values) + " to a long.");
             return null;
+        }
         
         return truncateNumber(value);
     }
