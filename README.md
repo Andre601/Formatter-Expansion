@@ -10,7 +10,7 @@
   <img alt="revolt" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@2/assets/minimal/social/revolt-singular_vector.svg" height="64" align="right">
 </a>
 
-> [!NOTE]  
+> [!IMPORTANT]  
 > The Formatter expansion uses Paper 1.19.3 and therefore builds against Java 17.  
 > This makes it incompatible with older Java Distributions. Older Minecraft versions *may* be supported, but it isn't guaranteed.
 > 
