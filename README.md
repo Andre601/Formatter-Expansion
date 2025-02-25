@@ -1,6 +1,10 @@
 [wiki]: https://wiki.powerplugins.net/wiki/formatter-expansion
 [changelog]: https://github.com/Andre601/Formatter-Expansion/blob/master/CHANGELOG.md
 
+# Repository Archived
+This repository has been archived. You can find the up-to-date source of it at codeberg:  
+https://codeberg.org/Andre601/Formatter-Expansion
+
 # Formatter Expansion
 
 <a href="https://discord.gg/6dazXp6" target="_blank">
